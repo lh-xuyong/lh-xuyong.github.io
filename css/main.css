@@ -2863,7 +2863,7 @@ pre .javascript .function {
 }
 .site-overview {
   margin: 0 2px;
-  text-align: left;
+  text-align: center;
 }
 .site-author:before,
 .site-author:after {
