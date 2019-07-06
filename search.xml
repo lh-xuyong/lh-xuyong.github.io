@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[redis]]></title>
+    <url>%2F2019%2F07%2F05%2Fredis%2F</url>
+    <content type="text"><![CDATA[NoSql中的扛把子! —— redis 什么是redis 属于NoSql 开源 先进的key-value存储 一个基于内存的网络存储系统redis中文网 通过php使用redis12345&lt;?php $redis = new redis(); ` $redis-&gt;connect(&apos;127.0.0.1&apos;, 6379); ` $result = $redis-&gt;set(&apos;test&apos;,&quot;11111111111&quot;); ` ?&gt;]]></content>
+      <tags>
+        <tag>缓存</tag>
+        <tag>NoSql</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F07%2F03%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Hexo Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
