@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="缓存,NoSql,数据库,">
+  <meta name="keywords" content="登录,注册,">
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="NoSql中的扛把子! —— Redis">
-<meta name="keywords" content="缓存,NoSql,数据库">
+<meta name="description" content="用redis做简单的CURD">
+<meta name="keywords" content="登录,注册">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis-高级">
-<meta property="og:url" content="http://lh-xuyong.com/2019/07/07/redis-高级/index.html">
+<meta property="og:title" content="用redis做登录注册">
+<meta property="og:url" content="http://lh-xuyong.com/2019/07/08/用redis做登录注册/index.html">
 <meta property="og:site_name" content="Web学习与开发">
-<meta property="og:description" content="NoSql中的扛把子! —— Redis">
+<meta property="og:description" content="用redis做简单的CURD">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-08T15:13:10.904Z">
+<meta property="og:updated_time" content="2019-07-08T15:39:19.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis-高级">
-<meta name="twitter:description" content="NoSql中的扛把子! —— Redis">
+<meta name="twitter:title" content="用redis做登录注册">
+<meta name="twitter:description" content="用redis做简单的CURD">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://lh-xuyong.com/2019/07/07/redis-高级/">
+  <link rel="canonical" href="http://lh-xuyong.com/2019/07/08/用redis做登录注册/">
 
 
 
 
 
-  <title>Redis-高级 | Web学习与开发</title>
+  <title>用redis做登录注册 | Web学习与开发</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/07/redis-高级/">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/08/用redis做登录注册/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lh-ayong">
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis-高级</h1>
+          <h1 class="post-title" itemprop="name headline">用redis做登录注册</h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T13:37:51+08:00">
-                2019-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-08T23:37:40+08:00">
+                2019-07-08
               </time>
             
 
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-08T23:13:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-08T23:39:19+08:00">
                 2019-07-08
               </time>
             
@@ -369,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/实践代码/" itemprop="url" rel="index">
+                    <span itemprop="name">实践代码</span>
                   </a>
                 </span>
 
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  440
                 </span>
               
 
@@ -430,137 +430,9 @@
       
 
       
-        <p>NoSql中的扛把子! —— Redis</p>
+        <p>用redis做简单的CURD</p>
 <a id="more"></a>
-<h2 id="Redis高级"><a href="#Redis高级" class="headerlink" title="Redis高级"></a>Redis高级</h2><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>因为redis 速度相当快，所以在一台比较好的服务器下，一个外部的用户可以在一秒钟进行150K 次的密码尝试，这意味着你需要指定非常非常强大的密码来防止暴力破解。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 进入配置文件</span><br><span class="line">   vim /usr/local/redis/etc/redis.conf</span><br><span class="line">   requirepass 密码明文</span><br><span class="line">2. 重启redis服务</span><br><span class="line">3. 登录（两种）</span><br><span class="line">   ./redis-cli auth 密码值</span><br><span class="line">   推荐，不会在history中遗留密码明文</span><br><span class="line">   ./redis-cli -a 密码</span><br></pre></td></tr></table></figure>
 
-<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>通过修改配置文件做设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. snapshotting(快照)默认方式</span><br><span class="line">  配置    save</span><br><span class="line">    save 900 1 #900秒内如果超过1个key被修改，则发起快照保存</span><br><span class="line">    save 300 10 #300秒内容如超过10个key被修改，则发起快照保存</span><br><span class="line">    save 60 10000</span><br><span class="line">2. Append-only file（aof方式）</span><br><span class="line">  配置 appendonly on 改为yes</span><br><span class="line">  会在bin目录下产生一个.aof的文件</span><br><span class="line"></span><br><span class="line">关于aof的配置</span><br><span class="line">appendonly yes //启用aof 持久化方式</span><br><span class="line"># appendfsync always //收到写命令就立即写入磁盘，最慢，但是保证完全的持久化</span><br><span class="line">appendfsync everysec //每秒钟写入磁盘一次，在性能和持久化方面做了很好的折中</span><br><span class="line"># appendfsync no //完全依赖os，性能最好,持久化没保证</span><br></pre></td></tr></table></figure>
-
-<h3 id="PHP操作redis"><a href="#PHP操作redis" class="headerlink" title="PHP操作redis"></a>PHP操作redis</h3><p><strong>Linux环境安装</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">下载模块：</span><br><span class="line">wget https://github.com/nicolasff/phpredis/archive/master.zip</span><br><span class="line">下载后模块文件名为master（使用file master查看zip类型，用unzip解压）</span><br><span class="line"></span><br><span class="line">解压  </span><br><span class="line">$ unzip master</span><br><span class="line">或</span><br><span class="line">$ unzip phpredis-master.zip</span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">cd phpredis-master</span><br><span class="line">/usr/local/php/bin/phpize </span><br><span class="line">建立php外挂模块文件</span><br><span class="line">./configure --with-php-config=/usr/local/php/bin/php-config </span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">修改配置</span><br><span class="line">vi /usr/local/php/etc/php.ini </span><br><span class="line">添加extension=“redis.so”</span><br><span class="line"></span><br><span class="line">重启apache</span><br><span class="line"></span><br><span class="line">phpinfo可见redis模块</span><br><span class="line">&lt;?php</span><br><span class="line">    $redis=new Redis();</span><br><span class="line">    $redis-&gt;connect(&apos;127.0.0.1&apos;,6379);      //连接</span><br><span class="line">    $redis-&gt;auth(&apos;youpassword&apos;);            //如果没有配置密码，则不需这步</span><br><span class="line">    $redis-&gt;set(&apos;test&apos;,&apos;hello redis&apos;);      </span><br><span class="line">    echo $redis-&gt;get(&apos;test&apos;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>wamp环境安装</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">phpinfo检测是否开启</span><br><span class="line"></span><br><span class="line">php扩展目录 extension_dir</span><br><span class="line">    php_redis.dll放置到php扩展目录下</span><br><span class="line"></span><br><span class="line">php配置文件修改</span><br><span class="line">    extension=php_redis.dll</span><br><span class="line"></span><br><span class="line">重启服务</span><br></pre></td></tr></table></figure>
-
-<p><strong>操作</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$redis=new Redis();  创建Redis对象</span><br><span class="line">$redis-&gt;connect(&quot;localhost&quot;); 连接Redis服务器    </span><br><span class="line">$redis-&gt;auth(&quot;123&quot;);   使用密码做登陆验证</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
-
-<h2 id="Redis做CURD"><a href="#Redis做CURD" class="headerlink" title="Redis做CURD"></a>Redis做CURD</h2><h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><table>
-<thead>
-<tr>
-<th>键值相关命令</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>keys  键名</td>
-<td>按照键名查找指定的键。支持通配符</td>
-<td></td>
-</tr>
-<tr>
-<td>exists 键名</td>
-<td>确认一个键是否存在</td>
-<td></td>
-</tr>
-<tr>
-<td>del 键名</td>
-<td>删除一个键</td>
-<td></td>
-</tr>
-<tr>
-<td>expire 键 秒</td>
-<td>设置一个键的过期时间，如果键已经过期，将会被自动删除</td>
-<td></td>
-</tr>
-<tr>
-<td>ttl 键</td>
-<td>以秒为单位，返回键的剩余生存时间</td>
-<td></td>
-</tr>
-<tr>
-<td>select  数据库号</td>
-<td>选择一个数据库。 默认连接的数据库是0，可以支持共16个数据库 . 在配置文件中，通过databases 16 关键字定义</td>
-<td></td>
-</tr>
-<tr>
-<td>move  键  数据库号</td>
-<td>将当前数据库的键移动到指定的数据空中</td>
-<td></td>
-</tr>
-<tr>
-<td>randomkey</td>
-<td>从当前数据库返回一个随机的键。如果当前库没有任何键，则返回nil</td>
-<td></td>
-</tr>
-<tr>
-<td>type 键</td>
-<td>返回键类型 html&gt; ragment–&gt;</td>
-<td></td>
-</tr>
-<tr>
-<td>rename  旧名  新名</td>
-<td>重命名键</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>服务器相关命令</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ping</td>
-<td>测试服务器是否可以连接</td>
-<td></td>
-</tr>
-<tr>
-<td>echo  字符串</td>
-<td>在命令行输出字符串</td>
-<td></td>
-</tr>
-<tr>
-<td>quit</td>
-<td>退出redis数据库</td>
-<td></td>
-</tr>
-<tr>
-<td>save</td>
-<td>保存所有的数据。很少在生产环境直接使用SAVE 命令，因为它会阻塞所有的客户端的请求，可以使用BGSAVE 命令代替. 如果在BGSAVE命令的保存数据的子进程发生错误的时,用 SAVE命令保存最新的数据是最后的手段</td>
-<td></td>
-</tr>
-<tr>
-<td>dbsize</td>
-<td>返回当前库中键的数量</td>
-<td></td>
-</tr>
-<tr>
-<td>info</td>
-<td>获取服务器的详细信息</td>
-<td></td>
-</tr>
-<tr>
-<td>config get 参数</td>
-<td>获取redis服务器配置文件中的参数。支持通配符</td>
-<td></td>
-</tr>
-<tr>
-<td>flushdb</td>
-<td>删除当前数据库中所有的数据</td>
-<td></td>
-</tr>
-<tr>
-<td>flushall</td>
-<td>删除所有数据库中所有的数据</td>
-<td></td>
-</tr>
-</tbody></table>
 <h3 id="用redis做注册"><a href="#用redis做注册" class="headerlink" title="用redis做注册"></a>用redis做注册</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入redis.php</span></span><br><span class="line">$redis = <span class="keyword">new</span> redis();</span><br><span class="line">$result=$redis-&gt; connect(<span class="string">'118.25.37.3'</span>,<span class="number">6379</span>);</span><br><span class="line">$redis-&gt; auth(<span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据处理</span></span><br><span class="line">$data[<span class="string">'name'</span>] = $_POST[<span class="string">'name'</span>];</span><br><span class="line">$data[<span class="string">'age'</span>] = $_POST[<span class="string">'age'</span>];</span><br><span class="line">$data[<span class="string">'sex'</span>] = $_POST[<span class="string">'sex'</span>];</span><br><span class="line">$data[<span class="string">'pwd'</span>] = $_POST[<span class="string">'pwd'</span>];</span><br><span class="line">$data[<span class="string">'create_at'</span>] = time();</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理id</span></span><br><span class="line"><span class="keyword">if</span>($redis-&gt;exists(<span class="string">'uid'</span>))&#123;</span><br><span class="line">	$redis-&gt;incr(<span class="string">'uid'</span>);</span><br><span class="line">	$uid = $redis-&gt;get(<span class="string">'uid'</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	$redis-&gt;set(<span class="string">'uid'</span>,<span class="string">'0'</span>);</span><br><span class="line">	$redis-&gt;incr(<span class="string">'uid'</span>);</span><br><span class="line">	$uid = $redis-&gt;get(<span class="string">'uid'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户数据存入hash</span></span><br><span class="line">$hash_key_name = <span class="string">'user'</span>.$uid;</span><br><span class="line">$redis-&gt;hmset($hash_key_name,$data);</span><br><span class="line"></span><br><span class="line"><span class="comment">//整理hash的key生成用户列表list</span></span><br><span class="line">$redis-&gt;rpush(<span class="string">'userlist'</span>,$uid);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户登录</span></span><br><span class="line"><span class="comment">//name pwd登录 我们需要准备用户名的string存id</span></span><br><span class="line">$redis-&gt;set(<span class="string">'username:'</span>.$data[<span class="string">'name'</span>].<span class="string">':id'</span>,$uid)</span><br></pre></td></tr></table></figure>
 
 <h3 id="用redis做登录"><a href="#用redis做登录" class="headerlink" title="用redis做登录"></a>用redis做登录</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入redis.php</span></span><br><span class="line">$redis = <span class="keyword">new</span> redis();</span><br><span class="line">$result=$redis-&gt; connect(<span class="string">'118.25.37.3'</span>,<span class="number">6379</span>);</span><br><span class="line">$redis-&gt; auth(<span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>($_POST[<span class="string">'name'</span>])||<span class="keyword">empty</span>($_POST[<span class="string">'pwd'</span>]))&#123;</span><br><span class="line">	header(<span class="string">"location:login.html"</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收form表单的数据</span></span><br><span class="line">$name = $_POST[<span class="string">'name'</span>];</span><br><span class="line">$pwd = $_POST[<span class="string">'pwd'</span>];</span><br><span class="line"></span><br><span class="line">$uid = $redis-&gt;get(<span class="string">'username:'</span>.$name.<span class="string">':id'</span>);</span><br><span class="line"><span class="keyword">if</span>(!$uid)&#123;</span><br><span class="line">	header(<span class="string">"location:login.html"</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//校验密码</span></span><br><span class="line">$rpwd = $redis-&gt;hget(<span class="string">'user'</span>.$uid,<span class="string">'pwd'</span>);</span><br><span class="line"><span class="keyword">if</span>($pwd!= $rpwd)&#123;</span><br><span class="line">	header(<span class="string">'location:login.html'</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用redis保持登录状态,速度快于session</span></span><br><span class="line">$auth = md5(time().$name.rand());</span><br><span class="line">$redis-&gt;set(<span class="string">'auth:'</span>.$auth,$uid);</span><br><span class="line"></span><br><span class="line"><span class="comment">//存cookie</span></span><br><span class="line">setcookie(<span class="string">'auth'</span>,$auth,time()+<span class="number">86400</span>);</span><br></pre></td></tr></table></figure>
@@ -608,11 +480,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+            <a href="/tags/登录/" rel="tag"># 登录</a>
           
-            <a href="/tags/NoSql/" rel="tag"># NoSql</a>
-          
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+            <a href="/tags/注册/" rel="tag"># 注册</a>
           
         </div>
       
@@ -625,8 +495,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/05/redis/" rel="next" title="Redis基础">
-                <i class="fa fa-chevron-left"></i> Redis基础
+              <a href="/2019/07/08/memcached/" rel="next" title="memcached">
+                <i class="fa fa-chevron-left"></i> memcached
               </a>
             
           </div>
@@ -634,10 +504,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/08/memcached/" rel="prev" title="memcached">
-                memcached <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -817,7 +683,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis高级"><span class="nav-number">1.</span> <span class="nav-text">Redis高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">1.1.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化"><span class="nav-number">1.2.</span> <span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP操作redis"><span class="nav-number">1.3.</span> <span class="nav-text">PHP操作redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis做CURD"><span class="nav-number">2.</span> <span class="nav-text">Redis做CURD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令"><span class="nav-number">2.1.</span> <span class="nav-text">相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做注册"><span class="nav-number">2.2.</span> <span class="nav-text">用redis做注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做登录"><span class="nav-number">2.3.</span> <span class="nav-text">用redis做登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做后台用户列表"><span class="nav-number">2.4.</span> <span class="nav-text">用redis做后台用户列表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做注册"><span class="nav-number">1.</span> <span class="nav-text">用redis做注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做登录"><span class="nav-number">2.</span> <span class="nav-text">用redis做登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做后台用户列表"><span class="nav-number">3.</span> <span class="nav-text">用redis做后台用户列表</span></a></li></ol></div>
             
 
           </div>

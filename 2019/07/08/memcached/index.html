@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="NoSql中的扛把子! —— Redis">
+<meta name="description" content="简单坑少却又强大的memcached">
 <meta name="keywords" content="缓存,NoSql,数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis-高级">
-<meta property="og:url" content="http://lh-xuyong.com/2019/07/07/redis-高级/index.html">
+<meta property="og:title" content="memcached">
+<meta property="og:url" content="http://lh-xuyong.com/2019/07/08/memcached/index.html">
 <meta property="og:site_name" content="Web学习与开发">
-<meta property="og:description" content="NoSql中的扛把子! —— Redis">
+<meta property="og:description" content="简单坑少却又强大的memcached">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-08T15:13:10.904Z">
+<meta property="og:updated_time" content="2019-07-08T15:42:36.481Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis-高级">
-<meta name="twitter:description" content="NoSql中的扛把子! —— Redis">
+<meta name="twitter:title" content="memcached">
+<meta name="twitter:description" content="简单坑少却又强大的memcached">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://lh-xuyong.com/2019/07/07/redis-高级/">
+  <link rel="canonical" href="http://lh-xuyong.com/2019/07/08/memcached/">
 
 
 
 
 
-  <title>Redis-高级 | Web学习与开发</title>
+  <title>memcached | Web学习与开发</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/07/redis-高级/">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/08/memcached/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lh-ayong">
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis-高级</h1>
+          <h1 class="post-title" itemprop="name headline">memcached</h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T13:37:51+08:00">
-                2019-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-08T23:18:03+08:00">
+                2019-07-08
               </time>
             
 
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-08T23:13:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-08T23:42:36+08:00">
                 2019-07-08
               </time>
             
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  966
                 </span>
               
 
@@ -430,142 +430,23 @@
       
 
       
-        <p>NoSql中的扛把子! —— Redis</p>
+        <p>简单坑少却又强大的memcached</p>
 <a id="more"></a>
-<h2 id="Redis高级"><a href="#Redis高级" class="headerlink" title="Redis高级"></a>Redis高级</h2><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>因为redis 速度相当快，所以在一台比较好的服务器下，一个外部的用户可以在一秒钟进行150K 次的密码尝试，这意味着你需要指定非常非常强大的密码来防止暴力破解。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 进入配置文件</span><br><span class="line">   vim /usr/local/redis/etc/redis.conf</span><br><span class="line">   requirepass 密码明文</span><br><span class="line">2. 重启redis服务</span><br><span class="line">3. 登录（两种）</span><br><span class="line">   ./redis-cli auth 密码值</span><br><span class="line">   推荐，不会在history中遗留密码明文</span><br><span class="line">   ./redis-cli -a 密码</span><br></pre></td></tr></table></figure>
+<h2 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h2><p>redis熟练掌握的话,memcached就会简单很多,相对而言redis用的更多</p>
+<h3 id="什么是memcached"><a href="#什么是memcached" class="headerlink" title="什么是memcached"></a>什么是memcached</h3><ul>
+<li>也是NoSql的一种</li>
+<li>免费并且开源，高性能的，分布式的内存对象缓存系统</li>
+<li>数据形态以key-&gt;value结构</li>
+</ul>
+<h3 id="memcached与redis的区别"><a href="#memcached与redis的区别" class="headerlink" title="memcached与redis的区别"></a>memcached与redis的区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">两者对比：</span><br><span class="line">	redis提供数据持久化功能，memcached无持久化；</span><br><span class="line">	redis的数据结构比memcached要丰富，能完成场景以外的事情；</span><br><span class="line">	memcached的单个key限制在250B，value限制在1MB；redis的K、V都为512MB;当然这些值可以在源码中修改；</span><br><span class="line">	memcached数据回收基于LRU算法，Redis提供了多种回收策略（包含LRU），但是redis的回收策的过期逻辑不可依赖，没法根据是否存在一个key判断是否过期。但是可根据ttl返回值判断是否过期；</span><br><span class="line">	memcached使用多线程，而redis使用单线程，基于IO多路复用实现高速访问。所以可以理解为在极端情况下memcached的吞吐大于redis。</span><br></pre></td></tr></table></figure>
 
-<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>通过修改配置文件做设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. snapshotting(快照)默认方式</span><br><span class="line">  配置    save</span><br><span class="line">    save 900 1 #900秒内如果超过1个key被修改，则发起快照保存</span><br><span class="line">    save 300 10 #300秒内容如超过10个key被修改，则发起快照保存</span><br><span class="line">    save 60 10000</span><br><span class="line">2. Append-only file（aof方式）</span><br><span class="line">  配置 appendonly on 改为yes</span><br><span class="line">  会在bin目录下产生一个.aof的文件</span><br><span class="line"></span><br><span class="line">关于aof的配置</span><br><span class="line">appendonly yes //启用aof 持久化方式</span><br><span class="line"># appendfsync always //收到写命令就立即写入磁盘，最慢，但是保证完全的持久化</span><br><span class="line">appendfsync everysec //每秒钟写入磁盘一次，在性能和持久化方面做了很好的折中</span><br><span class="line"># appendfsync no //完全依赖os，性能最好,持久化没保证</span><br></pre></td></tr></table></figure>
+<h3 id="memcached与redis的应用场景"><a href="#memcached与redis的应用场景" class="headerlink" title="memcached与redis的应用场景"></a>memcached与redis的应用场景</h3><pre><code>普通KV场景：memcached、redis都可以。
+从功能模块单一这个角度考虑的话，推荐memcached，只做cache一件事。
+在KV长度偏大、数据结构复杂（比如取某个value的一段数据）、需要持久化的情况下，用redis更适合：但是在使用redis的时候单个请求的阻塞会导致后续请求的积压，需要注意</code></pre><h3 id="windows的php扩展"><a href="#windows的php扩展" class="headerlink" title="windows的php扩展"></a>windows的php扩展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">php扩展目录 extension_dir</span><br><span class="line">php_memcache.dll放置到php扩展目录ext下</span><br><span class="line"></span><br><span class="line">php配置文件修改</span><br><span class="line">extension=php_memcache.dll,</span><br><span class="line">重启服务</span><br></pre></td></tr></table></figure>
 
-<h3 id="PHP操作redis"><a href="#PHP操作redis" class="headerlink" title="PHP操作redis"></a>PHP操作redis</h3><p><strong>Linux环境安装</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">下载模块：</span><br><span class="line">wget https://github.com/nicolasff/phpredis/archive/master.zip</span><br><span class="line">下载后模块文件名为master（使用file master查看zip类型，用unzip解压）</span><br><span class="line"></span><br><span class="line">解压  </span><br><span class="line">$ unzip master</span><br><span class="line">或</span><br><span class="line">$ unzip phpredis-master.zip</span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">cd phpredis-master</span><br><span class="line">/usr/local/php/bin/phpize </span><br><span class="line">建立php外挂模块文件</span><br><span class="line">./configure --with-php-config=/usr/local/php/bin/php-config </span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">修改配置</span><br><span class="line">vi /usr/local/php/etc/php.ini </span><br><span class="line">添加extension=“redis.so”</span><br><span class="line"></span><br><span class="line">重启apache</span><br><span class="line"></span><br><span class="line">phpinfo可见redis模块</span><br><span class="line">&lt;?php</span><br><span class="line">    $redis=new Redis();</span><br><span class="line">    $redis-&gt;connect(&apos;127.0.0.1&apos;,6379);      //连接</span><br><span class="line">    $redis-&gt;auth(&apos;youpassword&apos;);            //如果没有配置密码，则不需这步</span><br><span class="line">    $redis-&gt;set(&apos;test&apos;,&apos;hello redis&apos;);      </span><br><span class="line">    echo $redis-&gt;get(&apos;test&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="Linux安装操作"><a href="#Linux安装操作" class="headerlink" title="Linux安装操作"></a>Linux安装操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">安装memcached的底层功能依赖包libevent</span><br><span class="line">tar -xf libevent-release-1.4.15-stable.tar.gz </span><br><span class="line">cd libevent-release-1.4.15-stable</span><br><span class="line">./autogen.sh </span><br><span class="line">./configure  --prefix=/usr</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">安装memcached服务</span><br><span class="line">tar -xf memcached-1.4.36.tar.gz     解压memcached</span><br><span class="line">cd memcached-1.4.36                 进入 memcached目录</span><br><span class="line">./configure --prefix=/usr/local/memcached   配置</span><br><span class="line">make &amp;&amp; make install                        编译与安装</span><br><span class="line">useradd  memcache                           添加运行用户</span><br><span class="line"></span><br><span class="line">运行memcached服务</span><br><span class="line">/usr/local/memcached/bin/memcached –u memcache &amp;</span><br><span class="line"></span><br><span class="line">客户端访问</span><br><span class="line">telnet 127.0.0.1 11211</span><br><span class="line">stats</span><br><span class="line">set</span><br><span class="line">get</span><br><span class="line">……</span><br><span class="line"></span><br><span class="line">写入自启动和关闭进程</span><br><span class="line">vim /etc/rc.local</span><br><span class="line">/usr/local/memcached/bin/memcached –u memcache &amp;</span><br><span class="line">pkill memcached</span><br></pre></td></tr></table></figure>
 
-<p><strong>wamp环境安装</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">phpinfo检测是否开启</span><br><span class="line"></span><br><span class="line">php扩展目录 extension_dir</span><br><span class="line">    php_redis.dll放置到php扩展目录下</span><br><span class="line"></span><br><span class="line">php配置文件修改</span><br><span class="line">    extension=php_redis.dll</span><br><span class="line"></span><br><span class="line">重启服务</span><br></pre></td></tr></table></figure>
-
-<p><strong>操作</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$redis=new Redis();  创建Redis对象</span><br><span class="line">$redis-&gt;connect(&quot;localhost&quot;); 连接Redis服务器    </span><br><span class="line">$redis-&gt;auth(&quot;123&quot;);   使用密码做登陆验证</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
-
-<h2 id="Redis做CURD"><a href="#Redis做CURD" class="headerlink" title="Redis做CURD"></a>Redis做CURD</h2><h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><table>
-<thead>
-<tr>
-<th>键值相关命令</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>keys  键名</td>
-<td>按照键名查找指定的键。支持通配符</td>
-<td></td>
-</tr>
-<tr>
-<td>exists 键名</td>
-<td>确认一个键是否存在</td>
-<td></td>
-</tr>
-<tr>
-<td>del 键名</td>
-<td>删除一个键</td>
-<td></td>
-</tr>
-<tr>
-<td>expire 键 秒</td>
-<td>设置一个键的过期时间，如果键已经过期，将会被自动删除</td>
-<td></td>
-</tr>
-<tr>
-<td>ttl 键</td>
-<td>以秒为单位，返回键的剩余生存时间</td>
-<td></td>
-</tr>
-<tr>
-<td>select  数据库号</td>
-<td>选择一个数据库。 默认连接的数据库是0，可以支持共16个数据库 . 在配置文件中，通过databases 16 关键字定义</td>
-<td></td>
-</tr>
-<tr>
-<td>move  键  数据库号</td>
-<td>将当前数据库的键移动到指定的数据空中</td>
-<td></td>
-</tr>
-<tr>
-<td>randomkey</td>
-<td>从当前数据库返回一个随机的键。如果当前库没有任何键，则返回nil</td>
-<td></td>
-</tr>
-<tr>
-<td>type 键</td>
-<td>返回键类型 html&gt; ragment–&gt;</td>
-<td></td>
-</tr>
-<tr>
-<td>rename  旧名  新名</td>
-<td>重命名键</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>服务器相关命令</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ping</td>
-<td>测试服务器是否可以连接</td>
-<td></td>
-</tr>
-<tr>
-<td>echo  字符串</td>
-<td>在命令行输出字符串</td>
-<td></td>
-</tr>
-<tr>
-<td>quit</td>
-<td>退出redis数据库</td>
-<td></td>
-</tr>
-<tr>
-<td>save</td>
-<td>保存所有的数据。很少在生产环境直接使用SAVE 命令，因为它会阻塞所有的客户端的请求，可以使用BGSAVE 命令代替. 如果在BGSAVE命令的保存数据的子进程发生错误的时,用 SAVE命令保存最新的数据是最后的手段</td>
-<td></td>
-</tr>
-<tr>
-<td>dbsize</td>
-<td>返回当前库中键的数量</td>
-<td></td>
-</tr>
-<tr>
-<td>info</td>
-<td>获取服务器的详细信息</td>
-<td></td>
-</tr>
-<tr>
-<td>config get 参数</td>
-<td>获取redis服务器配置文件中的参数。支持通配符</td>
-<td></td>
-</tr>
-<tr>
-<td>flushdb</td>
-<td>删除当前数据库中所有的数据</td>
-<td></td>
-</tr>
-<tr>
-<td>flushall</td>
-<td>删除所有数据库中所有的数据</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="用redis做注册"><a href="#用redis做注册" class="headerlink" title="用redis做注册"></a>用redis做注册</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入redis.php</span></span><br><span class="line">$redis = <span class="keyword">new</span> redis();</span><br><span class="line">$result=$redis-&gt; connect(<span class="string">'118.25.37.3'</span>,<span class="number">6379</span>);</span><br><span class="line">$redis-&gt; auth(<span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据处理</span></span><br><span class="line">$data[<span class="string">'name'</span>] = $_POST[<span class="string">'name'</span>];</span><br><span class="line">$data[<span class="string">'age'</span>] = $_POST[<span class="string">'age'</span>];</span><br><span class="line">$data[<span class="string">'sex'</span>] = $_POST[<span class="string">'sex'</span>];</span><br><span class="line">$data[<span class="string">'pwd'</span>] = $_POST[<span class="string">'pwd'</span>];</span><br><span class="line">$data[<span class="string">'create_at'</span>] = time();</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理id</span></span><br><span class="line"><span class="keyword">if</span>($redis-&gt;exists(<span class="string">'uid'</span>))&#123;</span><br><span class="line">	$redis-&gt;incr(<span class="string">'uid'</span>);</span><br><span class="line">	$uid = $redis-&gt;get(<span class="string">'uid'</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	$redis-&gt;set(<span class="string">'uid'</span>,<span class="string">'0'</span>);</span><br><span class="line">	$redis-&gt;incr(<span class="string">'uid'</span>);</span><br><span class="line">	$uid = $redis-&gt;get(<span class="string">'uid'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户数据存入hash</span></span><br><span class="line">$hash_key_name = <span class="string">'user'</span>.$uid;</span><br><span class="line">$redis-&gt;hmset($hash_key_name,$data);</span><br><span class="line"></span><br><span class="line"><span class="comment">//整理hash的key生成用户列表list</span></span><br><span class="line">$redis-&gt;rpush(<span class="string">'userlist'</span>,$uid);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户登录</span></span><br><span class="line"><span class="comment">//name pwd登录 我们需要准备用户名的string存id</span></span><br><span class="line">$redis-&gt;set(<span class="string">'username:'</span>.$data[<span class="string">'name'</span>].<span class="string">':id'</span>,$uid)</span><br></pre></td></tr></table></figure>
-
-<h3 id="用redis做登录"><a href="#用redis做登录" class="headerlink" title="用redis做登录"></a>用redis做登录</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入redis.php</span></span><br><span class="line">$redis = <span class="keyword">new</span> redis();</span><br><span class="line">$result=$redis-&gt; connect(<span class="string">'118.25.37.3'</span>,<span class="number">6379</span>);</span><br><span class="line">$redis-&gt; auth(<span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>($_POST[<span class="string">'name'</span>])||<span class="keyword">empty</span>($_POST[<span class="string">'pwd'</span>]))&#123;</span><br><span class="line">	header(<span class="string">"location:login.html"</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收form表单的数据</span></span><br><span class="line">$name = $_POST[<span class="string">'name'</span>];</span><br><span class="line">$pwd = $_POST[<span class="string">'pwd'</span>];</span><br><span class="line"></span><br><span class="line">$uid = $redis-&gt;get(<span class="string">'username:'</span>.$name.<span class="string">':id'</span>);</span><br><span class="line"><span class="keyword">if</span>(!$uid)&#123;</span><br><span class="line">	header(<span class="string">"location:login.html"</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//校验密码</span></span><br><span class="line">$rpwd = $redis-&gt;hget(<span class="string">'user'</span>.$uid,<span class="string">'pwd'</span>);</span><br><span class="line"><span class="keyword">if</span>($pwd!= $rpwd)&#123;</span><br><span class="line">	header(<span class="string">'location:login.html'</span>);</span><br><span class="line">	<span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用redis保持登录状态,速度快于session</span></span><br><span class="line">$auth = md5(time().$name.rand());</span><br><span class="line">$redis-&gt;set(<span class="string">'auth:'</span>.$auth,$uid);</span><br><span class="line"></span><br><span class="line"><span class="comment">//存cookie</span></span><br><span class="line">setcookie(<span class="string">'auth'</span>,$auth,time()+<span class="number">86400</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="用redis做后台用户列表"><a href="#用redis做后台用户列表" class="headerlink" title="用redis做后台用户列表"></a>用redis做后台用户列表</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"cn"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;用户列表&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    <span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="comment">//引入redis.php</span></span><br><span class="line">	$redis = <span class="keyword">new</span> redis();</span><br><span class="line">	$result = $redis-&gt; connect(<span class="string">'118.25.37.3'</span>,<span class="number">6379</span>);</span><br><span class="line">	$redis-&gt;auth(<span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//判断登录状态</span></span><br><span class="line">	<span class="keyword">if</span>(!<span class="keyword">empty</span>($_COOKIE[<span class="string">'auth'</span>]))&#123;</span><br><span class="line">		<span class="comment">//查询用户数据</span></span><br><span class="line">		<span class="comment">//通过auth获取uid</span></span><br><span class="line">		$uid = $redis-&gt;get(<span class="string">'auth:'</span>.$_COOKIE[<span class="string">'auth'</span>]);</span><br><span class="line">		<span class="comment">//通过uid查询用户信息</span></span><br><span class="line">		$name = $redis-&gt;hget(<span class="string">'user'</span>.$uid,<span class="string">'name'</span>);</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'欢迎你'</span>.$name;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'登录'</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//得到用户列表</span></span><br><span class="line">	$ids = $redis-&gt;lrange(<span class="string">'userlist'</span>,<span class="string">'0'</span>,<span class="string">'-1'</span>);</span><br><span class="line">	var_dump($ids);</span><br><span class="line">	<span class="keyword">foreach</span> ($ids <span class="keyword">as</span> $val) &#123;</span><br><span class="line">		$data[] = $redis-&gt;hmget(<span class="string">'user'</span>.$val,<span class="keyword">array</span>(<span class="string">'name'</span>,<span class="string">'age'</span>,<span class="string">'sex'</span>,<span class="string">'create_ata'</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	var_dump($data);</span><br><span class="line">	</span><br><span class="line">     <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="memcached的相关操作"><a href="#memcached的相关操作" class="headerlink" title="memcached的相关操作"></a>memcached的相关操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">STAT pid 1552                   服务进程的进程ID</span><br><span class="line">STAT uptime 3792                服务从启动到当前所经过的时间，单位是秒。</span><br><span class="line">STAT time 1262517674            服务器所在主机当前系统的时间，单位是秒。</span><br><span class="line">STAT version 1.2.6              组件的版本。这里是我当前使用的1.2.6。</span><br><span class="line">STAT pointer_size 32            服务器所在主机操作系统的指针大小，一般为32或64.</span><br><span class="line">STAT curr_items 1               表示存放当前的所有缓存对象的数量。不包括已经从缓存中删除的对象。</span><br><span class="line">STAT total_items 2              表示从启动到当前，系统存储过的所有对象数量，包括已经删除的对象。</span><br><span class="line">STAT bytes 593                  表示系统存储缓存对象所使用的存储空间，单位为字节。</span><br><span class="line">STAT curr_connections 2         表示当前系统打开的连接数。</span><br><span class="line">STAT total_connections 28       表示从memcached服务启动到当前时间，系统打开过的连接的总数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">set  键名  标记  有效时间  数据的长度</span><br><span class="line">set  love  10     0           10</span><br><span class="line">i love you</span><br><span class="line">    键名</span><br><span class="line">        最大不能超过250个字符</span><br><span class="line">    标记</span><br><span class="line">        是一个16位的无符号的整数，在客户端get数据时返回</span><br><span class="line">    有效时间</span><br><span class="line">        单位为秒</span><br><span class="line">    数据长度</span><br><span class="line">        单位是字节</span><br><span class="line">    数据的值</span><br><span class="line">        最大不能超过1024kb</span><br><span class="line"></span><br><span class="line">get  键名</span><br><span class="line">get  love</span><br><span class="line"></span><br><span class="line">delete   键名</span><br><span class="line">delete   love</span><br><span class="line">flush_all清空所有缓存</span><br><span class="line"></span><br><span class="line">存储:</span><br><span class="line">    set  add  replace   格式同set</span><br><span class="line">获取:</span><br><span class="line">    get     可一次获取多个</span><br><span class="line">其它:</span><br><span class="line">stats items 命令用于显示各个 slab 中 item 的数目和存储时长,配合使用可以查看所有 key</span><br><span class="line">&gt; stats items // 这条是命令</span><br><span class="line">     STAT items:7:number 1 </span><br><span class="line">     STAT items:7:age 188</span><br><span class="line">     END</span><br><span class="line">&gt; stats cachedump 7 0 // 这条是命令</span><br><span class="line">    ITEM Sess_sidsvpc1473t1np08qnkvhf6j2 [183 b; 1394527347 s]</span><br><span class="line">    END</span><br><span class="line">&gt; version 查看版本</span><br></pre></td></tr></table></figure>
 
 
       
@@ -625,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/05/redis/" rel="next" title="Redis基础">
-                <i class="fa fa-chevron-left"></i> Redis基础
+              <a href="/2019/07/07/redis-高级/" rel="next" title="Redis-高级">
+                <i class="fa fa-chevron-left"></i> Redis-高级
               </a>
             
           </div>
@@ -635,8 +516,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/08/memcached/" rel="prev" title="memcached">
-                memcached <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/08/用redis做登录注册/" rel="prev" title="用redis做登录注册">
+                用redis做登录注册 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -817,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis高级"><span class="nav-number">1.</span> <span class="nav-text">Redis高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">1.1.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化"><span class="nav-number">1.2.</span> <span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP操作redis"><span class="nav-number">1.3.</span> <span class="nav-text">PHP操作redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis做CURD"><span class="nav-number">2.</span> <span class="nav-text">Redis做CURD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令"><span class="nav-number">2.1.</span> <span class="nav-text">相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做注册"><span class="nav-number">2.2.</span> <span class="nav-text">用redis做注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做登录"><span class="nav-number">2.3.</span> <span class="nav-text">用redis做登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用redis做后台用户列表"><span class="nav-number">2.4.</span> <span class="nav-text">用redis做后台用户列表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#memcached"><span class="nav-number">1.</span> <span class="nav-text">memcached</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是memcached"><span class="nav-number">1.1.</span> <span class="nav-text">什么是memcached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memcached与redis的区别"><span class="nav-number">1.2.</span> <span class="nav-text">memcached与redis的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memcached与redis的应用场景"><span class="nav-number">1.3.</span> <span class="nav-text">memcached与redis的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows的php扩展"><span class="nav-number">1.4.</span> <span class="nav-text">windows的php扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux安装操作"><span class="nav-number">1.5.</span> <span class="nav-text">Linux安装操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memcached的相关操作"><span class="nav-number">1.6.</span> <span class="nav-text">memcached的相关操作</span></a></li></ol></li></ol></div>
             
 
           </div>
