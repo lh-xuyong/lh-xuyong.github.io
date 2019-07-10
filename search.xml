@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[阿里云环境配置]]></title>
+    <url>%2F2019%2F07%2F10%2F%E9%98%BF%E9%87%8C%E4%BA%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[腾讯的服务器到期了,搞阿里的,正好有学生第一次购买活动,配置高还便宜… 地址:(https://promotion.aliyun.com/ntms/act/campus2018.html) 搭建lamp环境更新应用市场 1sudo apt-get update 安装amp 123sudo apt-get install apache2 sudo apt-get install mysql-server mysql-client sudo apt-get install php7.0 安装php apache模块 1sudo apt-get install libapache2-mod-php 安装PHP扩展 1sudo apt-get install php7.0-mysql php7.0-mysql php7.0-curl php7.0-gd php7.0-mbstring php7.0-mcrypt php7.0-xml php7.0-zip php7.0-gd apache启用rewrite模块 1a2enmod rewrite]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[【持续更新】 Vue.js]]></title>
+    <url>%2F2019%2F07%2F10%2Fvue%2F</url>
+    <content type="text"><![CDATA[未来的前端开发巨头——Vue.js 什么是vue用于构建用户界面的js的一个框架,快速的构建前端页面 vue的特点 组件化 数据驱动]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>js框架</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[用redis做登录注册]]></title>
     <url>%2F2019%2F07%2F08%2F%E7%94%A8redis%E5%81%9A%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%2F</url>
     <content type="text"><![CDATA[用redis做简单的CURD 用redis做注册1234567891011121314151617181920212223242526272829303132//引入redis.php$redis = new redis();$result=$redis-&gt; connect('118.25.37.3',6379);$redis-&gt; auth('123456');//数据处理$data['name'] = $_POST['name'];$data['age'] = $_POST['age'];$data['sex'] = $_POST['sex'];$data['pwd'] = $_POST['pwd'];$data['create_at'] = time();//处理idif($redis-&gt;exists('uid'))&#123; $redis-&gt;incr('uid'); $uid = $redis-&gt;get('uid');&#125;else&#123; $redis-&gt;set('uid','0'); $redis-&gt;incr('uid'); $uid = $redis-&gt;get('uid');&#125;//用户数据存入hash$hash_key_name = 'user'.$uid;$redis-&gt;hmset($hash_key_name,$data);//整理hash的key生成用户列表list$redis-&gt;rpush('userlist',$uid);//用户登录//name pwd登录 我们需要准备用户名的string存id$redis-&gt;set('username:'.$data['name'].':id',$uid) 用redis做登录1234567891011121314151617181920212223242526272829303132//引入redis.php$redis = new redis();$result=$redis-&gt; connect('118.25.37.3',6379);$redis-&gt; auth('123456');if(empty($_POST['name'])||empty($_POST['pwd']))&#123; header("location:login.html"); die;&#125;//接收form表单的数据$name = $_POST['name'];$pwd = $_POST['pwd'];$uid = $redis-&gt;get('username:'.$name.':id');if(!$uid)&#123; header("location:login.html"); die;&#125;//校验密码$rpwd = $redis-&gt;hget('user'.$uid,'pwd');if($pwd!= $rpwd)&#123; header('location:login.html'); die;&#125;//使用redis保持登录状态,速度快于session$auth = md5(time().$name.rand());$redis-&gt;set('auth:'.$auth,$uid);//存cookiesetcookie('auth',$auth,time()+86400); 用redis做后台用户列表12345678910111213141516171819202122232425262728293031323334353637383940&lt;!DOCTYPE html&gt;&lt;html lang="cn"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;用户列表&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;h1&gt;&lt;/h1&gt; &lt;hr&gt; &lt;?php //引入redis.php $redis = new redis(); $result = $redis-&gt; connect('118.25.37.3',6379); $redis-&gt;auth('123456'); //判断登录状态 if(!empty($_COOKIE['auth']))&#123; //查询用户数据 //通过auth获取uid $uid = $redis-&gt;get('auth:'.$_COOKIE['auth']); //通过uid查询用户信息 $name = $redis-&gt;hget('user'.$uid,'name'); echo '欢迎你'.$name; &#125;else&#123; echo '登录'; &#125; //得到用户列表 $ids = $redis-&gt;lrange('userlist','0','-1'); var_dump($ids); foreach ($ids as $val) &#123; $data[] = $redis-&gt;hmget('user'.$val,array('name','age','sex','create_ata')); &#125; var_dump($data); ?&gt;&lt;/body&gt;&lt;/html&gt;]]></content>
