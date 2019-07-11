@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PSR 规范]]></title>
+    <url>%2F2019%2F07%2F11%2F%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[编码不规范,亲人两行泪… 手打复习一遍 PSR-1 基础编码规范 PHP代码文件必须以&lt;?php&gt;或&lt;?=&gt;标签开始 PHP代码必须以不带BOM的UTF-8编码 要么只能有常量 类 函数等 要么就只能有含有”副作用”的代码 命名空间以及类必须符合PSR自动加载规范 类的命名必须用大驼峰 类中常量必须大写,下划线分割 属性可以大小驼峰下划线,方法名必须小驼峰 每个类都独立一个文件,且命名空间至少有一个层次 PSR-2 编码风格规范 一个Tab4个空格 以一个空白行作为结束 纯php代码文件必须省略结束符 每行不多余80个字符,多了折行 非空格行一不定不可有多余空格符 每行不可存在多余一条语句 关键字必须小写如:true false null等 namespace 声明之后必须存在一个空行 所有的use必须在namespace之后 每条use声明只能有一个use关键字 use语句后面要有一个空行 extends implements必须写同一行 类花括号独占一行 每个属性必须加修饰符 每个类必须加修饰符 方法的参数中有默认值的参数必须放在参数末尾 abstract final声明必须卸载修饰符前,staic必须写在修饰符后 方法或函数每个参数后跟一个,然后跟一个空格才可以写第二个参数 标准的if 12345678&lt;?phpif ($expr1) &#123; // if body&#125; elseif ($expr2) &#123; // elseif body&#125; else &#123; // else body;&#125; 标准的switch 1234567891011121314151617&lt;?phpswitch ($expr) &#123; case 0: echo &apos;First case, with a break&apos;; break; case 1: echo &apos;Second case, which falls through&apos;; // no break case 2: case 3: case 4: echo &apos;Third case, return instead of break&apos;; return; default: echo &apos;Default case&apos;; break;&#125; 标准的while 123456789&lt;?phpwhile ($expr) &#123; // 结构体&#125;&lt;?phpdo &#123; // 结构体&#125; while ($expr); 标准的for 123456789&lt;?phpfor ($i = 0; $i &lt; 10; $i++) &#123; // for 循环主体&#125;&lt;?phpforeach ($iterable as $key =&gt; $value) &#123; // foreach 主体&#125; 标准的try 12345678&lt;?phptry &#123; // try 主体&#125; catch (FirstExceptionType $e) &#123; // catch 主体&#125; catch (OtherExceptionType $e) &#123; // catch 主体&#125; 闭包 12345678&lt;?php$closureWithArgs = function ($arg1, $arg2) &#123; // 主体&#125;;$closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) &#123; // 主体&#125;; 大标准 12345678910111213141516171819202122232425&lt;?phpnamespace Vendor\Package;use FooInterface;use BarClass as Bar;use OtherVendor\OtherPackage\BazClass;class Foo extends Bar implements FooInterface&#123; public function sampleMethod($a, $b = null) &#123; if ($a === $b) &#123; bar(); &#125; elseif ($a &gt; $b) &#123; $foo-&gt;bar($arg1); &#125; else &#123; BazClass::bar($arg2, $arg3); &#125; &#125; final public static function bar() &#123; // 方法体 &#125;&#125;]]></content>
+      <categories>
+        <category>php编码规范</category>
+      </categories>
+      <tags>
+        <tag>-编码规范</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[阿里云项目环境配置]]></title>
     <url>%2F2019%2F07%2F10%2F%E9%98%BF%E9%87%8C%E4%BA%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[腾讯的服务器到期了,搞阿里的,正好有学生第一次购买活动,配置高还便宜… 地址:(https://promotion.aliyun.com/ntms/act/campus2018.html) 搭建lamp环境1.更新应用市场 1sudo apt-get update 2.安装amp 123sudo apt-get install apache2 sudo apt-get install mysql-server mysql-client sudo apt-get install php7.0 装mysql时千万别忘了设置密码,不然你会发现sudo mysql直接就进数据库了,后面远程连接也不会成功 如果这时候发现无法访问公网ip， 请去配置阿里云后台的安全组。添加一条 入方向的规则eg:允许 自定义 TCP80/80 地址段访问0.0.0.0/0 3.安装php apache模块 1sudo apt-get install libapache2-mod-php 4.安装PHP扩展 sudo apt-get install php7.0-mysql php7.0-mysql php7.0-curl php7.0-gd php7.0-mbstring php7.0-mcrypt php7.0-xml php7.0-zip php7.0-gd 5.apache启用rewrite模块 1a2enmod rewrite 6.去掉index.php访问 1234567891011修改/etc/apache2/apache2.conf把 下面注释部分改掉#&lt;Directory /var/www/&gt;# Options Indexes FollowSymLinks# AllowOverride None# Require all granted#&lt;/Directory&gt;&lt;Directory /var/www/&gt; Options FollowSymLinks AllowOverride All Require all granted&lt;/Directory&gt; 7.配置虚拟主机(https://www.nsxsg.com/archives/125) 配置msyql远程连接1.修改配置文件 cd /etc/mysql/mysql.conf.dvi mysqld.cnf查找到bind-address，将 bind-address=127.0.0.1 修改为 bind-address = 0.0.0.0 (粗暴点可以直接删掉),以允许任何IP来访问MySQL服务。 2、重启MySQL服务1sudo service mysql restart 4、远程访问的用户授权 用户名为rooot,密码为123456mysql&gt; grant all privileges on . to root@”%” identified by “123456” with grant option;刷新配置，使权限立即生效mysql&gt; flush privileges;mysql&gt; exit; 3、去阿里打开3306端口 去阿里云安全组件配置,默认是不打开端口的,千万别忘了 redis安装1. 安装Redis服务器端1sudo apt-get install -y redis-server 2. 查看Redis状态1sudo /etc/init.d/redis-server status 3. 链接Redis1sudo redis-cli -h 127.0.0.1 -p 6379 建议加上密码cd etc/redisvi redis.conf搜索 requirepass foobared在下面加上 requirepass 具体密码 4. 简单操作 查看所有的key127.0.0.1:6379&gt; keys *设置一个key127.0.0.1:6379&gt; set key1 ‘hello world’ 查看key127.0.0.1:6379&gt; get key1 删除key127.0.0.1:6379&gt; del key1 5. 删除Redis1sudo apt-get remove -y redis-server 坑点:之前重装redis发现配置文件没装上,apt-get安装的弊端…… 项目上线通过wincp上传文件配置域名:cd etc/apache2/sites-availablevi 000-default.conf 重新搞了个域名审核中…后面继续更新]]></content>
       <categories>
-        <category>数据库</category>
+        <category>服务器</category>
       </categories>
       <tags>
         <tag>服务器</tag>
@@ -77,6 +88,6 @@
   <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2019%2F07%2F03%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Hexo Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <content type="text"><![CDATA[我叫啊勇 最近有空用hexo搭了一个博客,之前用的插件搭的需要服务器,还要经常维护,不用了,反正也没啥东西 Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment 命令行输入npm install hexo-asset-image –save安装插件在根目录/source目录下新建一个img文件夹，将需要插入的图片放到里面在文章中引用图片时图片使用格式[图片上传失败…(image-3a4109-1544088714292)]进行引用图片。]]></content>
   </entry>
 </search>
