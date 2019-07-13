@@ -302,6 +302,667 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/13/MySql基础语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lh-ayong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/weixin.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Web学习与开发">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/13/MySql基础语法/" itemprop="url">MySql基础语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T13:58:31+08:00">
+                2019-07-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-13T15:42:27+08:00">
+                2019-07-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><table>
+<thead>
+<tr>
+<th>数据库数据表基本命令</th>
+<th></th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>设置密码</td>
+<td></td>
+</tr>
+<tr>
+<td>show datebase</td>
+<td>查询所有的数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>create datebase if not exists <code>库名</code>defult charset =编码</td>
+<td>创建一个数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>drop datebase <code>库名</code></td>
+<td>删除一个数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>use <code>库名</code></td>
+<td>使用一个数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>show tables</td>
+<td>查询所有数据表</td>
+<td></td>
+</tr>
+<tr>
+<td>create table if not exists <code>表名</code>(<code>字段名</code> <code>字段类型</code> <code>字段属性</code>,<code>字段名</code> <code>字段类型</code> <code>字段属性</code>)engine</td>
+<td>创建数据表</td>
+<td>最后一条字段不加逗号</td>
+</tr>
+<tr>
+<td>drop table <code>表名</code></td>
+<td>删除数据表</td>
+<td></td>
+</tr>
+<tr>
+<td>desc <code>表名</code></td>
+<td>查看表结构</td>
+<td></td>
+</tr>
+<tr>
+<td>show create table <code>表名</code></td>
+<td>查看建表语句(引擎)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="字段属性"><a href="#字段属性" class="headerlink" title="字段属性"></a>字段属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="left">属性名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PRIMARY KEY</td>
+<td align="left">主键</td>
+<td>主键数据不能为空,不能重复</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td align="left">唯一索引</td>
+<td></td>
+</tr>
+<tr>
+<td>AUTO_INCREMEN</td>
+<td align="left">自增</td>
+<td></td>
+</tr>
+<tr>
+<td>NOT NULL</td>
+<td align="left">不能为空</td>
+<td></td>
+</tr>
+<tr>
+<td>NULL</td>
+<td align="left">可以为空</td>
+<td></td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td align="left">默认值</td>
+<td></td>
+</tr>
+<tr>
+<td>UNSINGED</td>
+<td align="left">无符号</td>
+<td></td>
+</tr>
+<tr>
+<td>COMMENT</td>
+<td align="left">描述</td>
+<td></td>
+</tr>
+<tr>
+<td>ZEROFILL</td>
+<td align="left">补零</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th>数据类型(宽度)来设定宽度,<br>可超过设定,但是不可以超过默认,超过就报错<br>例如:987占3位</th>
+<th></th>
+<th>默认展示宽度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整形</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>tinyint</td>
+<td>0~255</td>
+<td>4位 3位</td>
+</tr>
+<tr>
+<td></td>
+<td>int</td>
+<td>0-42亿</td>
+<td>11位 10位</td>
+</tr>
+<tr>
+<td>定点型</td>
+<td>decimal(M,D)</td>
+<td>M:数据的总长度,D:小数的长度</td>
+<td>M+2</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>datetime</td>
+<td>YYYY-MM-DD<br>HH:MM:SS</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>date</td>
+<td>YYYY-MM-DD</td>
+<td></td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>char</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>varchar</td>
+<td>char是一种固定长度的类型</td>
+<td></td>
+</tr>
+<tr>
+<td>其他</td>
+<td>blod, text, enum, set…….</td>
+<td>varchar则是一种可变长度的类型</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span> <span class="string">`user`</span>(</span><br><span class="line">	<span class="string">`id`</span> 			<span class="built_in">int</span> 	auto_increment 	primary <span class="keyword">key</span>,</span><br><span class="line">	<span class="string">`nickname`</span> 		<span class="built_in">varchar</span>(<span class="number">20</span>),	</span><br><span class="line">	<span class="string">`tel`</span> 			<span class="built_in">char</span>(<span class="number">11</span>)   <span class="keyword">unique</span> 	<span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	<span class="string">`pwd`</span> 			<span class="built_in">char</span>(<span class="number">32</span>)   <span class="keyword">not</span> <span class="literal">null</span> 	<span class="keyword">comment</span> <span class="string">'加密32位密码'</span>,</span><br><span class="line">	<span class="string">`sex`</span> 			<span class="built_in">tinyint</span>(<span class="number">1</span>) <span class="keyword">default</span> <span class="number">1</span> 	<span class="keyword">comment</span> <span class="string">'1-男  2-女'</span>,</span><br><span class="line">	<span class="string">`birthday`</span> 		<span class="built_in">date</span>,</span><br><span class="line">	<span class="string">`address`</span> 		<span class="built_in">varchar</span>(<span class="number">50</span>),</span><br><span class="line">	<span class="string">`status`</span> 		<span class="built_in">tinyint</span>(<span class="number">1</span>) <span class="keyword">default</span> <span class="number">1</span> 	<span class="keyword">comment</span> <span class="string">'1-激活 2-禁用'</span>,</span><br><span class="line">	<span class="string">`regtime`</span> 		<span class="built_in">int</span></span><br><span class="line">)<span class="keyword">engine</span>=myisam <span class="keyword">default</span> <span class="keyword">charset</span>=utf8;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>聚合函数</th>
+<th></th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count( )</td>
+<td>统计</td>
+<td><strong>select</strong> count(字段名) from(表) =&gt;统计此字段里有多少个值</td>
+</tr>
+<tr>
+<td>sum( )</td>
+<td>求和</td>
+<td></td>
+</tr>
+<tr>
+<td>avg( )</td>
+<td>求平均值</td>
+<td></td>
+</tr>
+<tr>
+<td>max( )/min( )</td>
+<td>求最大/最小</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>concat(  字符串或字段名, 字符串或字段名, 字符串或字段名, 字符串或字段名,  )</td>
+<td>字符串拼接函数</td>
+</tr>
+<tr>
+<td>now( )</td>
+<td>现在的格式化时间</td>
+</tr>
+<tr>
+<td>unix_timestamp( )</td>
+<td>现在的时间戳</td>
+</tr>
+<tr>
+<td>version( )</td>
+<td>当前数据库的版本</td>
+</tr>
+<tr>
+<td>md5(‘123456’)</td>
+<td>查看加密之后的值</td>
+</tr>
+</tbody></table>
+<h3 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h3><h4 id="增"><a href="#增" class="headerlink" title="增:"></a>增:</h4><ul>
+<li><p><strong>插入一条数据</strong>    </p>
+<ul>
+<li><p>insert into `表名` values(值1, 值2, …)</p>
+<ul>
+<li><p>注意点:    1.字段有多少个,值就要有多少个,没有值也要写上null</p>
+<pre><code>2.值 只可以使用 单双引号
+
+  3.库名,表名, 字段名 只可以用 反引号</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插入一条 部分字段的数据</strong></p>
+<ul>
+<li><p>insert into `表名`(字段名1, 字段名2, …)  values(值1, 值2, …)</p>
+<ul>
+<li><p>注意点:   1.值的个数 要随着前面的字段名的个数, 保持一一对应    </p>
+<pre><code>2.具有not null 属性的字段, 必须要添加值
+
+  3.auto_increment 是从记录+1, 而不是从最大字段值+1(**学过的唯一以1开始的**)</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插入多条 完整的数据</strong></p>
+<ul>
+<li>insert into `表名` values(值1, 值2, …),(值1, 值2, …),(值1, 值2, …),(值1, 值2, …) …<ul>
+<li>注意点:    即在第一种里直接加 <strong>, (值1,值2,…)</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插入多条 部分字段的数据</strong></p>
+<ul>
+<li>insert into `表名`(字段名1, 字段名2, …)  values(值1, 值2, …), (值1, 值2, …), …</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="删"><a href="#删" class="headerlink" title="删:"></a>删:</h4><ul>
+<li><p><strong>删除一张表中的 所有数据</strong></p>
+<ul>
+<li>DELETE FROM `表名`</li>
+</ul>
+</li>
+<li><p><strong>删除一张表中的 部分数据</strong></p>
+<ul>
+<li><p>DELETE FROM `表名` WHERE 条件</p>
+<ul>
+<li><blockquote>
+<p>例子:delete from `user` where `sex` = 1        //删除 user表中所有的男生</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>删除 排序之后的前几条[满足条件] 数据</strong></p>
+<ul>
+<li><p>DELETE FROM `表名` [WHERE 条件] ORDER BY 排序依据 LIMIT 行数</p>
+<ul>
+<li><blockquote>
+<p>例子:delete from `user` order by `birthday` desc  limit 5        //删除 年级最小的5个人    </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>删除树结构</strong></p>
+<ul>
+<li>TRUNCATE TABLE `表名`<ul>
+<li>相当于dorp然后create,创建了一个与原表一样的表,但是<strong>auto_increment(主键)</strong>会重置,适合删除大批量数据(整表)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>desc 倒序;asc 正序，默认;</p>
+</blockquote>
+<h4 id="改"><a href="#改" class="headerlink" title="改:"></a>改:</h4><ul>
+<li><p><strong>更新整表数据</strong></p>
+<ul>
+<li><p>UPDATE 表名 SET  字段名1=值1, 字段名2=值2, …</p>
+<ul>
+<li><blockquote>
+<p>例子:update     `user` set `sex` = 2, `status` = 2;        //将所有的性别改为2,状态改为2</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>更新 部分数据</strong></p>
+<ul>
+<li><p>UPDATE 表名 SET  字段名1=值1, 字段名2=值2, … WHERE 条件</p>
+<ul>
+<li><blockquote>
+<p>例子:update `user` set `status` = 2 where `birthday` &gt;= ‘2002-01-01’        //将user表里生日大于&gt;=2002-01-01的status状态改为2</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="查"><a href="#查" class="headerlink" title="查:"></a>查:</h4><p><strong>select数据结构</strong></p>
+<p><strong>select   distinct | * | 字段名 | 表名.字段名 | 字段名 as 别名</strong><br><strong>[ from ] 表名</strong><br><strong>[ where ] 条件             (分组之前的条件筛选)</strong><br><strong>[ group by ] 分组依据</strong><br><strong>[ having ] 筛选条件      (分组之后的条件筛选)</strong><br><strong>[ order by ] 排序依据</strong><br><strong>[ limit ] 下标, 行数</strong></p>
+<p><strong>In操作</strong>      </p>
+<p><strong>别名as</strong></p>
+<p>​    </p>
+<p><strong>1.查询数据库</strong></p>
+<ul>
+<li><p>select *  from 表名</p>
+<ul>
+<li><blockquote>
+<p>select * from user;        //全查容易被打</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.查询指定字段数据</strong></p>
+<ul>
+<li><blockquote>
+<p>select <strong>tel, pwd</strong> from user;             </p>
+</blockquote>
+</li>
+</ul>
+<p><strong>3.带条件查询字段数据</strong></p>
+<ul>
+<li><blockquote>
+<p>select nickname, tel, sex, address </p>
+<p>from user </p>
+<p><strong>where id</strong> = 8      //查询路飞的 昵称, 电话, 性别, 住址</p>
+</blockquote>
+</li>
+<li><p>逻辑与  and   /   逻辑或 or   (两个条件时)</p>
+<ul>
+<li><blockquote>
+<p>select nickname, tel, sex, address<br>from user<br>where sex = 2 <strong>and</strong> status = 1        //and:  查询user表中 所有状态为激活的 女生的昵称, 电话, 住址, 性别</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>is null     /    is not null</p>
+<ul>
+<li><blockquote>
+<p>select nickname, tel<br>from user<br>where address <strong>is not null</strong>            //查找user表中,所有地址不为空的人</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>区间查询  between A and B      /     not between A and B</p>
+<ul>
+<li><blockquote>
+<p>select nickname, birthday<br>from user<br>where birthday <strong>not between</strong> ‘2005-01-01’ <strong>and</strong> ‘2015-12-31’                  //查询user表中, 生日在 05 ~ 15 年之间的人的 昵称 和 生日</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>in 操作</p>
+<ul>
+<li><blockquote>
+<p>select nickname, address<br>from user<br>where <strong>address in</strong> (‘老王隔壁’, ‘召唤师峡谷’, ‘木叶忍者村’)        //查询 住在( 老王隔壁, 召唤师峡谷, 木叶忍者村 ) 的昵称和住址</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>4.分组/分组后的筛选:</strong></p>
+<ul>
+<li><p>group by 分组依据</p>
+<ul>
+<li><blockquote>
+<p>select dep, count(`id`)<br>from salary<br><strong>group by dep</strong>        //查询salary表 每个部门各有多少人</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>having  筛选,配合group by使用的  <strong>(分组之后的条件筛选)</strong></p>
+<ul>
+<li><blockquote>
+<p>select dep, count(`id`)<br>from salary<br>group by dep</p>
+</blockquote>
+<blockquote>
+<p><strong>having count(`id`) &gt; 2</strong></p>
+</blockquote>
+<pre><code>//查询salary表 人数超过2个的部门</code></pre></li>
+</ul>
+</li>
+</ul>
+<p><strong>5.嵌套查询</strong></p>
+<ul>
+<li><blockquote>
+<p>select uid, dep, money<br>from salary<br>where money in (select max(`money`) from salary group by dep)    //扩号内命令用于查询每个部门的最高工资,然后在表格里面查出这些这些最高工资的数值,万一有一些不是最高工资的数值跟其他部门最高工资相同也会被查出,所有是BUG );       //查询每个部门最高工资的uid, <strong>该命令有BUG</strong></p>
+</blockquote>
+</li>
+</ul>
+<h6 id="6-多表查询"><a href="#6-多表查询" class="headerlink" title="6.多表查询"></a><strong>6.多表查询</strong></h6><ul>
+<li><p><strong>格式:</strong></p>
+<ul>
+<li>select 查询的字段<br>from 表名1, 表名2, …<br>where 表与表之间的关系(必须声明)</li>
+<li>当 查询时, 发生多表字段重名?   解决方法: 使用 表名.字段名 区分重名字段</li>
+</ul>
+</li>
+<li><p><strong>取别名     as</strong></p>
+<ul>
+<li><p>在from里面写别名,表名as简单字母</p>
+<ul>
+<li><blockquote>
+<p>from salary <strong>as</strong> s, test <strong>as</strong> t</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>最终版:</strong></p>
+<ul>
+<li><blockquote>
+<p>select uid, s.dep, s.money<br>from salary as s, (select dep, max(`money`) as money from salary group by dep  //这里命令查出来就相当于是一个表格,直接当两表联查用) as t<br>where s.dep = t.dep and s.money = t.money            //查询每个部门最高工资的uid                </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>7. limit 下标, 行数</strong></p>
+<ul>
+<li>经常被利用在 后期 分页效果</li>
+</ul>
+<ul>
+<li><p>公式 key = (page -1)×rows    行数:rows          页数page           key从多少开始  </p>
+<ul>
+<li><blockquote>
+<p>select id, nickname<br>from user<br><strong>limit 5    # ===&gt;  limit 0, 5</strong>            //查询前5条数据</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>8. 取消重复   distinct</strong></p>
+<ul>
+<li><blockquote>
+<p>select dep from salary<br>select <strong>distinct</strong> dep from salary            //查询该公司有哪些部门</p>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/11/编码规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1727,7 +2388,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1749,7 +2410,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
