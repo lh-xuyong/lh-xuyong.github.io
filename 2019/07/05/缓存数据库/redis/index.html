@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="缓存,NoSql,数据库,">
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="我叫啊勇">
+<meta name="description" content="NoSql中的扛把子! —— Redis">
+<meta name="keywords" content="缓存,NoSql,数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lh-xuyong.com/2019/07/03/hello-world/index.html">
+<meta property="og:title" content="Redis基础">
+<meta property="og:url" content="http://lh-xuyong.com/2019/07/05/缓存数据库/redis/index.html">
 <meta property="og:site_name" content="Web学习与开发">
-<meta property="og:description" content="我叫啊勇">
+<meta property="og:description" content="NoSql中的扛把子! —— Redis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-11T07:08:58.295Z">
+<meta property="og:updated_time" content="2019-07-07T05:20:39.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="我叫啊勇">
+<meta name="twitter:title" content="Redis基础">
+<meta name="twitter:description" content="NoSql中的扛把子! —— Redis">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://lh-xuyong.com/2019/07/03/hello-world/">
+  <link rel="canonical" href="http://lh-xuyong.com/2019/07/05/缓存数据库/redis/">
 
 
 
 
 
-  <title>Hello World | Web学习与开发</title>
+  <title>Redis基础 | Web学习与开发</title>
   
 
 
@@ -304,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/05/缓存数据库/redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lh-ayong">
@@ -321,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Redis基础</h1>
         
 
         <div class="post-meta">
@@ -333,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T17:18:16+08:00">
-                2019-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-05T11:33:21+08:00">
+                2019-07-05
               </time>
             
 
@@ -349,12 +350,34 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-11T15:08:58+08:00">
-                2019-07-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-07T13:20:39+08:00">
+                2019-07-07
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -382,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  190
+                  2.9k
                 </span>
               
 
@@ -407,23 +430,516 @@
       
 
       
-        <p>我叫啊勇</p>
+        <p>NoSql中的扛把子! —— Redis</p>
 <a id="more"></a>
-<p>最近有空用hexo搭了一个博客,之前用的插件搭的需要服务器,还要经常维护,不用了,反正也没啥东西</p>
-<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Redis基础"><a href="#Redis基础" class="headerlink" title="Redis基础"></a>Redis基础</h2><h3 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis"></a>什么是Redis</h3><ul>
+<li>属于NoSql</li>
+<li>开源 先进的key-value存储</li>
+<li>一个基于内存的网络存储系统<br><a href="https://www.redis.net.cn/" target="_blank" rel="noopener">redis中文网</a><!-- ![redisLogo](/images/redis.jpg) -->
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Redis的特点"><a href="#Redis的特点" class="headerlink" title="Redis的特点"></a>Redis的特点</h3><ul>
+<li>性能极高,适合高并发读写</li>
+<li>Redis支持数据的持久化,可以将内存中的数据保存在磁盘里,重启的时候再次进行加载(持久)</li>
+<li>Redis支持数据结构多达5种:字符串 哈希 列表 集合 有序集合(花样多)</li>
+<li>Redis支持数据的备份,master-slave模式的数据备份</li>
+</ul>
+<h3 id="Redis应用场景"><a href="#Redis应用场景" class="headerlink" title="Redis应用场景"></a>Redis应用场景</h3><pre><code>1、取最新 N 个数据的操作 
+2、排行榜应用,取 TOP N 操作 
+3、需要精准设定过期时间的应用
+4、计数器应用
+5、Uniq 操作,获取某段时间所有数据排重值
+6、实时系统,反垃圾系统
+7、Pub/Sub 构建实时消息系统
+8、构建队列系统
+9、缓存</code></pre><h4 id="一般情况"><a href="#一般情况" class="headerlink" title="一般情况"></a>一般情况</h4><pre><code>string类型:适合计数器 系统缓存(把对象 数组 串行化存入string)
+Hash类型：适合做数据缓存(用户数据)
+List类型：适合做数组搜索(队列系统,关注列表、粉丝列表丶数据统计)
+集合类型：适合做好友推送(商品推送时)  unique操作 获取某段时间内所有数据的排重值 统计网站访问的所有独立ip
+有序集合类型：适合商品排序(排行榜)    需要精准设定过期的应用(时间戳为score)    </code></pre><h3 id="ubuntu安装redis"><a href="#ubuntu安装redis" class="headerlink" title="ubuntu安装redis"></a>ubuntu安装redis</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-get update</span><br><span class="line">$sudo apt-get install redis-server</span><br><span class="line">$ redis-server  启动redis</span><br><span class="line">$ redis-cli  查看是否启动</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<p>命令行输入npm install hexo-asset-image –save安装插件<br>在根目录/source目录下新建一个img文件夹，将需要插入的图片放到里面<br>在文章中引用图片时图片使用格式[图片上传失败…(image-3a4109-1544088714292)]进行引用图片。</p>
+<ul>
+<li><strong>注意:</strong>apt重新重装redis配置文件会丢失,记得备份(踩过的坑)</li>
+<li><table>
+<thead>
+<tr>
+<th>启动与关闭</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>redis-cli</td>
+<td>开启redis</td>
+</tr>
+<tr>
+<td>redis-cli shutdown</td>
+<td>关闭redis</td>
+</tr>
+<tr>
+<td>service redis-server restart</td>
+<td>重启redis</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="Redis数据结构命令"><a href="#Redis数据结构命令" class="headerlink" title="Redis数据结构命令"></a>Redis数据结构命令</h3><h4 id="字串类型"><a href="#字串类型" class="headerlink" title="字串类型"></a>字串类型</h4><p>注意：</p>
+<ul>
+<li>redis可以存和获取中文  需要通过redis-cli –raw</li>
+<li>redis中没有表概念，所有的数据都存入键中&gt;string键类型：所有的值（可以是任何数据类型）都保存在一个键当中，放在一个内存块中</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>string(字串类型)</th>
+<th></th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set 键 值</td>
+<td>设置一个键和值，键存在则覆盖，返回ok</td>
+<td><code>set name xuyong</code></td>
+</tr>
+<tr>
+<td>get 键</td>
+<td>获取一个键,返回的是值</td>
+<td><code>get name</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setnx  键 值</td>
+<td>只有当该键不存在时设置一个键的值,若键已存在则返回integer0表示失败（防止覆盖）</td>
+<td><code>setnx age 18</code></td>
+</tr>
+<tr>
+<td>setex 键 [有效时间] 值</td>
+<td>设置一个指定有效期的键和值（单位秒）。不写有效时间则表示永久有效，等价于set</td>
+<td><code>setex movie 30 白蛇:缘起</code></td>
+</tr>
+<tr>
+<td>ttl 键</td>
+<td>获取键的有效时间 , 当 key 不存在时，返回 -2 , 当 key 存在但没有设置剩余生存时间时，返回 -1</td>
+<td><code>ttl movie</code></td>
+</tr>
+<tr>
+<td>setrange 键 位置 子字串</td>
+<td>替换子字符串 (替换长度由子子串长度决定) abcdefg   从c开始替换,bad.  Abbadfg</td>
+<td><code>setrange key 2 liming p</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mset 键1 值1 键2 值2 键3 值3 ….</td>
+<td>批量设置键和值,成功则返回ok</td>
+<td><code>mset name1 lm name2 sc name3</code></td>
+</tr>
+<tr>
+<td>msetnx 键1 值1 键2 值2 键3 值3 ….</td>
+<td>批量设置不存在的键和值(当键不存在时候才成功),成功则返回ok</td>
+<td><code>msetnx b1 1 b2 2 b3 3</code></td>
+</tr>
+<tr>
+<td>mget 键1 键2 键3…</td>
+<td>批量获取值</td>
+<td><code>mget name1 name2 name3</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>getset 键 新值</td>
+<td>获取原值,并设置新值</td>
+<td><code>getset name &quot;liming&quot; ,原本的shenchao变成liming</code></td>
+</tr>
+<tr>
+<td>getrange 键 0 4</td>
+<td>获取指定范围的值（获取指定0到4位置上的值，字符串位置从0开始计算</td>
+<td><code>getrange key1 0 4</code></td>
+</tr>
+<tr>
+<td>incr键</td>
+<td>指定键的值做加1操作，返回加后的结果（只能加数字,非数字会报错）</td>
+<td><code>incr age</code></td>
+</tr>
+<tr>
+<td>decr键</td>
+<td>指定键的值做减1操作，返回减后的结果</td>
+<td><code>decr age</code></td>
+</tr>
+<tr>
+<td>incrby 键 m</td>
+<td>加指定值，键不存在时候会设置键, 其中m可以是正整数或负整数</td>
+<td><code>incrby age 10</code></td>
+</tr>
+<tr>
+<td>decrby 键 m</td>
+<td>同上,但是是减值</td>
+<td><code>decrby age 5</code></td>
+</tr>
+<tr>
+<td>append 键 追加字串</td>
+<td>给指定key的字符串追加value，返回新字符串值的长度</td>
+<td><code>append name1 &quot; have a new computer!&quot;</code></td>
+</tr>
+<tr>
+<td>strlen键名</td>
+<td>strlen求一个键长度</td>
+<td><code>strlen name1</code></td>
+</tr>
+<tr>
+<td>del命令</td>
+<td>删除一个键</td>
+<td><code>del name3</code></td>
+</tr>
+</tbody></table>
+<h4 id="hashs类型"><a href="#hashs类型" class="headerlink" title="hashs类型"></a>hashs类型</h4><table>
+<thead>
+<tr>
+<th>hash</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hset 哈希集（键） 字段 值</td>
+<td>设置一个键，在键中保存字段和值</td>
+<td><code>hset key field value</code></td>
+</tr>
+<tr>
+<td>hsetnx 键 字段 值</td>
+<td>设置一个键中，不存在的字段和值。如果字段存在则报错（成功返回1，失败返回0）</td>
+<td><code>hsetnx user1 name1 lm</code></td>
+</tr>
+<tr>
+<td>hmset  键  字段1  值1  字段2  值2 …</td>
+<td>在一个键中,批量设置字段<br><code>$redis-&gt;hMset(&quot;user&quot;.$uid,array(&quot;uid&quot;=&gt;$uid,&quot;username&quot;=&gt;$username)</code></td>
+<td><code>hmset star name xuyong age 45 height 150</code></td>
+</tr>
+<tr>
+<td>hget键字段</td>
+<td>获取键中的一个指定字段的值</td>
+<td><code>hget star name</code></td>
+</tr>
+<tr>
+<td>hmget 键 字段</td>
+<td>获取多个字段的值</td>
+<td><code>hmget star name age height</code></td>
+</tr>
+<tr>
+<td>hexists 键  字段</td>
+<td>判断指定的字段是否存在于键中</td>
+<td><code>hexists star age</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hlen</td>
+<td>获取键中的字段数量</td>
+<td><code>hlen star</code></td>
+</tr>
+<tr>
+<td>hkeys</td>
+<td>获取键中的所有字段名</td>
+<td><code>hkeys star</code></td>
+</tr>
+<tr>
+<td>hvals</td>
+<td>获取键中所有字段的值</td>
+<td><code>hvals star</code></td>
+</tr>
+<tr>
+<td>hgetall</td>
+<td>获取键中的所有字段和值</td>
+<td><code>hgetall star</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hincrby</td>
+<td>将键中指定字段的值，增加指定的数字</td>
+<td><code>hincrby star age 5,</code></td>
+</tr>
+<tr>
+<td>hdel  键 字段1 字段2</td>
+<td>删除键中的一个或多个字段</td>
+<td>———————————————————————————————————————————————————————————————————————————————————————————–<code>hdel star age interest</code></td>
+</tr>
+</tbody></table>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><table>
+<thead>
+<tr>
+<th>list类型</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lpush 键 值1 [值2…]</td>
+<td>从左面增加</td>
+<td>127.0.0.1:6379&gt; lpush list1 <br> 127.0.0.1:6379&gt; lpush list1 2</td>
+</tr>
+<tr>
+<td></td>
+<td>多个值一起增加</td>
+<td>lpush list2 one two three four</td>
+</tr>
+<tr>
+<td>lrange 键 起始下标 终止下标</td>
+<td>查</td>
+<td>lrange   list1 0 -1 (查全部)</td>
+</tr>
+<tr>
+<td></td>
+<td>lrangelist2 -4 3</td>
+<td>-4代表从队列右边数第四个元素, 3代表从队列左边数第四个元素</td>
+</tr>
+<tr>
+<td>rpush 键 值1 [值2…]</td>
+<td>同左,换个位置而已</td>
+<td></td>
+</tr>
+<tr>
+<td>linsert  键  before|after  原值  新值</td>
+<td>某个位置添加</td>
+<td>LINSERT list3 before 3 hello (在3的前面插一个hellow)</td>
+</tr>
+<tr>
+<td>lset  键  下标  新值</td>
+<td>修改</td>
+<td>lset list3 2 “5” (给下标为2的键换上新值5)</td>
+</tr>
+<tr>
+<td>lrem  键  n  指定值</td>
+<td>删除指定值</td>
+<td>lerm list4 -2 hello(删除后两个hello)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>lrem list4 0 hello (删除所有的hello)</td>
+</tr>
+<tr>
+<td>ltrim  键  起始下标  结束下标</td>
+<td>修剪队列，让队列只保留指定指定范围内的元素</td>
+<td>ltrim list5 1 2  (只保留下标为 1 和2的值)</td>
+</tr>
+<tr>
+<td>lpop 键</td>
+<td>从指定的队列左面移除一个值</td>
+<td></td>
+</tr>
+<tr>
+<td>rpop 键</td>
+<td>从指定队列的右边移除一个值</td>
+<td></td>
+</tr>
+<tr>
+<td>rpoplpush 源队列 目标队列</td>
+<td>移除源队列的最后一个元素，并把该元素写入目标队列</td>
+<td></td>
+</tr>
+<tr>
+<td>lindex  键  下标</td>
+<td>获取队列中指定下标元素的值</td>
+<td></td>
+</tr>
+<tr>
+<td>llen   键</td>
+<td>获得队列的长度</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="sets-类型和操作"><a href="#sets-类型和操作" class="headerlink" title="sets 类型和操作"></a>sets 类型和操作</h4><p>Set是集合，它是string类型的无序集合。对集合我们可以取并集、交集、差集。通过这些操作我们可以实现社交网站中的好友推荐和blog的tag功能。集合不允许有重复值 </p>
+<table>
+<thead>
+<tr>
+<th>sets 类型和操作</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sadd 键 值1 [值2…]</td>
+<td>添加</td>
+<td>sadd mset1 12 3 4   添加  1234</td>
+</tr>
+<tr>
+<td>smembers 键</td>
+<td>查询</td>
+<td>smembers mset1</td>
+</tr>
+<tr>
+<td>srem  键  值1[值2…]</td>
+<td>删除</td>
+<td>srem mset1 3 4  删掉了3 4 后面就只剩 1 2了</td>
+</tr>
+<tr>
+<td>spop 键</td>
+<td>随机从集合中删除一个元素，并返回</td>
+<td></td>
+</tr>
+<tr>
+<td>srandmember  键</td>
+<td>随机返回集合中一个元素，但不删除</td>
+<td></td>
+</tr>
+<tr>
+<td>scard 键</td>
+<td>获取集合里面元素个数</td>
+<td></td>
+</tr>
+<tr>
+<td>sismember 键   值</td>
+<td>判断值是否存在</td>
+<td>sismember mset1 5</td>
+</tr>
+<tr>
+<td>sdiff 集合1 集合2</td>
+<td>返回集合1与集合2的差集。以集合1为主</td>
+<td></td>
+</tr>
+<tr>
+<td>sdiffstore  新集合  集合1  集合2</td>
+<td>返回集合1和集合2的差集，并把结果存入新集合</td>
+<td></td>
+</tr>
+<tr>
+<td>sinter  集合1  集合2 引</td>
+<td>获得两个集合的交集</td>
+<td></td>
+</tr>
+<tr>
+<td>sinterstore  新集合  集合1  集合2</td>
+<td>获得集合1和集合2的交集，并把结果存入新集合</td>
+<td></td>
+</tr>
+<tr>
+<td>sunion  集合1  集合2</td>
+<td>获得指定集合的并集</td>
+<td></td>
+</tr>
+<tr>
+<td>sunionstore  新集合  集合1  集合2</td>
+<td>获得指定集合的并集，并把结果保存如新集合</td>
+<td></td>
+</tr>
+<tr>
+<td>smove  源集合  目标集合  值</td>
+<td>将指定的值从源集合移动到目标集合</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="sorted-sets类型和操作-zset"><a href="#sorted-sets类型和操作-zset" class="headerlink" title="sorted sets类型和操作(zset)"></a>sorted sets类型和操作(zset)</h4><p>sorted set是set的一个升级版本，它给集合中每个元素都定义一个分数，集合中的元素按照其分数排序。也不允许有重复值 </p>
+<table>
+<thead>
+<tr>
+<th>sorted sets类型和操作(zset)</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zadd  键  分数1  值1  [分数2  值2…]</td>
+<td>该命令添加指定的成员到key对应的有序集合中，每个成员都有一个分数。你可以指定多个分数/成员组合。如果一个指定的成员已经在对应的有序集合中了，那么其分数就会被更新成最新的，并且该成员会重新调整到正确的位置，以确保集合有序。分数的值必须是一个表示数字的字符串，并且可以是double类型的浮点数</td>
+<td>zdd man 1 xuyong</td>
+</tr>
+<tr>
+<td>zrange  集合  起始下标  截止下标  [withscores]</td>
+<td>返回有序集合中，指定区间内的成员。其中成员按照score（分数）值从小到大排序。具有相同score值的成员按照字典顺序来排列</td>
+<td>zrange man 0 -1</td>
+</tr>
+<tr>
+<td>zrevrange  集合  起始下标  截止下标  [withscores]</td>
+<td>返回有序集合中，指定区间的成员。其成员按照score从大到小来排列</td>
+<td>zrevrange man 0 -1</td>
+</tr>
+<tr>
+<td></td>
+<td>起始下标与截止下标和list类型一致： 0代表队列中第一个元素，1代表第二个元素，依次类推 , -1代表队列中最后一个元素，-2代表倒数第二个元素 , withscores：返回集合中元素的同时，返回其分数（score）</td>
+<td></td>
+</tr>
+<tr>
+<td>zrangebyscore  集合  起始分数  截止分数  withscores</td>
+<td>返回有序集合中score（分数）在指定区间的值</td>
+<td>zrangebyscore man 100 1000</td>
+</tr>
+<tr>
+<td>zrem  集合  值1  [值2…] e</td>
+<td>删除有序集合中指定的值</td>
+<td></td>
+</tr>
+<tr>
+<td>zincrby  集合  增量  值</td>
+<td>给有序集合中指定值的成员的分数（score）值加上增量（increment）。如果集合中没有这个值，则给添加一个分数是increment的值。</td>
+<td>zincrby man -5 huanglei</td>
+</tr>
+<tr>
+<td>zrank  集合  值</td>
+<td>返回有序集合中指定值的下标。值按照score从小到大排序</td>
+<td>zrank man xuyong</td>
+</tr>
+<tr>
+<td>zrevrank  集合  值</td>
+<td>返回有序集合中指定值的下标，值按照score从大到小排序</td>
+<td></td>
+</tr>
+<tr>
+<td>zcount  集合  起始分数  截止分数</td>
+<td>返回有序集合中，score值在起始分数与截止分数之间的个数</td>
+<td></td>
+</tr>
+<tr>
+<td>zcard  集合</td>
+<td>返回有序集合元素的个数</td>
+<td></td>
+</tr>
+<tr>
+<td>zremrangebyrank  集合  起始下标  结束下标</td>
+<td>删除有序集合中，下标在指定区间的元素</td>
+<td></td>
+</tr>
+<tr>
+<td>zremrangebyscore  集合  起始分数  截止分数</td>
+<td>删除有序集合中，分数在指定区间的元素</td>
+<td></td>
+</tr>
+<tr>
+<td>zinterstore  新集合  取交集的集合个数  集合1 集合2</td>
+<td>取集合1和集合2的交集，并把结果保存到新集合中。在计算交集之前，需要指定计算交集的集合的个数。交集中，值的分数是多个集合中分数的和</td>
+<td></td>
+</tr>
+<tr>
+<td>zunionstore  新集合  取并集的集合个数  集合1 集合2</td>
+<td>取集合1和集合2的并集，并把结果保存到新集合中。在计算并集之前，需要指定计算并集的集合的个数。并集中，值的分数是多个集合中分数的和。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="如何通过php使用redis"><a href="#如何通过php使用redis" class="headerlink" title="如何通过php使用redis"></a>如何通过php使用redis</h3><ul>
+<li>服务器安装redis,更改配置</li>
+<li>安装php-redis扩展</li>
+<li>知道一些基本语句<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $redis = new redis();  `</span><br><span class="line">    $redis-&gt;connect(&apos;127.0.0.1&apos;, 6379);  ` </span><br><span class="line">	$redis-&gt;auth(&quot;123&quot;);   使用密码做登陆验证  `</span><br><span class="line">    $result = $redis-&gt;set(&apos;test&apos;,&quot;11111111111&quot;);  `  </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -463,6 +979,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+            <a href="/tags/NoSql/" rel="tag"># NoSql</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
 
       
       
@@ -472,14 +998,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/03/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/05/缓存数据库/redis/" rel="prev" title="Redis基础">
-                Redis基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/07/缓存数据库/redis-高级/" rel="prev" title="Redis-高级">
+                Redis-高级 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +1190,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis基础"><span class="nav-number">1.</span> <span class="nav-text">Redis基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Redis"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis的特点"><span class="nav-number">1.2.</span> <span class="nav-text">Redis的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis应用场景"><span class="nav-number">1.3.</span> <span class="nav-text">Redis应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一般情况"><span class="nav-number">1.3.1.</span> <span class="nav-text">一般情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu安装redis"><span class="nav-number">1.4.</span> <span class="nav-text">ubuntu安装redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis数据结构命令"><span class="nav-number">1.5.</span> <span class="nav-text">Redis数据结构命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字串类型"><span class="nav-number">1.5.1.</span> <span class="nav-text">字串类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashs类型"><span class="nav-number">1.5.2.</span> <span class="nav-text">hashs类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表"><span class="nav-number">1.5.3.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sets-类型和操作"><span class="nav-number">1.5.4.</span> <span class="nav-text">sets 类型和操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sorted-sets类型和操作-zset"><span class="nav-number">1.5.5.</span> <span class="nav-text">sorted sets类型和操作(zset)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何通过php使用redis"><span class="nav-number">1.6.</span> <span class="nav-text">如何通过php使用redis</span></a></li></ol></li></ol></div>
             
 
           </div>
