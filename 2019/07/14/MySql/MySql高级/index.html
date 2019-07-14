@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="数据库,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="数据优化丶预处理丶事务丶触发器等">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql高级">
+<meta property="og:url" content="http://lh-xuyong.com/2019/07/14/MySql/MySql高级/index.html">
+<meta property="og:site_name" content="Web学习与开发">
+<meta property="og:description" content="数据优化丶预处理丶事务丶触发器等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-14T08:15:41.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySql高级">
+<meta name="twitter:description" content="数据优化丶预处理丶事务丶触发器等">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lh-xuyong.com/2019/07/14/MySql/MySql高级/">
+
+
+
+
+
+  <title>MySql高级 | Web学习与开发</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Web学习与开发</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">专注分享网站开发学习和维护经验</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/14/MySql/MySql高级/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lh-ayong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/weixin.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Web学习与开发">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySql高级</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-14T13:05:03+08:00">
+                2019-07-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-14T16:15:41+08:00">
+                2019-07-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读数<i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据优化丶预处理丶事务丶触发器等</p>
+<a id="more"></a>
+<h3 id="MySql表复制"><a href="#MySql表复制" class="headerlink" title="MySql表复制"></a>MySql表复制</h3><p>复制表结构+复制表数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t2 <span class="keyword">like</span> t1		<span class="comment">--建一个空表</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t2 <span class="keyword">select</span> * <span class="keyword">from</span> t1		<span class="comment">--将t2的东西添加到t1</span></span><br></pre></td></tr></table></figure>
+
+<p>直接复制表数据,无索引和约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t3 <span class="keyword">select</span> * <span class="keyword">from</span> t1</span><br></pre></td></tr></table></figure>
+
+<h3 id="MySql索引"><a href="#MySql索引" class="headerlink" title="MySql索引"></a>MySql索引</h3><p>索引就像是书的目录,能够提高查询速度,降低写入速度,占用磁盘空间</p>
+<p><strong>展示所有索引</strong><br>desc users<br>show index from users</p>
+<p><strong>添加索引</strong><br>普通索引:index</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> <span class="keyword">index</span> index_name(<span class="keyword">name</span>)  <span class="comment">--括号里name是字段名</span></span><br></pre></td></tr></table></figure>
+
+<p>唯一索引:unqiue</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> unqiue unique_name(<span class="keyword">name</span>)	<span class="comment">--其实一般只是为了避免数据出现重复</span></span><br></pre></td></tr></table></figure>
+
+<p>主键索引:primary key</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> primary <span class="keyword">key</span>(<span class="keyword">id</span>) 	<span class="comment">--主键索引一般只给id加</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>删除索引</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">drop</span> <span class="keyword">name</span>; <span class="comment">-- 通过索引名来删除,删除唯一索引会降级成普通索引</span></span><br></pre></td></tr></table></figure>
+
+<p>删除主键索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">drop</span> primary <span class="keyword">key</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">change</span> <span class="keyword">id</span>  <span class="built_in">int</span>  <span class="comment">--无法删除主键索引时必须修改自增</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MySql视图"><a href="#MySql视图" class="headerlink" title="MySql视图"></a>MySql视图</h3><p>视图的本质是sql语句,视图本身不存储数据库,每次数据都会通过定义好的sql去查询,数据库该表视图也会改变</p>
+<p>创建视图:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> v_user <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span>&lt;<span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>视图的优点</strong></p>
+<ul>
+<li>安全性</li>
+<li>灵活,可以减少表的修改,提高查询的性能</li>
+<li>负责查询需求,可以将问题分解,然后创建多个视图,最后把多视图联合起来,就可以得到问题的结果了</li>
+</ul>
+<h3 id="MySql预处理语句"><a href="#MySql预处理语句" class="headerlink" title="MySql预处理语句"></a>MySql预处理语句</h3><p>预先处理SQL的语法,通过传值完成SQL<br>优势:提高效率.防止SQL注入攻击</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.设置stm1预处理,传递一个数据作为where判断条件</span><br><span class="line"><span class="keyword">prepare</span> stm1 <span class="keyword">from</span> <span class="string">"select * from t1 where id&gt;?"</span>;</span><br><span class="line">2.设置一个变量</span><br><span class="line"><span class="keyword">set</span> @i = <span class="number">1</span>;</span><br><span class="line">3.执行stm1预处理</span><br><span class="line">excute stam1 using @i;</span><br><span class="line">4.删除预处理</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">prepare</span> stm1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MySql处理事务"><a href="#MySql处理事务" class="headerlink" title="MySql处理事务"></a>MySql处理事务</h3><p>前提:引擎为innodb<br>主要用于:量大,复杂度高,重要的数据.例如:删除一个user信息,可能会关联多个表,用户表 订单表 地址表 收藏表等,如果其中一哥出错的话将会全部回滚成未执行前的样子</p>
+<p><strong>事务必须满足4个条件(ACID)</strong></p>
+<ul>
+<li>A原子性 : 一组事务,要么成功,要么回滚. </li>
+<li>C 稳定性: 有非法数据(约束外键等) ,事务撤回 </li>
+<li>I 隔离性: 事务,独立运行.一个事务中,如果处理后的结果,应系那个到了其他事务,则其他事务撤回 </li>
+<li>D 可靠性: 软 硬件 崩溃了,InnoDB 会自动使用数据表驱动使用日志文件 恢复数据 (可靠性和高速度不可兼得)</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.关闭自动提交</span><br><span class="line"><span class="keyword">set</span> autocmmit=<span class="number">0</span></span><br><span class="line"><span class="number">2.</span>删除记录</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">111</span>; </span><br><span class="line">3.创建p1原点</span><br><span class="line"><span class="keyword">savepoint</span> p1</span><br><span class="line"><span class="number">4.</span>删除记录</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2222</span>; </span><br><span class="line">5.再创建p2还原点</span><br><span class="line"><span class="keyword">savepoint</span> p2;</span><br><span class="line">6.删除记录</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">333</span>; </span><br><span class="line">7.退回p2(回滚是流式的,假如有1 2 3三个点,退回1的话就没办法退回2 3了)</span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> p2</span><br><span class="line"><span class="number">8.</span>退回起始点</span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="number">9.</span>真正的提交(修改)</span><br><span class="line"><span class="keyword">commit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MySql触发"><a href="#MySql触发" class="headerlink" title="MySql触发"></a>MySql触发</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">监视某种事件，并触发某种操作。（商品添加，订单消除等连贯表操作时使用）</span><br><span class="line">触发四要素：1、监视地点（table）2、触发时间（after/before）3、监视事件（<span class="keyword">insert</span>/<span class="keyword">update</span>/<span class="keyword">delete</span>）<span class="number">4</span>、触发事件（<span class="keyword">insert</span>/<span class="keyword">update</span>/<span class="keyword">delete</span>）</span><br><span class="line"><span class="number">1</span>、	修改delimiter为//</span><br><span class="line">mysql&gt;\d //</span><br><span class="line"><span class="number">2</span>、	创建一个名为tg1的触发器，当向t1表中插入数据前，就向a表中插入一条数据</span><br><span class="line">mysql&gt;<span class="keyword">create</span> <span class="keyword">trigger</span> tg1 <span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> t1 <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span>	<span class="comment">#固定写法</span></span><br><span class="line">-&gt;<span class="keyword">begin</span></span><br><span class="line">-&gt; <span class="keyword">insert</span> <span class="keyword">into</span> a <span class="keyword">values</span> (<span class="number">4</span>);</span><br><span class="line">-&gt;end//</span><br><span class="line"></span><br><span class="line">// <span class="keyword">create</span> <span class="keyword">trigger</span> trg1 <span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> t2 <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="number">3</span>、	修改delimiter为;</span><br><span class="line">mysql&gt;\d ;</span><br><span class="line">4、	插入数据测试</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t1 <span class="keyword">values</span> (<span class="literal">null</span>,<span class="string">'tom'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> a;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据导入导出"><a href="#数据导入导出" class="headerlink" title="数据导入导出"></a>数据导入导出</h3><p>Mysqldump   导出  mysqldump -u 用户名 -p 密码 库名 表名 &gt; 文件名(如 D:/user.sql)<br>load data infile  导入</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">完整备份：</span><br><span class="line">[root@localhost ~]<span class="comment"># /usr/local/mysql/bin/mysqldump -u root -p -l -F test&gt;'/tmp/test.sql'</span></span><br><span class="line"></span><br><span class="line">导出一个数据库中每一个表的相关SQL语句，包含建表、增删改查等导入导出速度慢！</span><br><span class="line"></span><br><span class="line">单表数据备份：</span><br><span class="line">mysql&gt;select * from users into outfile '/tmp/users.txt';</span><br><span class="line">仅仅是导出表数据，查什么就导出什么。</span><br><span class="line">相当于</span><br><span class="line">[root@localhost ~]<span class="comment"># /usr/local/mysql/bin/mysqldump -uroot -p -l -F test users --table'/tmp/'</span></span><br><span class="line">调用 into outfile 语句生成tablename.txt文件。</span><br><span class="line"></span><br><span class="line">Mysql5.7导出报错.1290代码报错</span><br><span class="line">是因为mysql5.7 配置文件只可以导出指定目录</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'%secure%'</span>;查看 secure-file-priv 当前的值是什么</span><br><span class="line">发现是/var/lib/mysql-files/</span><br><span class="line">则导出 位置是<span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">into</span> <span class="keyword">outfile</span> ‘/<span class="keyword">var</span>/lib/mysql-files/a.txt’;</span><br></pre></td></tr></table></figure>
+
+<h3 id="临时表"><a href="#临时表" class="headerlink" title="临时表"></a>临时表</h3><p>create temporary table tmp1 (id int);<br>只对当前会话(连接)有效，断开后，临时表自动清除，也可以自己drop table tmp1;<br> 临时表在销毁前，文件暂存/tmp下</p>
+<h3 id="MySql索引-详细"><a href="#MySql索引-详细" class="headerlink" title="MySql索引(详细)"></a>MySql索引(详细)</h3><h4 id="desc后运行用到的单词"><a href="#desc后运行用到的单词" class="headerlink" title="desc后运行用到的单词"></a>desc后运行用到的单词</h4><table>
+<thead>
+<tr>
+<th>查询结果详细解释</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>sql执行标识</td>
+</tr>
+<tr>
+<td><strong>select_type</strong></td>
+<td>select的类型</td>
+</tr>
+<tr>
+<td>SIMPLE</td>
+<td>简单表, 即不使用表连接 或 子查询</td>
+</tr>
+<tr>
+<td>PRIMARY</td>
+<td>主查询, 即外层查询</td>
+</tr>
+<tr>
+<td>SUBQUERY</td>
+<td>子查询中第一个SELECT</td>
+</tr>
+<tr>
+<td>DEPENDENT SUBQUERY</td>
+<td></td>
+</tr>
+<tr>
+<td>DERIVED</td>
+<td>字查询在from子句中,执行查询时候会把子查询结果集 放到临时表</td>
+</tr>
+<tr>
+<td>UNION</td>
+<td>UNION中第二个或者后面的查询语句</td>
+</tr>
+<tr>
+<td>UNION RESULT</td>
+<td>从UNLON 临时表获得结果集合</td>
+</tr>
+<tr>
+<td><strong>table</strong></td>
+<td>输出结果集的表名</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>表示表连接的类型,性能从好到差</td>
+</tr>
+<tr>
+<td>system</td>
+<td>表仅一行</td>
+</tr>
+<tr>
+<td>const</td>
+<td>只一行匹配</td>
+</tr>
+<tr>
+<td>wq_ref</td>
+<td>对于前面的每一行使用主键和唯一</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>用到了普通索引,但没有使用主键和唯一</td>
+</tr>
+<tr>
+<td>ref_or_null</td>
+<td>同前面对null 的查询</td>
+</tr>
+<tr>
+<td>index_merge</td>
+<td>索引合并优化</td>
+</tr>
+<tr>
+<td>unique_subquery</td>
+<td>主键子查询</td>
+</tr>
+<tr>
+<td>index_subquery</td>
+<td>非主键子查询</td>
+</tr>
+<tr>
+<td>range</td>
+<td>表单中的范围查询</td>
+</tr>
+<tr>
+<td>index</td>
+<td>都通过查询索引来得到数据</td>
+</tr>
+<tr>
+<td>all</td>
+<td>通过权标扫描得到的数据</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>表查询时可能使用的索引</td>
+</tr>
+<tr>
+<td>key</td>
+<td>表示实际使用的索引</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>索引字段的最大长度</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>参考</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>扫描行的情况</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>执行情况的说明和描述</td>
+</tr>
+<tr>
+<td>#### 索引分析</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">普通查询分析</span><br><span class="line">desc 查询语句</span><br><span class="line">主键查询:desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2</span> \G</span><br><span class="line"></span><br><span class="line">精确匹配时:<span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'jack'</span>; <span class="comment">--此时是全文查找rows为查找到从似乎 索引为空</span></span><br><span class="line">	<span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">index</span> ind_name(<span class="keyword">name</span>) <span class="comment">--加上ind_name索引后对比,再执行上段代码 则会自动变成了索引查找 rows只有1 这里是 索引为普通索引索引名 ind_name</span></span><br><span class="line"></span><br><span class="line">范围查询:<span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">id</span>&lt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">子查询:<span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span>(<span class="keyword">select</span> uid <span class="keyword">from</span> score); <span class="comment">--子查询本身用不到索引而且往往会导致外层查询用不到索引（不推荐） </span></span><br><span class="line"></span><br><span class="line">join查询: desc <span class="keyword">select</span> 两表中-需要查询的字段 <span class="keyword">from</span> 查询的主表 <span class="keyword">left</span> <span class="keyword">join</span> 副表 <span class="keyword">on</span> 直接写条件(不用加<span class="keyword">where</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="where-or"><a href="#where-or" class="headerlink" title="where or"></a><strong>where or</strong></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 准备：数据</span></span><br><span class="line">    <span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">status</span> <span class="built_in">int</span> <span class="keyword">default</span> <span class="number">0</span>;	</span><br><span class="line">    <span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">index</span> ind_status(<span class="keyword">status</span>);	</span><br><span class="line">    <span class="keyword">update</span> <span class="keyword">users</span> <span class="keyword">set</span> <span class="keyword">status</span> = <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">3</span>;	</span><br><span class="line"></span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">status</span>=<span class="number">1</span>; <span class="comment">--  是能够用到索引的</span></span><br><span class="line"></span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">status</span> = <span class="number">1</span> <span class="keyword">or</span> <span class="keyword">status</span> = <span class="number">2</span>; <span class="comment">-- 加or之后用不到索引,会全表遍历</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">-- where or 解决方案 union all </span></span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">status</span> &lt; <span class="number">1</span> <span class="keyword">union</span> <span class="keyword">all</span>  <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span>  <span class="keyword">id</span> = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="where-and"><a href="#where-and" class="headerlink" title="where and"></a><strong>where and</strong></h4><ul>
+<li><strong><code>两个字段都有索引,可能同时用到两个索引,可以避免扫描</code></strong></li>
+<li><strong><code>如果只有一个字段有索引,就会扫描另一个字段</code></strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 准备数据：</span></span><br><span class="line">    <span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> email <span class="built_in">varchar</span>(<span class="number">255</span>);</span><br><span class="line">    <span class="keyword">update</span> <span class="keyword">users</span> <span class="keyword">set</span> email = <span class="keyword">concat</span>(<span class="keyword">name</span>,<span class="string">'@qq.com'</span>);</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">users</span> (<span class="keyword">name</span>,email) <span class="keyword">values</span>(<span class="string">'jack'</span>,<span class="string">'jack2@foxmail.com'</span>);</span><br><span class="line">    </span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span>  <span class="keyword">status</span> =<span class="number">0</span>  <span class="keyword">and</span> email <span class="keyword">like</span> <span class="string">"ja%"</span>	 <span class="comment">-- 因为email没有索引,所以会在满足status的条件下,扫描email字段</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">-- 为新字段添加索引</span></span><br><span class="line">	<span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">index</span> ind_email(email);</span><br><span class="line">	</span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">status</span>=<span class="number">0</span> <span class="keyword">and</span> email <span class="keyword">like</span> <span class="string">"jack%"</span>; <span class="comment">-- 会用到两个索引, rows为4</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h4><p>将两个字段共同添加同一条索引,只有前面那个字段会有索引,先到先得.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">index</span> ind_status_email (<span class="keyword">status</span>,email); <span class="comment">-- 将两个字段共同添加一条索引</span></span><br><span class="line">desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span>  <span class="keyword">status</span> =<span class="number">0</span>  <span class="keyword">and</span> email <span class="keyword">like</span> <span class="string">"ja%"</span> <span class="comment">-- 两个字段一起用,用到了索引</span></span><br><span class="line"><span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">status</span> =<span class="number">1</span>  <span class="comment">-- 单用status能用到他们共同的索引</span></span><br><span class="line"><span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> email <span class="keyword">like</span> <span class="string">'ja%'</span> <span class="comment">-- 单用email时就用不到他们共同的索引了</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="字段类型不符时"><a href="#字段类型不符时" class="headerlink" title="字段类型不符时"></a>字段类型不符时</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 如果是字符串类型,查询时给数值(无引号), 使用不到索引.</span></span><br><span class="line">	<span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">users</span> <span class="keyword">add</span> <span class="keyword">index</span> index_name(<span class="keyword">name</span>);</span><br><span class="line">	<span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">users</span> (<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="string">'123'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加引号后可以使用索引</span></span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="number">123</span>;     <span class="comment">-- 无法使用索引</span></span><br><span class="line">	desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'123'</span>;	 <span class="comment">-- 可以使用索引</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="like："><a href="#like：" class="headerlink" title="like："></a>like：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">desc <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">"jac%"</span>\G <span class="comment">-- 可以使用到索引</span></span><br><span class="line"><span class="keyword">desc</span> <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">"%jac%"</span>\G <span class="comment">-- 不可以使用索引，当%号在第一个字符，索引不被使用</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="is-null"><a href="#is-null" class="headerlink" title="is null"></a>is null</h4><p><code>desc select * from users where name is null</code></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>(数据库要是innodb的?)</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>情况</th>
+<th>使用索引情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>where or</td>
+<td>都使用不到索引，并进行全表扫描</td>
+</tr>
+<tr>
+<td>2</td>
+<td>where and</td>
+<td>可能</td>
+</tr>
+<tr>
+<td></td>
+<td>组合索引</td>
+<td>先到先得</td>
+</tr>
+<tr>
+<td>3</td>
+<td>字段类型不符</td>
+<td>使用不到索引</td>
+</tr>
+<tr>
+<td>4</td>
+<td>like</td>
+<td>当%号在第一个字符，使用不到索引</td>
+</tr>
+<tr>
+<td>5</td>
+<td>is null</td>
+<td>可以</td>
+</tr>
+</tbody></table>
+<h3 id="常用语句优化"><a href="#常用语句优化" class="headerlink" title="常用语句优化"></a>常用语句优化</h3><p><code>insert into stu (name,age) values (&#39;jack&#39;,18),(&#39;mary&#39;,19),(&#39;lily&#39;,18);</code></p>
+<ul>
+<li>如果包含group by , 默认会排序</li>
+<li>可以使用 order by null来禁止排序</li>
+<li>用desc来查看 Extra 是否有Using filesort</li>
+</ul>
+<h3 id="mysql优化步骤总结"><a href="#mysql优化步骤总结" class="headerlink" title="mysql优化步骤总结"></a>mysql优化步骤总结</h3><p>MySQL优化的一般步骤:<br>开启慢查询日志，并分析Desc explain</p>
+<ol>
+<li>解析SQL查看引影响数</li>
+<li>分析是否需要加索引</li>
+<li>分析是否用上了索引</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>可以打赏,但没必要</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/dashang.jpg" alt="lh-ayong WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/13/MySql/MySql基础语法/" rel="next" title="MySql基础语法">
+                <i class="fa fa-chevron-left"></i> MySql基础语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTE0MC8yMTY1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/weixin.jpg" alt="lh-ayong">
+          <p class="site-author-name" itemprop="name">lh-ayong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://guides.github.com/activities/hello-world/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gotokeep.com/" title="Keep" target="_blank">Keep</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/bangumi/play/ep264225?from=search&seid=13129934481233558844" title="白蛇:缘起" target="_blank">白蛇:缘起</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/video/av20774851/?p=1" title="我的三体" target="_blank">我的三体</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql表复制"><span class="nav-number">1.</span> <span class="nav-text">MySql表复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql索引"><span class="nav-number">2.</span> <span class="nav-text">MySql索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql视图"><span class="nav-number">3.</span> <span class="nav-text">MySql视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql预处理语句"><span class="nav-number">4.</span> <span class="nav-text">MySql预处理语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql处理事务"><span class="nav-number">5.</span> <span class="nav-text">MySql处理事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql触发"><span class="nav-number">6.</span> <span class="nav-text">MySql触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据导入导出"><span class="nav-number">7.</span> <span class="nav-text">数据导入导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临时表"><span class="nav-number">8.</span> <span class="nav-text">临时表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql索引-详细"><span class="nav-number">9.</span> <span class="nav-text">MySql索引(详细)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#desc后运行用到的单词"><span class="nav-number">9.1.</span> <span class="nav-text">desc后运行用到的单词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where-or"><span class="nav-number">9.2.</span> <span class="nav-text">where or</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where-and"><span class="nav-number">9.3.</span> <span class="nav-text">where and</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合索引"><span class="nav-number">9.4.</span> <span class="nav-text">组合索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段类型不符时"><span class="nav-number">9.5.</span> <span class="nav-text">字段类型不符时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#like："><span class="nav-number">9.6.</span> <span class="nav-text">like：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#is-null"><span class="nav-number">9.7.</span> <span class="nav-text">is null</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">9.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用语句优化"><span class="nav-number">10.</span> <span class="nav-text">常用语句优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql优化步骤总结"><span class="nav-number">11.</span> <span class="nav-text">mysql优化步骤总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lh-ayong</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访问数<i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量<i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
