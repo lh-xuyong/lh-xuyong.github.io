@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="-服务器 -Linux,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Linux的一些基础">
+<meta name="keywords" content="-服务器 -Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://lh-xuyong.com/2019/07/16/linux/Linux常用命令/index.html">
+<meta property="og:site_name" content="Web学习与开发">
+<meta property="og:description" content="Linux的一些基础">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-16T02:31:20.022Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="Linux的一些基础">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lh-xuyong.com/2019/07/16/linux/Linux常用命令/">
+
+
+
+
+
+  <title>Linux常用命令 | Web学习与开发</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Web学习与开发</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">专注分享网站开发学习和维护经验</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/16/linux/Linux常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lh-ayong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/weixin.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Web学习与开发">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux常用命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-16T10:11:35+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-16T10:31:20+08:00">
+                2019-07-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读数<i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux的一些基础</p>
+<a id="more"></a>
+
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>1、命令提示符</p>
+<p><strong>[root@localhost ~]#</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[当前登陆用户@主机名 当前所在目录] 用户区分符号  </span><br><span class="line">~ 用户家目录</span><br><span class="line">\# 超级管理员    </span><br><span class="line">$ 普通用户</span><br></pre></td></tr></table></figure>
+
+<p>2、文件命名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不要用特殊符号（$?-=&lt;&gt;|@...）和 / 命名</span><br><span class="line">不要用 . 和 .. 表示当前目录和上层目录</span><br><span class="line">用 . 开头表示隐藏文件 </span><br><span class="line">严格区分大小写</span><br></pre></td></tr></table></figure>
+
+<p>3、文件颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash下可根据文件后缀名自动适配颜色，具体查看 /etc/DIR_COLORS文件描述</span><br></pre></td></tr></table></figure>
+
+<p>4、命令格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令 [选项] [参数]</span><br></pre></td></tr></table></figure>
+
+<p>5、一切皆文件</p>
+<h2 id="一、目录和文件"><a href="#一、目录和文件" class="headerlink" title="一、目录和文件"></a>一、目录和文件</h2><p>1、ls    用于显示目录中的文件信息，常用选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -a   //显示所有文件（隐藏）</span><br><span class="line">ls -al  //长格式显示所有文件</span><br><span class="line">ls -lh  //文件大小按常见单位显示</span><br><span class="line">ls -dl  //显示目录本身详细信息</span><br></pre></td></tr></table></figure>
+
+<p>2、cd    切换所在目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">绝对路径和相对路径的问题</span><br><span class="line">cd      //回到当前用户家目录</span><br><span class="line">cd -        //返回上一次操作目录</span><br><span class="line">cd ..       //返回上一级目录</span><br><span class="line"></span><br><span class="line">Linux 一级目录介绍</span><br><span class="line">/           根目录</span><br><span class="line">    /bin        命令保存目录（普通用户就可以读取的命令）</span><br><span class="line">    /boot       启动目录，启动相关文件</span><br><span class="line">    /dev        设备文件保存目录</span><br><span class="line">    /etc        配置文件保存目录</span><br><span class="line">    /home       普通用户的家目录</span><br><span class="line">    /mnt        系统挂载目录</span><br><span class="line">    /media      挂载目录</span><br><span class="line">    /root       超级用户的家目录</span><br><span class="line">    /tmp        临时目录</span><br><span class="line">    /sbin       命令保存目录（超级用户才能使用的目录）</span><br><span class="line">    /proc       直接写入内存</span><br><span class="line">    /usr        系统软件资源目录</span><br><span class="line">    /var        系统相关文档内容</span><br><span class="line">        /var/log/       系统日志位置</span><br></pre></td></tr></table></figure>
+
+<p>3、pwd    查看所在目录的绝对路径</p>
+<p>4、mkdir    创建空目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p a/b/c/d/e  //递归创建目录</span><br></pre></td></tr></table></figure>
+
+<p>5、rm    删除文件或目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm filename     //询问式删除文件</span><br><span class="line">rm -f filename  //强制删除文件</span><br><span class="line">rm -rf dirname  //强制删除目录</span><br></pre></td></tr></table></figure>
+
+<p>6、touch    创建空文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch newfile</span><br></pre></td></tr></table></figure>
+
+<p>7、stat    查看文件具体存储信息和时间信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stat    filename</span><br><span class="line"></span><br><span class="line">Access：文件访问时间</span><br><span class="line">Modify：文件内容修改时间，影响最大会同步到Access和Change</span><br><span class="line">Change：文件属性修改时间</span><br><span class="line">三个时间简写为：atime、mtime、ctime</span><br></pre></td></tr></table></figure>
+
+<p>8、cat    查看文本</p>
+<p>9、more    翻滚查看文本</p>
+<p>10、head 查看文件前N行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 20 filename  //看文件前20行</span><br></pre></td></tr></table></figure>
+
+<p>11、tail    查看文件后N行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tail -n 20 filename //看文件后20行</span><br><span class="line">tail -f filename    //实时查看最新文件</span><br></pre></td></tr></table></figure>
+
+<p>12、wc    统计文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wc -l filename  //查看文件行数</span><br><span class="line">wc -c filename  //查看文件字节数</span><br><span class="line">wc -w filename  //查看文件单词数</span><br></pre></td></tr></table></figure>
+
+<p>13、cp    复制文件或目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cp [选项] 源文件 目标文件</span><br><span class="line">cp -p       //保留原始文件属性</span><br><span class="line">cp -d       //若对象为“软连接”则保留“软连接”属性</span><br><span class="line">cp -r       //递归复制（目录）</span><br><span class="line">cp -i       //文件存在询问覆盖</span><br><span class="line">cp -a       //-pdr</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>大多数目标为目录，源文件会拷贝至目录</p>
+</li>
+<li><p>目标文件和源文件不一致则为改名（另存为）</p>
+<p>  4、mv    剪切文件或重命名</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv 源文件 目标目录/目标文件</span><br><span class="line">如果剪切在同一目录中则为重命名</span><br></pre></td></tr></table></figure>
+
+<p>15、file    查看文件类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file filename   //检查文件类型</span><br></pre></td></tr></table></figure>
+
+<p>16、ln    创建链接文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s 源文件   软链接文件       //快捷方式</span><br><span class="line">ln 源文件  硬链接文件       //拷贝加同步更新</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>硬链接不能跨分区</li>
+<li>硬链接不能给目录</li>
+<li>注意链接之间的路径失效问题</li>
+</ul>
+<h2 id="二、文件权限"><a href="#二、文件权限" class="headerlink" title="二、文件权限"></a>二、文件权限</h2><p>1、权限位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">权限位是十位</span><br><span class="line">第一位：代表文件类型</span><br><span class="line">    -   普通文件</span><br><span class="line">    d   目录文件</span><br><span class="line">    l   链接文件</span><br><span class="line"></span><br><span class="line">后九位：</span><br><span class="line">    属主之权限    u=user</span><br><span class="line">    属组之权限    g=group</span><br><span class="line">    其他人权限    o=other</span><br><span class="line"></span><br><span class="line">    r   可读      4</span><br><span class="line">    w   可写      2</span><br><span class="line">    x   执行      1</span><br></pre></td></tr></table></figure>
+
+<p>2、chmod    修改权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">逻辑描述法：</span><br><span class="line">chmod  u+x  filename       //filename文件的属主加上执行权限</span><br><span class="line">chmod  u-x  filename</span><br><span class="line">chmod  u=rwx filename</span><br><span class="line"></span><br><span class="line">数字描述法：</span><br><span class="line">chmod  755  filename</span><br><span class="line">chmod  644  filename</span><br></pre></td></tr></table></figure>
+
+<p>3、权限的意义</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对文件的意义</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>对文件可读</td>
+<td>cat、more</td>
+</tr>
+<tr>
+<td>w</td>
+<td>对文件可写</td>
+<td>vim、echo</td>
+</tr>
+<tr>
+<td>x</td>
+<td>可执行文件</td>
+<td>sh</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对目录的意义</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>可以查看目录中的文件信息</td>
+<td>ls、tree</td>
+</tr>
+<tr>
+<td>w</td>
+<td>可以增删文件和对文件改名</td>
+<td>touch、mkdir、rm、mv</td>
+</tr>
+<tr>
+<td>x</td>
+<td>可以切换至目录</td>
+<td>cd</td>
+</tr>
+</tbody></table>
+<p>4、chown 修改属主和属组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown username filename             //修改将文件的所属者</span><br><span class="line">chown username:groupname filename   //修改文件的所属者和所属组</span><br><span class="line">chown :groupname filename           //修改文件的所属组</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、帮助"><a href="#三、帮助" class="headerlink" title="三、帮助"></a>三、帮助</h2><p>1、–help    帮助选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令  --help  //查看某命令的帮助信息</span><br></pre></td></tr></table></figure>
+
+<p>2、man    查看手册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、查找命令"><a href="#四、查找命令" class="headerlink" title="四、查找命令"></a>四、查找命令</h2><p>1、find    查找本地文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find 查找范围 查找条件 匹配值</span><br><span class="line">find  /  -name  index.php       //按照文件名查找</span><br><span class="line"></span><br><span class="line">-iname                      //按照文件名查找，不区分大小写</span><br></pre></td></tr></table></figure>
+
+<p>2、grep 在文本中执行关键字搜索</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep 关键字 文件</span><br><span class="line">grep -v             //反向选择</span><br><span class="line">grep -i             //忽略大小写</span><br></pre></td></tr></table></figure>
+
+<p>3、whereis/which 查找命令所在文件</p>
+<h2 id="五、打包压缩"><a href="#五、打包压缩" class="headerlink" title="五、打包压缩"></a>五、打包压缩</h2><p>1、tar 对文件进行打包压缩或解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf 压缩文件 [-C] 源文件     //将文件压缩成gz格式</span><br><span class="line">tar -xf 压缩文件                //将压缩包解压</span><br><span class="line"></span><br><span class="line">-c  打包</span><br><span class="line">-z  gz格式</span><br><span class="line">-j  bz2格式</span><br><span class="line">-f  目标文件名（压缩包名，必须放在最后）</span><br><span class="line">-v  显示过程</span><br><span class="line">-t  不解压查看</span><br><span class="line">-C  指定压缩位置</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、关机重启"><a href="#六、关机重启" class="headerlink" title="六、关机重启"></a>六、关机重启</h2><p>1、reboot    立即重启</p>
+<p>2、shutdown    关机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now //立即关机</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、获取系统信息"><a href="#七、获取系统信息" class="headerlink" title="七、获取系统信息"></a>七、获取系统信息</h2><p>1、ifconfig    网卡信息</p>
+<p>2、uname    系统信息</p>
+<p>3、uptime    查看系统负载</p>
+<p>4、free    内存信息</p>
+<p>5、who    查看登录用户</p>
+<p>6、last    查看登录记录</p>
+<h2 id="八、挂载"><a href="#八、挂载" class="headerlink" title="八、挂载"></a>八、挂载</h2><p>1、mount 挂载设备到指定位置</p>
+<p>Linux中所有存储设备都必须挂载使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">光盘挂载</span><br><span class="line">mount    设备描述文件  挂载点（已经存在空目录）</span><br><span class="line">mount    /dev/sr0  /mnt/cdrom</span><br><span class="line"></span><br><span class="line">光盘卸载</span><br><span class="line">umount  /dev/sr0</span><br><span class="line">umount  /mnt/cdrom      重点：退出挂载目录，才能卸载</span><br></pre></td></tr></table></figure>
+
+<h1 id="Shell技巧"><a href="#Shell技巧" class="headerlink" title="Shell技巧"></a>Shell技巧</h1><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><h3 id="什么是Shell？"><a href="#什么是Shell？" class="headerlink" title="什么是Shell？"></a>什么是Shell？</h3><blockquote>
+<p>命令解析器，帮助人机交互的翻译官！Windows的桌面也是shell的一种！</p>
+</blockquote>
+<p>几乎所有Linux的Shell缺省都是bash (Bourne-again Shell) ，非常适合于一些管理操作，一些比较老的UNIX，缺省是sh。</p>
+<p><strong>bash提供常用功能如下：</strong></p>
+<h2 id="一、补全"><a href="#一、补全" class="headerlink" title="一、补全"></a>一、补全</h2><blockquote>
+<p>使用Tab键，命令、文件名补全</p>
+</blockquote>
+<h2 id="二、Ctrl-操作"><a href="#二、Ctrl-操作" class="headerlink" title="二、Ctrl 操作"></a>二、Ctrl 操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CTRL+C 终止命令</span><br><span class="line">CTRL+A 光标到行首</span><br><span class="line">CTRL+E 光标到行尾</span><br><span class="line">CTRL+U 剪切光标前内容</span><br><span class="line">CTRL+K 剪切光标后内容</span><br><span class="line">CTRL+Y 粘贴剪切的内容</span><br><span class="line">CTRL+L 清理屏幕</span><br><span class="line">CTRL+D 注销登陆相当于exit和logout或者保存</span><br><span class="line">CTRL+Z 将进程在后台挂起 后面讲前后台进程再说</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、历史"><a href="#三、历史" class="headerlink" title="三、历史"></a>三、历史</h2><blockquote>
+<p>快速翻阅历史命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">history     //列出所有的命令（默认最多保存条数1000）</span><br><span class="line">!序号         //执行历史中第几个命令        </span><br><span class="line">!命令         //执行最近的这条命令</span><br><span class="line">按上下         //箭头，翻出历史记录</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、别名"><a href="#四、别名" class="headerlink" title="四、别名"></a>四、别名</h2><blockquote>
+<p>什么是别名？类似快捷命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">alias       //显示当前可用别名命令</span><br><span class="line"></span><br><span class="line">添加一个别名（临时）:     </span><br><span class="line">alias copy=cp    //就可以用copy来复制文件了</span><br><span class="line"></span><br><span class="line">删除一个别名</span><br><span class="line">unalias copy</span><br><span class="line"></span><br><span class="line">别名永久生效：在用户宿主目录 ~/.bashrc 文件中添加别名信息</span><br><span class="line">alias vi=vim</span><br><span class="line"></span><br><span class="line">重启生效或者source  ~/.bashrc及时生效</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、重定向"><a href="#五、重定向" class="headerlink" title="五、重定向"></a>五、重定向</h2><blockquote>
+<p>Shell对于每个进程预先定义了3个文件描述字</p>
+<p>0 标准输入 STDIN    键盘</p>
+<p>1 标准输出 STDOUT    显示器</p>
+<p>2 标准错误输出 STDERR</p>
+<p>重定向，就是改变这个标准设备，不用键盘输入，不用显示器输出</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令 &lt; 文件</td>
+<td>将文件作为命令的标准输入</td>
+</tr>
+<tr>
+<td>命令 &lt;&lt; 文件</td>
+<td>从标准输入中读入，用分界符起止</td>
+</tr>
+<tr>
+<td>命令 &gt; 文件</td>
+<td>将标准输出输入到一个文件中</td>
+</tr>
+<tr>
+<td>命令 &gt;&gt; 文件</td>
+<td>将标准输出输入到一个文件中（追加）</td>
+</tr>
+<tr>
+<td>命令 2&gt; 文件</td>
+<td>将错误输出重定向到文件中</td>
+</tr>
+<tr>
+<td>命令 2&gt;&gt; 文件</td>
+<td>将错误输出重定向到文件中（追加）</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l /tmp &gt; files.txt      //将输出重定向到files.txt</span><br><span class="line">wall &lt; /test/msg            //从一个文件读取内容发广播</span><br><span class="line">cp -R /usr /backup/use 2&gt;&gt;/bak.error    //将错误信息，定向到一个文件中</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、管道符"><a href="#六、管道符" class="headerlink" title="六、管道符"></a>六、管道符</h2><blockquote>
+<p>将一个命令的输出传送给另一个命令，作为另一个命令的输入，可以连接多个命令。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用法：</span><br><span class="line">命令1|命令2|命令3...</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line">ls -l /etc | more                   //分页查看</span><br><span class="line">ls -l /etc | grep init              //只显示init相关的行</span><br><span class="line">ls -l /etc | grep init | wc -l      //查看init相关的有多少行</span><br><span class="line">who | grep root                     //只显示root的登录信息</span><br><span class="line">wc -l                               //统计文件有多少行</span><br><span class="line">who | grep root | wc -l             //查看root用户登录了几次</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、连接符"><a href="#七、连接符" class="headerlink" title="七、连接符"></a>七、连接符</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令 ; 命令</td>
+<td>依次执行</td>
+</tr>
+<tr>
+<td>命令 &amp;&amp; 命令</td>
+<td>与运算</td>
+</tr>
+<tr>
+<td>命令 | | 命令</td>
+<td>或运算</td>
+</tr>
+</tbody></table>
+<h2 id="八、替换符"><a href="#八、替换符" class="headerlink" title="八、替换符"></a>八、替换符</h2><blockquote>
+<p>``    命令替换符：将一个命令的输出作为另一个命令的参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l `which touch`     找到touch命令的路径，然后用ls查看属性</span><br><span class="line">看起来有点类似管道，不过顺序相反，会先执行后面的</span><br></pre></td></tr></table></figure>
+
+<h3 id="Linux-vim与软件包安装"><a href="#Linux-vim与软件包安装" class="headerlink" title="Linux-vim与软件包安装"></a>Linux-vim与软件包安装</h3><ul>
+<li>Linux-vim与软件包安装<ul>
+<li><a href="#vim">一、 vim编辑器</a></li>
+<li>二、软件包管理<ul>
+<li><a href="#i">Ⅰ 软件包分类</a></li>
+<li>Ⅱ 二进制包安装<ul>
+<li><a href="#a-rpm-">A) rpm命令–手动管理二进制包 (挂载光盘)</a></li>
+<li><a href="#b-yum">B) yum 命令 二进制包自动化管理</a></li>
+</ul>
+</li>
+<li><a href="#iii">Ⅲ 源码包安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="一、-vim编辑器"><a href="#一、-vim编辑器" class="headerlink" title="一、 vim编辑器"></a>一、 vim编辑器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim  全屏幕纯文本编辑器</span><br><span class="line">vim使用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1   vim  模式</span><br><span class="line">    vim  文件名</span><br><span class="line"></span><br><span class="line">    命令----&gt;输入    a  追加    i 插入   o  新增下一行</span><br><span class="line">    命令----&gt;末行   :w  保存    :q!   不保存退出</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2   命令模式操作</span><br><span class="line"></span><br><span class="line">    1）光标移动</span><br><span class="line">    hjkl</span><br><span class="line"></span><br><span class="line">    :n      移动到第几行</span><br><span class="line"></span><br><span class="line">    gg      移动文件头</span><br><span class="line">    G       移动到文件尾</span><br><span class="line"></span><br><span class="line">    2）删除字母</span><br><span class="line">    x       删除单个字母</span><br><span class="line">    nx      删除n个字母</span><br><span class="line"></span><br><span class="line">    3）删除整行/剪切</span><br><span class="line">    dd      删除单行</span><br><span class="line">    ndd     删除多行</span><br><span class="line">    p       粘贴</span><br><span class="line"></span><br><span class="line">    dG      从光标所在行删除到文件尾</span><br><span class="line"></span><br><span class="line">    4）复制</span><br><span class="line">    yy</span><br><span class="line">    nyy</span><br><span class="line"></span><br><span class="line">    5）撤销</span><br><span class="line">    u       撤销</span><br><span class="line">    ctrl+r  反撤销</span><br><span class="line"></span><br><span class="line">    6)显示行号</span><br><span class="line">    :set  nu</span><br><span class="line">    :set  nonu</span><br><span class="line"></span><br><span class="line">    7）vim配置文件</span><br><span class="line">    ~/.vimrc    手工建立的，vim配置文件</span><br><span class="line"></span><br><span class="line">    8)查找</span><br><span class="line">    /查找内容       向下查找</span><br><span class="line"></span><br><span class="line">    n   下一个</span><br><span class="line">    N   上一个</span><br><span class="line"></span><br><span class="line">    9）替换</span><br><span class="line">    ：1,10s/old/new/g         替换1到10行的所有old为new</span><br><span class="line">    ：%s/old/new/g            替换整个文件的old为new</span><br><span class="line">                 g            范围内所有old换为new</span><br><span class="line"></span><br><span class="line">    :1,10s/^/#/g            注释</span><br><span class="line">    :6,10s/^#//g            取消注释</span><br><span class="line"></span><br><span class="line">    :11,20s/^/\/\//g        注释</span><br><span class="line">    :16,20s/^\/\///g         取消注释</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、软件包管理"><a href="#二、软件包管理" class="headerlink" title="二、软件包管理"></a>二、软件包管理</h3><h4 id="Ⅰ-软件包分类"><a href="#Ⅰ-软件包分类" class="headerlink" title="Ⅰ 软件包分类"></a>Ⅰ 软件包分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">源码包:     .tar.gz   .tar.bz2                     </span><br><span class="line">二进制包：  .rpm</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ⅱ-二进制包安装"><a href="#Ⅱ-二进制包安装" class="headerlink" title="Ⅱ 二进制包安装"></a>Ⅱ 二进制包安装</h4><h5 id="A-rpm命令–手动管理二进制包-挂载光盘"><a href="#A-rpm命令–手动管理二进制包-挂载光盘" class="headerlink" title="A) rpm命令–手动管理二进制包 (挂载光盘)"></a>A) rpm命令–手动管理二进制包 (挂载光盘)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1   包名-版本号-发布次数-适合linux系统-硬件平台.rpm</span><br><span class="line">2   依赖性</span><br><span class="line">3   安装  tree            </span><br><span class="line">    rpm  -ivh  软件包</span><br><span class="line">         -i  安装  -v 显示详细信息  -h 显示进度</span><br><span class="line">4   升级 </span><br><span class="line">    rpm  -Uvh  软件包      </span><br><span class="line">5   卸载</span><br><span class="line">    rpm  -e  软件包</span><br></pre></td></tr></table></figure>
+
+<h5 id="B-yum-命令-二进制包自动化管理"><a href="#B-yum-命令-二进制包自动化管理" class="headerlink" title="B) yum 命令 二进制包自动化管理"></a>B) yum 命令 二进制包自动化管理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum  -y  install  软件包       安装          -y  自动回答yes</span><br><span class="line">yum  -y  update   软件包       升级</span><br><span class="line">yum  -y  remove   软件包       卸载</span><br></pre></td></tr></table></figure>
+
+<p>光盘作为yum源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1   cd  /etc/yum.repos.d/</span><br><span class="line">    mv  CentOS-Base.repo  /root/</span><br><span class="line"></span><br><span class="line">2   mount /dev/sr0  /mnt/cdrom</span><br><span class="line"></span><br><span class="line">3   vim  /etc/yum.repos.d/CentOS-Media.repo</span><br><span class="line">    baseurl=file:///mnt/cdrom/  指定yum源位置</span><br><span class="line">    enabled=1                   yum源文件生效</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ⅲ-源码包安装"><a href="#Ⅲ-源码包安装" class="headerlink" title="Ⅲ 源码包安装"></a>Ⅲ 源码包安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1   远程传输工具传输apache到linux。</span><br><span class="line">        httpd-2.2.9.tar.gz </span><br><span class="line">2   安装</span><br><span class="line">    1） 解压</span><br><span class="line">    2） cd  解压目录         </span><br><span class="line">    3） 查看安装文档</span><br><span class="line">        INSTALL     README</span><br><span class="line">    4） 编译前准备</span><br><span class="line">        ./configure  --prefix=/usr/local/apache2</span><br><span class="line">        功能：</span><br><span class="line">            1   检测系统环境，生成Makefile</span><br><span class="line">            2   定义软件选项</span><br><span class="line">    5)  编译              </span><br><span class="line">        make</span><br><span class="line">    6）编译安装</span><br><span class="line">        make  install</span><br><span class="line"></span><br><span class="line">    报错判断：</span><br><span class="line">        第一：安装过程是否停止</span><br><span class="line">        第二：注意error  warning  no  等错误报警</span><br><span class="line"></span><br><span class="line">3   启动</span><br><span class="line">    /usr/local/apache2/bin/apachectl  start</span><br><span class="line"></span><br><span class="line">4   卸载      </span><br><span class="line">    直接删除安装目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="系统管理与网络应用"><a href="#系统管理与网络应用" class="headerlink" title="系统管理与网络应用"></a>系统管理与网络应用</h3><ul>
+<li>系统管理与网络应用<ul>
+<li><a href="#_2">一、用户与用户组管理</a></li>
+<li>二、进程管理<ul>
+<li><a href="#i">Ⅰ 进程查看</a></li>
+<li><a href="#ii">Ⅱ 服务管理</a></li>
+<li><a href="#iii">Ⅲ 计划任务</a></li>
+</ul>
+</li>
+<li><a href="#_4">三、网络配置</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xshell 远程管理  xftp 远程传输</span><br></pre></td></tr></table></figure>
+
+<h3 id="一、用户与用户组管理"><a href="#一、用户与用户组管理" class="headerlink" title="一、用户与用户组管理"></a>一、用户与用户组管理</h3><ul>
+<li><p>配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户信息文件： /etc/passwd</span><br><span class="line">影子文件：    /etc/shadow</span><br><span class="line">组信息文件：   /etc/group</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1   添加用户</span><br><span class="line">    useradd  用户名</span><br><span class="line"></span><br><span class="line">2   设定密码            </span><br><span class="line">    passwd   用户名</span><br><span class="line"></span><br><span class="line">3   删除用户                </span><br><span class="line">    userdel  -r  用户名  -r  连带家目录一起删除</span><br><span class="line"></span><br><span class="line">4   添加组             </span><br><span class="line">    groupadd  组名</span><br><span class="line"></span><br><span class="line">5   删除组             </span><br><span class="line">    groupdel  组名</span><br><span class="line"></span><br><span class="line">6   把已经存在的用户加入组                 </span><br><span class="line">    gpasswd  -a  用户名  组名        用户加入组</span><br><span class="line">    gpasswd  -d  用户名  组名        把用户从组中删除</span><br><span class="line"></span><br><span class="line">7   su  -  用户名   切换用户身份</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="二、进程管理"><a href="#二、进程管理" class="headerlink" title="二、进程管理"></a>二、进程管理</h3><p>进程管理三个主要任务：<br>\1. 判断服务器健康状态<br>\2. 查看所有正在运行的进程<br>\3. 强制终止进程</p>
+<h4 id="Ⅰ-进程查看"><a href="#Ⅰ-进程查看" class="headerlink" title="Ⅰ 进程查看"></a>Ⅰ 进程查看</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">1   ps  aux 或 ps -le    查看当前系统所有运行的进程</span><br><span class="line">    -a  显示前台所有进程</span><br><span class="line">    -u  显示用户名</span><br><span class="line">    -x  显示后台进程</span><br><span class="line">    -e  显示所有进程，包括没有控制终端的进程</span><br><span class="line">    -l  长格式显示</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    user：       用户名</span><br><span class="line">    pid：        进程id    </span><br><span class="line">    %CPU        cpu占用百分比</span><br><span class="line">    %MEM        内存占用百分比</span><br><span class="line">    command     进程本身</span><br><span class="line"></span><br><span class="line">2   pstree       查看进程树</span><br><span class="line"></span><br><span class="line">3   top</span><br><span class="line"></span><br><span class="line">    第一行：系统当前时间   系统持续时间  登录用户   1,5,15分钟之前的平均负载</span><br><span class="line">    第二行：进程总数</span><br><span class="line">    第三行：CPU占用率      %id 空闲百分比</span><br><span class="line">    第四行：内存使用</span><br><span class="line"></span><br><span class="line">    操作命令    M   内存排序</span><br><span class="line">                P   CPU排序</span><br><span class="line">                q   退出</span><br><span class="line"></span><br><span class="line">4   进程管理</span><br><span class="line">    ps   aux        组合使用</span><br><span class="line">    kill  &lt;PID&gt;     结束单个进程  </span><br><span class="line">    kill -9 &lt;PID&gt;   强制</span><br><span class="line"></span><br><span class="line">    pstree  查看进程树</span><br><span class="line">    killall  -9   进程名       结束一类进程</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ⅱ-服务管理"><a href="#Ⅱ-服务管理" class="headerlink" title="Ⅱ 服务管理"></a>Ⅱ 服务管理</h4><p>服务分类<br>1.系统默认安装的服务<br>2.源码包安装的服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">(一)系统默认安装的服务</span><br><span class="line">    1   确定服务分类</span><br><span class="line">        chkconfig  --list   查看服务的自启动状态</span><br><span class="line">        运行级别：0-6</span><br><span class="line">        0   关机</span><br><span class="line">        1   单用户模式</span><br><span class="line">        2   不完全多用户，不包含NFS服务  无网络登录</span><br><span class="line">        3   完全多用户   字符界面   </span><br><span class="line">        4   未分配</span><br><span class="line">        5   图形界面</span><br><span class="line">        6   重启</span><br><span class="line"></span><br><span class="line">    init  3 字符界面 （服务器）</span><br><span class="line">    init  5 图形界面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    2   管理  默认安装的服务 </span><br><span class="line">        ①启动         </span><br><span class="line">            /etc/rc.d/init.d/服务名   start|stop|restart|status</span><br><span class="line">            /etc/rc.d/init.d/sshd  start</span><br><span class="line"></span><br><span class="line">            service   服务名   start|stop|restart|status</span><br><span class="line"></span><br><span class="line">        ②自启动        </span><br><span class="line">            chkconfig  --level  2345  服务名  on|off</span><br><span class="line"></span><br><span class="line">            vim  /etc/rc.local</span><br><span class="line">            /etc/rc.d/init.d/sshd  start</span><br><span class="line"></span><br><span class="line">(二)源码包安装的服务         </span><br><span class="line">    1）绝对路径启动</span><br><span class="line">    /usr/local/apache2/bin/apachectl  start</span><br><span class="line"></span><br><span class="line">    2) 自启动</span><br><span class="line">    vim /etc/rc.local</span><br><span class="line">    /usr/local/apache2/bin/apachectl  start</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ⅲ-计划任务"><a href="#Ⅲ-计划任务" class="headerlink" title="Ⅲ 计划任务"></a>Ⅲ 计划任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab  -e     编辑定时任务</span><br><span class="line"></span><br><span class="line">*  *  *  *  *   命令</span><br></pre></td></tr></table></figure>
+
+<p>*口诀： 分 时 日 月 周</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个：一小时中第几分钟        0-59</span><br><span class="line">第二个：一天中第几个小时        0-23</span><br><span class="line">第三个：一个月中第几天          1-31</span><br><span class="line">第四个：一年第几个月            1-12</span><br><span class="line">第五个：一周中星期几            0-6</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">     0  6  *  *  *   命令</span><br><span class="line">    10  9  1  1  *   命令</span><br><span class="line">     5  3  *  5,7,10  *  命令</span><br><span class="line">   */10 *  *  *  1-3   命令</span><br><span class="line"></span><br><span class="line">命令：             </span><br><span class="line">开启/关闭服务  </span><br><span class="line">service sshd start     </span><br><span class="line">service sshd stop</span><br><span class="line">/usr/local/apache2/bin/apachectl restart</span><br><span class="line">备份文件/目录   /bin/cp  -r   /root/bbs   /backup/</span><br><span class="line"></span><br><span class="line">crontab  -l     查看系统定时任务</span><br><span class="line">crontab  -r     删除定时任务</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*选项都不能为空，必须填入，不知道的值使用通配符*表示任何时间 </span><br><span class="line">*每个时间字段都可以指定多个值，不连续的值用,间隔，连续的值用-间隔</span><br><span class="line">*间隔固定时间执行书写为*/n格式 </span><br><span class="line">*命令应该给出绝对路径 </span><br><span class="line">*星期几和第几天不能同时出现</span><br><span class="line">*最小时间范围是分钟，最大时间范围是月</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、网络配置"><a href="#三、网络配置" class="headerlink" title="三、网络配置"></a>三、网络配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1.  setup</span><br><span class="line"></span><br><span class="line">    service network  restart</span><br><span class="line"></span><br><span class="line">    (vim  /etc/sysconfig/network-scripts/ifcfg-eth0 网卡信息文件)</span><br><span class="line"></span><br><span class="line">2.  设置网关 route</span><br><span class="line">    route  add   default  gw  192.168.150.1         设定网关</span><br><span class="line">    route  del   default  gw  192.168.150.1         删除网关</span><br><span class="line"></span><br><span class="line">3.  设置DNS </span><br><span class="line">    /etc/resolv.conf            DNS配置文件</span><br><span class="line"></span><br><span class="line">    nameserver  8.8.8.8</span><br><span class="line"></span><br><span class="line">4.  netstat     查看网络状态的命令</span><br><span class="line">      -an       查看所有网络连接</span><br><span class="line">      -tlun     查看tcp和udp协议监听端口</span><br><span class="line">    netstat -an | grep ESTABLISHED | wc -l      统计正在连接的网络连接数量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5.  scp 网络复制，网络文件传输</span><br><span class="line"></span><br><span class="line">    1) 下载</span><br><span class="line">        scp   用户名@ip:路径   本地路径</span><br><span class="line"></span><br><span class="line">        scp  root@192.168.137.130:/root/index.php  /root</span><br><span class="line">        scp  -r  root@192.168.137.130:/root/bbs  /root      下载目录</span><br><span class="line"></span><br><span class="line">    2) 上传</span><br><span class="line">        scp  本地文件或目录  用户名@ip:路径</span><br><span class="line"></span><br><span class="line">        scp  -r  /root/bbs  root@192.168.137.130:/root      上传目录</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>可以打赏,但没必要</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/dashang.jpg" alt="lh-ayong WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/服务器-Linux/" rel="tag"># -服务器 -Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/14/MySql/MySql高级/" rel="next" title="MySql高级">
+                <i class="fa fa-chevron-left"></i> MySql高级
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTE0MC8yMTY1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/weixin.jpg" alt="lh-ayong">
+          <p class="site-author-name" itemprop="name">lh-ayong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://guides.github.com/activities/hello-world/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gotokeep.com/" title="Keep" target="_blank">Keep</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/bangumi/play/ep264225?from=search&seid=13129934481233558844" title="白蛇:缘起" target="_blank">白蛇:缘起</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/video/av20774851/?p=1" title="我的三体" target="_blank">我的三体</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用命令"><span class="nav-number">1.</span> <span class="nav-text">Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、目录和文件"><span class="nav-number">1.2.</span> <span class="nav-text">一、目录和文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、文件权限"><span class="nav-number">1.3.</span> <span class="nav-text">二、文件权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、帮助"><span class="nav-number">1.4.</span> <span class="nav-text">三、帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、查找命令"><span class="nav-number">1.5.</span> <span class="nav-text">四、查找命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、打包压缩"><span class="nav-number">1.6.</span> <span class="nav-text">五、打包压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、关机重启"><span class="nav-number">1.7.</span> <span class="nav-text">六、关机重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、获取系统信息"><span class="nav-number">1.8.</span> <span class="nav-text">七、获取系统信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、挂载"><span class="nav-number">1.9.</span> <span class="nav-text">八、挂载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell技巧"><span class="nav-number">2.</span> <span class="nav-text">Shell技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序"><span class="nav-number">2.1.</span> <span class="nav-text">序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Shell？"><span class="nav-number">2.1.1.</span> <span class="nav-text">什么是Shell？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、补全"><span class="nav-number">2.2.</span> <span class="nav-text">一、补全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Ctrl-操作"><span class="nav-number">2.3.</span> <span class="nav-text">二、Ctrl 操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、历史"><span class="nav-number">2.4.</span> <span class="nav-text">三、历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、别名"><span class="nav-number">2.5.</span> <span class="nav-text">四、别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、重定向"><span class="nav-number">2.6.</span> <span class="nav-text">五、重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、管道符"><span class="nav-number">2.7.</span> <span class="nav-text">六、管道符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、连接符"><span class="nav-number">2.8.</span> <span class="nav-text">七、连接符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、替换符"><span class="nav-number">2.9.</span> <span class="nav-text">八、替换符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-vim与软件包安装"><span class="nav-number">2.9.1.</span> <span class="nav-text">Linux-vim与软件包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-vim编辑器"><span class="nav-number">2.9.2.</span> <span class="nav-text">一、 vim编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、软件包管理"><span class="nav-number">2.9.3.</span> <span class="nav-text">二、软件包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅰ-软件包分类"><span class="nav-number">2.9.3.1.</span> <span class="nav-text">Ⅰ 软件包分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅱ-二进制包安装"><span class="nav-number">2.9.3.2.</span> <span class="nav-text">Ⅱ 二进制包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#A-rpm命令–手动管理二进制包-挂载光盘"><span class="nav-number">2.9.3.2.1.</span> <span class="nav-text">A) rpm命令–手动管理二进制包 (挂载光盘)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#B-yum-命令-二进制包自动化管理"><span class="nav-number">2.9.3.2.2.</span> <span class="nav-text">B) yum 命令 二进制包自动化管理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅲ-源码包安装"><span class="nav-number">2.9.3.3.</span> <span class="nav-text">Ⅲ 源码包安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统管理与网络应用"><span class="nav-number">2.9.4.</span> <span class="nav-text">系统管理与网络应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、用户与用户组管理"><span class="nav-number">2.9.5.</span> <span class="nav-text">一、用户与用户组管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、进程管理"><span class="nav-number">2.9.6.</span> <span class="nav-text">二、进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅰ-进程查看"><span class="nav-number">2.9.6.1.</span> <span class="nav-text">Ⅰ 进程查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅱ-服务管理"><span class="nav-number">2.9.6.2.</span> <span class="nav-text">Ⅱ 服务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅲ-计划任务"><span class="nav-number">2.9.6.3.</span> <span class="nav-text">Ⅲ 计划任务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、网络配置"><span class="nav-number">2.9.7.</span> <span class="nav-text">三、网络配置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lh-ayong</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访问数<i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量<i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
