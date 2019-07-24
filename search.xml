@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[无限级分类]]></title>
+    <url>%2F2019%2F07%2F24%2FWEB%E7%9F%A5%E8%AF%86%2F%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[无限级分类 pid任意一个商品都有pid,例如碎花裙的pid为7,7为他的父级id,而一级分类pid默认为0 path得出结论:商品的path = 父级的path+父级的id 添加分类 将数据遍历出来,不要手动添加pid和path,方便后台管理员操作 使用字典排序法order,这样看着方便(path最后再加个逗号) 123456//获取排好序的所有分类$data = $this-&gt;db -&gt;field('`id`, `name`, `pid`, `path`, `display`') -&gt;table('`category`') -&gt;order(' concat(`path`, `id`, ",") ') -&gt;select(); 1234567891011121314//根据选中的父级的pid查询父级分类的path和idif( $data['pid'] !=0 )&#123; $result = $this-&gt;db -&gt;table('`category`') -&gt;field('`path`,`id`') -&gt;where('id='.$data['pid']) -&gt;find(); $data['path'] = $result['path'].$result['id'].',';&#125;else&#123; $data['path'] = '0,';&#125;//新增分类$newID = $this-&gt;db-&gt;table('category')-&gt;insert($data); 查看子类的话就将自己的id用成pid去查]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[CSRF和XSS的攻击与防御]]></title>
     <url>%2F2019%2F07%2F20%2FWEB%E7%9F%A5%E8%AF%86%2FCSRF%E5%92%8CXSS%E7%9A%84%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%2F</url>
     <content type="text"><![CDATA[CSRF和XSS的攻击与防御… XSSCross Site Scripting:跨站脚本,X代表未知的含义 跨站攻击用户-&gt;目标站点-&gt;渲染HTML过程中出现没有预期的脚本-&gt;攻击者通过脚本获取到用户的信息(如cookie) 危害 挂马 盗取用户cookie DDOS(拒绝服务)客户端浏览器 钓鱼攻击,高级的钓鱼技巧 劫持用户Web行为 蠕虫病毒 类型 反射型: URL注入非法脚本-&gt;服务器解析响应-&gt;反射给受害用户 (一般浏览器都会有防护),这种攻击是非持久性的(一般被用于邮箱) 存储型: 与反射型的区别就是提交的URL会存储在服务器数据库,(一般被用于留言) DOM-Based型: 基于DOM或本地的XSS攻击 防御输入对输入(和URL参数)进行过滤,对输出进行编码. 用户输入丶RUL参数丶POST请求参数丶Ajax 黑白名单 输出 对输出代码转义cookiecookie,服务端设置为http-only,js不能获取到cookie了 CSRFcsrf 跨站请求伪造:攻击者利用了用户的登录的状态,以用户的名义发送恶意请求. 根本原因在Web服务器验证不够(只是验证了session的存在,无法验证是否是用户触发的) 用户登录了一个正常访问网站(有CSRF漏洞)-&gt;session存在-&gt;在正常网站没退出的情况下访问了恶意网站-&gt;恶意网站的图片(例:图片资源)-&gt;网站图片连接里嵌入了接口带上恶意参数(get请求下) 防御 尽量使用POST 加入验证码 验证Referer(原理:站点不同) Anti CSRF Token : 1.head或form表单传递token 2.token存储在服务端 3.服务端通过拦截器验证有效性 4.效验失败拒绝请求]]></content>
