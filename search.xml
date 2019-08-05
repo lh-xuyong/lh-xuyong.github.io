@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Laravel的回炉学习]]></title>
+    <url>%2F2019%2F08%2F05%2F%E6%A1%86%E6%9E%B6%2Flaravel5.5%2Flaravel%E7%9A%84%E5%9B%9E%E7%82%89%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[laravel框架之重新筑基 Laravel框架的目录结构 Laravel框架的目录结构 app 开发多于此 Console 命令行执行文件(计划任务:采集,分析等) Exceptions 异常处理 Http Controller和Middleware(中间件文件夹) Providers 服务器(封装些东西?) bootstrap 框架启动(引导启动文件) cache 缓存 config 配置文件(app.databse.mail等) database 数据库 factories 工厂模式 migrations 数据库迁移(多人开发时优秀?) seeds 填充器(把数据往数据库里填充) public 根目录 .htaccess 重写 index.php 入口文件 resource 资源 assets 用来写静态资源的 lang 语言设置 views 模板视图 routes 路由 api 接口(移动设备,小程序提供数据) channels 频道 console 命令行 web 网站 storage 存储文件夹 app 应用文件 famework 内含log丶cache丶session丶testing丶views(模板引擎:就是为了将html页面和php数据分离产生的) views(模板引擎:就是为了将html页面和php数据分离产生的(编译缓存,中间文件) session(一般session都是放在服务器tmp下,但是laravel框架将session数据放在了框架里) tests 测试 vendor 用于保存第三方类库 .env 环境配置文件 .env.example 楼上复制版(备份) .gitattributes 设置git的属性 .gitgnore 忽略文件设置(用于设置没必要进仓库的文件) artisan php脚本(创建控制器?) composer composer.lock 依赖关系配置文件 packge.json npm包管理工具配置文件 phpunit.xml php测试的配置文件 server.php 内置的一个服务(没有apache照样用?!) webpack.mix.js 是一个打包工具,打包所有的资源(软件),并且能压缩合并]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[软删除]]></title>
     <url>%2F2019%2F08%2F05%2F%E6%A1%86%E6%9E%B6%2F%E8%BD%AF%E5%88%A0%E9%99%A4%2F</url>
     <content type="text"><![CDATA[虚假删除 软删除软删除 = 数据库内真实内容不变—&gt;给了一个字段赋予一个状态,查的时候带着条件查(其实跟是否上架和是否热销同理?) laravel的软删除 引入softDeletes 12php artisan make:migration add_deleted_at_to_users_table --table=usersphp artisan migrate //执行迁移文件 use softDeletes; protected $table = 'users'; //表名 protected $primaryKey = 'id'; //主键 protected $datas = ['deleted_at']; public static function delete() { self::whereIn('id', $ids)-&gt;delete(); //删除用户 withTrashed() 显示所有数据 onlyTrashed() 显示删除数所 restore()还原数据 }]]></content>
       <categories>
-        <category>数据库</category>
+        <category>框架</category>
       </categories>
       <tags>
         <tag>框架</tag>
@@ -141,9 +152,9 @@
         <category>数据库</category>
       </categories>
       <tags>
+        <tag>数据库</tag>
         <tag>缓存</tag>
         <tag>NoSql</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -154,9 +165,9 @@
         <category>数据库</category>
       </categories>
       <tags>
+        <tag>数据库</tag>
         <tag>缓存</tag>
         <tag>NoSql</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -167,9 +178,9 @@
         <category>数据库</category>
       </categories>
       <tags>
+        <tag>数据库</tag>
         <tag>缓存</tag>
         <tag>NoSql</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
