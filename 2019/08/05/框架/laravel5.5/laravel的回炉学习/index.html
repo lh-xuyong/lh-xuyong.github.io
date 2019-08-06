@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Web学习与开发">
 <meta property="og:description" content="laravel框架之重新筑基">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T05:31:28.461Z">
+<meta property="og:updated_time" content="2019-08-06T07:39:08.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的回炉学习">
 <meta name="twitter:description" content="laravel框架之重新筑基">
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-06T13:31:28+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-06T15:39:08+08:00">
                 2019-08-06
               </time>
             
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  906
+                  1.4k
                 </span>
               
 
@@ -699,7 +699,7 @@
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'/user/&#123;id?&#125;'</span>,<span class="function"><span class="keyword">function</span><span class="params">($id)</span></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'用户id为'</span>.$id;</span><br><span class="line">&#125;)-&gt;where(<span class="string">'id'</span>,<span class="string">'\d+'</span>);</span><br></pre></td></tr></table></figure>
 
-<h4 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//起别名,别名是不变更的</span></span><br><span class="line">Route::get(<span class="string">'/admin'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'这里是后台页面'</span>;</span><br><span class="line">&#125;)-&gt;name(<span class="string">'admin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过route函数用别名</span></span><br><span class="line">Route::get(<span class="string">'/home'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span><span class="string">'&lt;a href='</span>.route(<span class="string">'admin'</span>).<span class="string">'&gt;后台&lt;/a&gt;'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//起别名,别名是不变更的</span></span><br><span class="line">Route::get(<span class="string">'/admin/&#123;id&#125;'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'这里是后台页面'</span>;</span><br><span class="line">&#125;)-&gt;name(<span class="string">'admin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过route函数用别名</span></span><br><span class="line">Route::get(<span class="string">'/home'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span><span class="string">'&lt;a href='</span>.route(<span class="string">'admin'</span>,[<span class="string">'id'</span>=&gt;<span class="number">100</span>]).<span class="string">'&gt;后台&lt;/a&gt;'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h4 id="路由组"><a href="#路由组" class="headerlink" title="路由组"></a>路由组</h4><ul>
 <li><p>[]内不写规则,则路由组内路由正常使用(只是用于分类)</p>
@@ -710,12 +710,68 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Route::group([<span class="string">'middleware'</span>=&gt;<span class="string">'login'</span>],<span class="function"><span class="keyword">function</span></span>&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h4 id="404页面自定义"><a href="#404页面自定义" class="headerlink" title="404页面自定义"></a>404页面自定义</h4><p>resources/views/errors/404.blade.php<br>可做一些404公益页面</p>
-<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'/users/add'</span>,<span class="string">'Users@add'</span>);</span><br><span class="line">Route::post(<span class="string">'/users/insert'</span>,<span class="string">'Users@insert'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'/users/add'</span>,<span class="string">'Users@add'</span>);</span><br><span class="line">Route::post(<span class="string">'/users/insert'</span>,<span class="string">'Users@insert'</span>);</span><br><span class="line"><span class="comment">//带参数</span></span><br><span class="line">Route::get(<span class="string">'/User/edit/&#123;id&#125;'</span>, <span class="string">'Users@edit'</span>);</span><br><span class="line"><span class="comment">//控制器方法下直接传参xxcc($id)</span></span><br></pre></td></tr></table></figure>
 
 <p>post提交要加</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;csrf_field()&#125;&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h4 id="基础-1"><a href="#基础-1" class="headerlink" title="基础"></a>基础</h4><p>路由-&gt;控制器之间(保安查学生证件,判断和记录(进来离开时登记记录))</p>
+<h4 id="路由资源控制器"><a href="#路由资源控制器" class="headerlink" title="路由资源控制器"></a>路由资源控制器</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::resource(<span class="string">'order'</span>, <span class="string">'Order'</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">请求方式</th>
+<th align="left">URI路径</th>
+<th align="left">控制器方法</th>
+<th align="left">路由名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">GET</td>
+<td align="left"><code>/order</code></td>
+<td align="left">index (列表)</td>
+<td align="left">order.index</td>
+</tr>
+<tr>
+<td align="left">GET</td>
+<td align="left"><code>/order/create</code></td>
+<td align="left">create (添加页面)</td>
+<td align="left">order.create</td>
+</tr>
+<tr>
+<td align="left">POST</td>
+<td align="left"><code>/order</code></td>
+<td align="left">store  (添加逻辑)</td>
+<td align="left">order.store</td>
+</tr>
+<tr>
+<td align="left">GET</td>
+<td align="left"><code>/order/{id}</code></td>
+<td align="left">show (查看某一条详情)</td>
+<td align="left">order.show</td>
+</tr>
+<tr>
+<td align="left">GET</td>
+<td align="left"><code>/order/{id}/edit</code></td>
+<td align="left">edit  (修改某条页面)</td>
+<td align="left">order.edit</td>
+</tr>
+<tr>
+<td align="left">PUT/PATCH</td>
+<td align="left"><code>/order/{id}</code></td>
+<td align="left">update</td>
+<td align="left">order.update</td>
+</tr>
+<tr>
+<td align="left">DELETE</td>
+<td align="left"><code>/order/{id}</code></td>
+<td align="left">destroy</td>
+<td align="left">order.destroy</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update(修改逻辑 ,模拟PUT请求&#123;&#123;method_field(<span class="string">'PUT'</span>)&#125;&#125;)</span><br><span class="line">destroy(删除同上&#123;&#123;method_field(<span class="string">'DELETE'</span>)&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h4 id="基础-1"><a href="#基础-1" class="headerlink" title="基础"></a>基础</h4><p>路由——&gt;控制器之间(保安查学生证件,判断和记录(进来离开时登记记录))</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如建一个专门做登录检测的中间件</span></span><br><span class="line">php artisan make:middleware Loginmiddleware</span><br><span class="line"><span class="comment">//创建后的文件在app/http/middleware下面</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ul>
@@ -742,6 +798,122 @@
 </ul>
 <h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><h4 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建控制器</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller Users</span><br></pre></td></tr></table></figure>
 
+<h4 id="资源控制器操作流程"><a href="#资源控制器操作流程" class="headerlink" title="资源控制器操作流程"></a>资源控制器操作流程</h4><ul>
+<li><p>创建资源控制器</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller Order --resource</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建路由规则</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::resource(<span class="string">'order'</span>,<span class="string">'Order'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路由规律(参考楼上路由表格)</p>
+</li>
+</ul>
+<h3 id="常见请求"><a href="#常见请求" class="headerlink" title="常见请求"></a>常见请求</h3><h4 id="获取基本信息"><a href="#获取基本信息" class="headerlink" title="获取基本信息"></a>获取基本信息</h4><table>
+<thead>
+<tr>
+<th>获取基本信息</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$request-&gt;method()</td>
+<td>获取请求方法</td>
+</tr>
+<tr>
+<td>$request-&gt;isMethod(‘post’)</td>
+<td>检测方法</td>
+</tr>
+<tr>
+<td>$reques-&gt;path()</td>
+<td>请求路径</td>
+</tr>
+<tr>
+<td>$request-&gt;url()</td>
+<td>获取完整url</td>
+</tr>
+<tr>
+<td>$request-&gt;ip()</td>
+<td>获取ip</td>
+</tr>
+<tr>
+<td>$request-&gt;getPort()</td>
+<td>获取端口</td>
+</tr>
+</tbody></table>
+<h4 id="获取参数"><a href="#获取参数" class="headerlink" title="获取参数"></a>获取参数</h4><table>
+<thead>
+<tr>
+<th>获取参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$name = $request-&gt;input(‘name’);</td>
+<td><strong>基本获取</strong></td>
+</tr>
+<tr>
+<td>$request-&gt;input(‘name’, ‘Sally’);</td>
+<td>设置默认值</td>
+</tr>
+<tr>
+<td>$request-&gt;has(‘name’)</td>
+<td>检测是否存在</td>
+</tr>
+<tr>
+<td>$input = $request-&gt;all();</td>
+<td>提取所有的参数</td>
+</tr>
+<tr>
+<td>$request-&gt;only([‘username’, ‘password’]);</td>
+<td>只要这部分</td>
+</tr>
+<tr>
+<td>$request-&gt;except([‘credit_card’]);</td>
+<td>不要这部分</td>
+</tr>
+<tr>
+<td>$request-&gt;header(‘Connection’)</td>
+<td>获取头信息</td>
+</tr>
+</tbody></table>
+<h4 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h4><table>
+<thead>
+<tr>
+<th>文件操作</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$request-&gt;hasFile(‘photo’)</td>
+<td>检测是否有文件上传</td>
+</tr>
+<tr>
+<td>$request-&gt;file(‘photo’)-&gt;move(‘./uploads/‘, ‘iloveyou.jpg’);</td>
+<td>将文件移动到指定位置</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">do_icon</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $profile  = $request -&gt; file(<span class="string">'file'</span>);</span><br><span class="line">    <span class="comment">//移动到框架应用根目录/public/uploads/ 目录下</span></span><br><span class="line">    <span class="comment">//获取文件后缀名</span></span><br><span class="line">    $ext = $profile-&gt;getClientOriginalExtension();</span><br><span class="line">    <span class="comment">//处理文件名称</span></span><br><span class="line">    $temp_name = str_random(<span class="number">20</span>);</span><br><span class="line">    $filename =  $temp_name.<span class="string">'.'</span>.$ext;</span><br><span class="line">    $dirname = date(<span class="string">'Ymd'</span>,time());</span><br><span class="line">    <span class="comment">//保存文件名好更新时间到数据库</span></span><br><span class="line">    $cookie = $_COOKIE;</span><br><span class="line">    $name = $cookie[<span class="string">'Mobile_user_name'</span>];</span><br><span class="line">    date_default_timezone_set(<span class="string">'PRC'</span>);</span><br><span class="line">    $date= date(<span class="string">'Ymd'</span>, time());</span><br><span class="line">    $result = Db::table(<span class="string">'xy_huaban_user'</span>)-&gt;where([<span class="string">'name'</span>=&gt;$name])-&gt;update([<span class="string">'icon'</span>=&gt;$filename,<span class="string">'uptime'</span>=&gt;$date]);</span><br><span class="line">    <span class="comment">//移动文件</span></span><br><span class="line">    $res = $profile -&gt; move(<span class="string">'./uploads/'</span>.$dirname,$filename);</span><br><span class="line">    <span class="comment">//这儿为了做头像的无刷新上传</span></span><br><span class="line">    $cookie = $_COOKIE;</span><br><span class="line">    $do_user = <span class="keyword">new</span> do_user();</span><br><span class="line">    $userInfo = $do_user-&gt;index($cookie[<span class="string">'Mobile_user_name'</span>]);</span><br><span class="line">    $userInfo[<span class="string">'uptime'</span>] = str_replace(<span class="string">'-'</span>,<span class="string">''</span>,$userInfo[<span class="string">'uptime'</span>] );</span><br><span class="line">    $res = <span class="string">"/uploads/&#123;$userInfo['uptime']&#125;/$filename"</span>;</span><br><span class="line">    <span class="keyword">return</span> $res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><table>
+<thead>
+<tr>
+<th>Cookie</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\Cookie::queue(‘name’,’iloveyou’,10);</td>
+<td>设置</td>
+</tr>
+<tr>
+<td>\Cookie::get(‘name’);</td>
+<td>读取</td>
+</tr>
+<tr>
+<td>$request-&gt;cookie(‘name’);</td>
+<td>读取</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -824,6 +996,10 @@
   </article>
 
 
+
+  <i class="fa fa-thumb-tack"></i>
+  <font color="7D26CD">置顶</font>
+  <span class="post-meta-divider">|</span>
 
 
 
@@ -991,7 +1167,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">2.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础"><span class="nav-number">2.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#别名"><span class="nav-number">2.2.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由组"><span class="nav-number">2.3.</span> <span class="nav-text">路由组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面自定义"><span class="nav-number">2.4.</span> <span class="nav-text">404页面自定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用"><span class="nav-number">2.5.</span> <span class="nav-text">实际使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件"><span class="nav-number">3.</span> <span class="nav-text">中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础-1"><span class="nav-number">3.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">3.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#做一个全局中间件"><span class="nav-number">3.3.</span> <span class="nav-text">做一个全局中间件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器"><span class="nav-number">4.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建控制器"><span class="nav-number">4.1.</span> <span class="nav-text">创建控制器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">2.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础"><span class="nav-number">2.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#别名"><span class="nav-number">2.2.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由组"><span class="nav-number">2.3.</span> <span class="nav-text">路由组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面自定义"><span class="nav-number">2.4.</span> <span class="nav-text">404页面自定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用"><span class="nav-number">2.5.</span> <span class="nav-text">实际使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由资源控制器"><span class="nav-number">2.6.</span> <span class="nav-text">路由资源控制器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件"><span class="nav-number">3.</span> <span class="nav-text">中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础-1"><span class="nav-number">3.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">3.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#做一个全局中间件"><span class="nav-number">3.3.</span> <span class="nav-text">做一个全局中间件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器"><span class="nav-number">4.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建控制器"><span class="nav-number">4.1.</span> <span class="nav-text">创建控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源控制器操作流程"><span class="nav-number">4.2.</span> <span class="nav-text">资源控制器操作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见请求"><span class="nav-number">5.</span> <span class="nav-text">常见请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取基本信息"><span class="nav-number">5.1.</span> <span class="nav-text">获取基本信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取参数"><span class="nav-number">5.2.</span> <span class="nav-text">获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件操作"><span class="nav-number">5.3.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">5.4.</span> <span class="nav-text">Cookie</span></a></li></ol></li></ol></div>
             
 
           </div>
