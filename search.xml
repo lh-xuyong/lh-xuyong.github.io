@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git]]></title>
+    <url>%2F2019%2F08%2F08%2Fgit%2F</url>
+    <content type="text"><![CDATA[git git branch 显示本地分支git branch -a 加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）git branch dev 创建分支git checkout dev 切换分支git checkout -b dev 创建并切换分支 git status 检查文件状态git push 本地到线上 git push 远程主机名 本地分支名 远程分支名 git push origin master: resf/for/master git pull 线上到本地 git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; git push –set-upstream origin wangxiao 关联分支 这样以后直接git add . git commit -m”” git push git branch –set-upstream-to=origin/remote_branch your_branch 其中origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支 git push origin HEAD:dev]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Laravel的Eloquent ORM]]></title>
     <url>%2F2019%2F08%2F07%2F%E6%A1%86%E6%9E%B6%2Flaravel5.5%2FLaravel%E7%9A%84Eloquent-ORM%2F</url>
     <content type="text"><![CDATA[每个数据库表都有一个对应的「模型」可用来跟数据表进行交互 模型一个类对应一张表,一个对象对应一条记录 1php artisan make:model Order -m 约定 app下的User类对应的是users表(Login类对应的是logins表) 表都有主键,id 1$table-&gt;increment(&apos;id&apos;) 每个表都有时间戳字段,created_at updated_at 1$table-&gt;timestamps(); 代码先撸代码,后理解.xM: 1234567class Order extends Model&#123; public $table = 'xy_user'; public $primaryKey = 'id'; public $guarded =[]; public $timestamps = false;&#125; C里: 123456$res = Order::where('id','68')-&gt;get();$res = Order::create(['tel'=&gt;1888888]);$res = Order::where('tel','18317045591')-&gt;update(['name'=&gt;'asdassd']);$res = Order::where('tel','1888888')-&gt;delete();$res = Order::find($id);$res=Order::first(); 一对一属于一对多多对多]]></content>
