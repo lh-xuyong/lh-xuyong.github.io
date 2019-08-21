@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Laravel的file缓存系统]]></title>
+    <url>%2F2019%2F08%2F21%2F%E6%A1%86%E6%9E%B6%2Flaravel5.5%2FLaravel%E7%9A%84file%E7%BC%93%E5%AD%98%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[Laravel的file缓存系统 12345//config/cache.php文件下,可以更改cache缓存地址,如下:storage/app/cache/data下'file' =&gt; [ 'driver' =&gt; 'file', 'path' =&gt; storage_path( 'app/cache/data' ),], 常用命令 和redis差不多 get(‘key’,’default’) 获取,不存在是返回default值 has Cache::has(‘key’)判断 increment 递增 decrement 递减 pull 增加 add 增肌不可重复 forever 永久存储 forget 删除 flush 大扫除]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Laravel修改器]]></title>
+    <url>%2F2019%2F08%2F21%2F%E6%A1%86%E6%9E%B6%2Flaravel5.5%2FLaravel%E4%BF%AE%E6%94%B9%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[Laravel的访问器 12&lt;td&gt;&#123;&#123;$kpi-&gt;created_by&#125;&#125;&lt;/td&gt;&lt;td&gt;&#123;&#123;$kpi-&gt;updated_by&#125;&#125;&lt;/td&gt; 1234567891011121314151617181920212223242526 use App\Models\System\SYSUser; // 当前表内有updated_by,created_by两个字段,是int protected $table = 'com_kpi_group'; //这里是将字段按格式转换,$value即是int值,而后通过model查出数据,返回到楼上td里的调用 public function getCreatedByAttribute( $value ) &#123; $user = SYSUser::find( $value ); if ( $user ) &#123; return $user-&gt;name; &#125; else &#123; return NULL; &#125; &#125; public function getUpdatedByAttribute( $value ) &#123; $user = SYSUser::find( $value ); if ( $user ) &#123; return $user-&gt;name; &#125; else &#123; return NULL; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Laravel框架的表单验证]]></title>
     <url>%2F2019%2F08%2F16%2F%E6%A1%86%E6%9E%B6%2Flaravel5.5%2FLaravel%E6%A1%86%E6%9E%B6%E7%9A%84%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%2F</url>
-    <content type="text"><![CDATA[Laravel 强大的验证特性 使用使用request下的validate方法,将此处的规则验证通过后传入数据库,不通过则会闪存到sessi,可以通过view视图跑出 123456789public function store(Request $request)&#123; $validatedData = $request-&gt;validate([ 'title' =&gt; 'required|unique:posts|max:255', 'author.name' =&gt; 'required', 'author.desc' =&gt; 'required', ]); // 验证通过，存储到数据库...&#125; 123456789@if ($errors-&gt;any()) &lt;div class="alert alert-danger"&gt; &lt;ul&gt; @foreach ($errors-&gt;all() as $error) &lt;li&gt;&#123;&#123; $error &#125;&#125;&lt;/li&gt; @endforeach &lt;/ul&gt; &lt;/div&gt;@endif 如果是AJAX提交:取而代之的，Laravel 生成一个包含验证错误信息的 JSON 响应。该 JSON 响应会带上一个 HTTP 状态码 422 自定义验证报错12345678910111213141516171819202122232425262728293031if ($request-&gt;isMethod('post')) &#123; $taskInfo = $request-&gt;input(); $rules = [ 'task_title' =&gt; 'bail|required|min:2|max:120', 'task_content' =&gt; 'required', 'stop_time' =&gt; 'required', ]; $message = [ 'required' =&gt; ':attribute 必填', 'min' =&gt; '内容不能小于2个字符', 'max' =&gt; '内容不超过120个字符' ]; $field = [ 'task_title' =&gt; '任务主题', 'task_content' =&gt; '任务内容', 'stop_time' =&gt; '任务截止时间', ]; $validator = \Validator::make($taskInfo, $rules, $message, $field); if ($validator-&gt;fails()) &#123; return redirect()-&gt;back()-&gt;withErrors($validator)-&gt;withInput()-&gt;with('error', ''); &#125; 什么都不填返回结果: 任务主题 必填 任务内容 必填 任务截止时间 必填 $message内如果 'task_title.required' 则会专用于任务主题报错]]></content>
+    <content type="text"><![CDATA[Laravel 强大的验证特性 使用使用request下的validate方法,将此处的规则验证通过后传入数据库,不通过则会闪存到sessi,可以通过view视图跑出 123456789public function store(Request $request)&#123; $validatedData = $request-&gt;validate([ 'title' =&gt; 'required|unique:posts|max:255', 'author.name' =&gt; 'required', 'author.desc' =&gt; 'required', ]); // 验证通过，存储到数据库...&#125; 123456789@if ($errors-&gt;any()) &lt;div class="alert alert-danger"&gt; &lt;ul&gt; @foreach ($errors-&gt;all() as $error) &lt;li&gt;&#123;&#123; $error &#125;&#125;&lt;/li&gt; @endforeach &lt;/ul&gt; &lt;/div&gt;@endif 如果是AJAX提交:取而代之的，Laravel 生成一个包含验证错误信息的 JSON 响应。该 JSON 响应会带上一个 HTTP 状态码 422 自定义验证报错1234567891011121314151617181920212223242526272829303132if ($request-&gt;isMethod('post')) &#123; $taskInfo = $request-&gt;input(); //bail验证到其中一个没过就停止了,unique:task,task_title字段在task表内唯一 $rules = [ 'task_title' =&gt; 'bail|required|min:2|max:120|unique:task', 'task_content' =&gt; 'required', 'stop_time' =&gt; 'required', ]; $message = [ 'required' =&gt; ':attribute 必填', 'min' =&gt; '内容不能小于2个字符', 'max' =&gt; '内容不超过120个字符' ]; $field = [ 'task_title' =&gt; '任务主题', 'task_content' =&gt; '任务内容', 'stop_time' =&gt; '任务截止时间', ]; $validator = \Validator::make($taskInfo, $rules, $message, $field); if ($validator-&gt;fails()) &#123; return redirect()-&gt;back()-&gt;withErrors($validator)-&gt;withInput()-&gt;with('error', ''); &#125; 什么都不填返回结果: 任务主题 必填 任务内容 必填 任务截止时间 必填 $message内如果 'task_title.required' 则会专用于任务主题报错]]></content>
       <categories>
         <category>框架</category>
       </categories>
