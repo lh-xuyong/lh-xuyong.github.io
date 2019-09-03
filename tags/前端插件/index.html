@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="-Web安全,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -94,18 +94,13 @@
 
 
 
-<meta name="description" content="CSRF和XSS的攻击与防御…">
-<meta name="keywords" content="-Web安全">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CSRF和XSS的攻击与防御">
-<meta property="og:url" content="http://lh-xuyong.com/2019/07/20/WEB知识/CSRF和XSS的攻击与防御/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Web学习与开发">
+<meta property="og:url" content="http://lh-xuyong.com/tags/前端插件/index.html">
 <meta property="og:site_name" content="Web学习与开发">
-<meta property="og:description" content="CSRF和XSS的攻击与防御…">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-24T02:50:49.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSRF和XSS的攻击与防御">
-<meta name="twitter:description" content="CSRF和XSS的攻击与防御…">
+<meta name="twitter:title" content="Web学习与开发">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://lh-xuyong.com/2019/07/20/WEB知识/CSRF和XSS的攻击与防御/">
+  <link rel="canonical" href="http://lh-xuyong.com/tags/前端插件/">
 
 
 
 
 
-  <title>CSRF和XSS的攻击与防御 | Web学习与开发</title>
+  <title>标签: 前端插件 | Web学习与开发</title>
   
 
 
@@ -165,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,246 +286,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>前端插件<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/07/20/WEB知识/CSRF和XSS的攻击与防御/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lh-ayong">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/weixin.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Web学习与开发">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/09/03/前端/bootstrap插件/" itemprop="url">
+              
+                <span itemprop="name">bootstrap常用插件</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">CSRF和XSS的攻击与防御</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T10:53:14+08:00">
-                2019-07-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-24T10:50:49+08:00">
-                2019-07-24
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv">本文总阅读数<i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  481
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>CSRF和XSS的攻击与防御…</p>
-<a id="more"></a>
-<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>Cross Site Scripting:跨站脚本,X代表未知的含义</p>
-<h4 id="跨站攻击"><a href="#跨站攻击" class="headerlink" title="跨站攻击"></a>跨站攻击</h4><p>用户-&gt;目标站点-&gt;渲染HTML过程中出现没有预期的脚本-&gt;攻击者通过脚本获取到用户的信息(如cookie)</p>
-<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><ul>
-<li>挂马</li>
-<li>盗取用户cookie</li>
-<li>DDOS(拒绝服务)客户端浏览器</li>
-<li>钓鱼攻击,高级的钓鱼技巧</li>
-<li>劫持用户Web行为</li>
-<li>蠕虫病毒</li>
-</ul>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><ul>
-<li>反射型: URL注入非法脚本-&gt;服务器解析响应-&gt;反射给受害用户 (一般浏览器都会有防护),这种攻击是非持久性的(一般被用于邮箱)</li>
-<li>存储型: 与反射型的区别就是提交的URL会存储在服务器数据库,(一般被用于留言)</li>
-<li>DOM-Based型: 基于DOM或本地的XSS攻击</li>
-</ul>
-<h4 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h4><h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p>对输入(和URL参数)进行过滤,对输出进行编码.</p>
-<ul>
-<li>用户输入丶RUL参数丶POST请求参数丶Ajax</li>
-<li>黑白名单</li>
-</ul>
-<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><ul>
-<li>对输出代码转义<h5 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h5>cookie,服务端设置为http-only,js不能获取到cookie了</li>
-</ul>
-<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>csrf 跨站请求伪造:攻击者利用了用户的登录的状态,以用户的名义发送恶意请求. <strong>根本原因在Web服务器验证不够(只是验证了session的存在,无法验证是否是用户触发的)</strong></p>
-<p>用户登录了一个正常访问网站(有CSRF漏洞)-&gt;session存在-&gt;在正常网站没退出的情况下访问了恶意网站-&gt;恶意网站的图片(例:图片资源)-&gt;网站图片连接里嵌入了接口带上恶意参数(get请求下) </p>
-<h4 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h4><ul>
-<li>尽量使用POST</li>
-<li>加入验证码</li>
-<li>验证Referer(原理:站点不同)</li>
-<li>Anti CSRF Token : 1.head或form表单传递token 2.token存储在服务端 3.服务端通过拦截器验证有效性 4.效验失败拒绝请求</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>可以打赏,但没必要</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/dashang.jpg" alt="lh-ayong WeChat Pay">
-        <p>WeChat Pay</p>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-09-03T09:33:22+08:00" content="2019-09-03">
+          09-03
+        </time>
       </div>
-    
 
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Web安全/" rel="tag"># -Web安全</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/19/框架/TP5/TP-curd/" rel="next" title="TP-curd">
-                <i class="fa fa-chevron-left"></i> TP-curd
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/24/WEB知识/无限级分类/" rel="prev" title="无限级分类">
-                无限级分类 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-
-
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -538,12 +339,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTE0MC8yMTY1Nw=="></div>
-    
-  </div>
-
 
         </div>
         
@@ -564,17 +359,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/weixin.jpg" alt="lh-ayong">
           <p class="site-author-name" itemprop="name">lh-ayong</p>
@@ -680,22 +466,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS"><span class="nav-number">1.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跨站攻击"><span class="nav-number">1.1.</span> <span class="nav-text">跨站攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#危害"><span class="nav-number">1.2.</span> <span class="nav-text">危害</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">1.3.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防御"><span class="nav-number">1.4.</span> <span class="nav-text">防御</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入"><span class="nav-number">1.4.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出"><span class="nav-number">1.4.2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cookie"><span class="nav-number">1.4.3.</span> <span class="nav-text">cookie</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF"><span class="nav-number">2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#防御-1"><span class="nav-number">2.1.</span> <span class="nav-text">防御</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -832,10 +602,10 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
@@ -864,17 +634,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
