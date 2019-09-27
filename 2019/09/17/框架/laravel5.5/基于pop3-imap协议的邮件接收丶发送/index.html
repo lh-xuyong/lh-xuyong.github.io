@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="框架,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="基于pop3/imap协议的邮件接收丶发送">
+<meta name="keywords" content="框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于pop3&#x2F;imap协议的邮件接收丶发送">
+<meta property="og:url" content="http://lh-xuyong.com/2019/09/17/框架/laravel5.5/基于pop3-imap协议的邮件接收丶发送/index.html">
+<meta property="og:site_name" content="Web学习与开发">
+<meta property="og:description" content="基于pop3/imap协议的邮件接收丶发送">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-19T07:52:06.799Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于pop3&#x2F;imap协议的邮件接收丶发送">
+<meta name="twitter:description" content="基于pop3/imap协议的邮件接收丶发送">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lh-xuyong.com/2019/09/17/框架/laravel5.5/基于pop3-imap协议的邮件接收丶发送/">
+
+
+
+
+
+  <title>基于pop3/imap协议的邮件接收丶发送 | Web学习与开发</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Web学习与开发</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">专注分享网站开发学习和维护经验</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lh-xuyong.com/2019/09/17/框架/laravel5.5/基于pop3-imap协议的邮件接收丶发送/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lh-ayong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/weixin.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Web学习与开发">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于pop3/imap协议的邮件接收丶发送</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T15:24:06+08:00">
+                2019-09-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-19T15:52:06+08:00">
+                2019-09-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读数<i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基于pop3/imap协议的邮件接收丶发送</p>
+<a id="more"></a>
+
+<h3 id="收取邮件"><a href="#收取邮件" class="headerlink" title="收取邮件"></a>收取邮件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>收取邮件<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"form-horizontal col-md-5"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> <span class="attr">action</span>=<span class="string">"&#123;&#123;url('mail/test2')&#125;&#125;"</span>&gt;</span></span><br><span class="line">    &#123;&#123;csrf_field()&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>加密方式:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"safe"</span> <span class="attr">id</span>=<span class="string">"safe"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span> 不加密</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"safe"</span> <span class="attr">id</span>=<span class="string">"safe"</span> <span class="attr">checked</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span> SSL</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"safe"</span> <span class="attr">id</span>=<span class="string">"safe"</span> <span class="attr">checked</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span> TSL</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>邮箱账号:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>服务密码:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>选择平台:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"choose_email"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">id</span>=<span class="string">"choose_email"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>163邮箱<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>qq邮箱<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>选择端口:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"port"</span> <span class="attr">id</span>=<span class="string">"port"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>收取方式:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"way"</span> <span class="attr">id</span>=<span class="string">"way"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span> POP3/POP</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"way"</span> <span class="attr">id</span>=<span class="string">"way"</span> <span class="attr">checked</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span> IMAP</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span>&gt;</span>收&amp;nbsp;取<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>连接测试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    $(function () &#123;</span><br><span class="line">        $('#demo').click(function () &#123;</span><br><span class="line">          // alert('你点欧文')</span><br><span class="line">            var name = $('#name').val();</span><br><span class="line">            var password = $('#password').val();</span><br><span class="line">            var choose_email = $('#choose_email').val();</span><br><span class="line">            var safe = $('#safe').val();</span><br><span class="line">            var way = $('#way').val();</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url:'/mail/demo',</span><br><span class="line">                method:'post',</span><br><span class="line">                data:&#123;</span><br><span class="line">                    'name':name,</span><br><span class="line">                    'password':password,</span><br><span class="line">                    'choose_email':choose_email,</span><br><span class="line">                    'safe':safe,</span><br><span class="line">                    'way':way,</span><br><span class="line">                    '_token':"&#123;&#123;csrf_token()&#125;&#125;"</span><br><span class="line">                &#125;,</span><br><span class="line">                dataType:'json',</span><br><span class="line">                success:function(data)&#123;</span><br><span class="line">                    // console.log(data)</span><br><span class="line">                    if(data.code == 200)&#123;</span><br><span class="line">                        toastr.success(data.message);</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        toastr.error(data.message);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                error:function()&#123;</span><br><span class="line">                    toastr.error('网络错误')</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *读取邮件	</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test2</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"><span class="comment">//        dd(public_path());die;</span></span><br><span class="line">        set_time_limit(<span class="number">100</span>);</span><br><span class="line">        $userInfo = $request-&gt;input();</span><br><span class="line"><span class="comment">//        dd($userInfo);</span></span><br><span class="line">        <span class="keyword">if</span> ($userInfo[<span class="string">'choose_email'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">            $choose_email = <span class="string">'163'</span>;</span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'choose_email'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">            $choose_email = <span class="string">'qq'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($userInfo[<span class="string">'safe'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">            $safe = <span class="string">''</span>;</span><br><span class="line">            <span class="keyword">if</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">                $way = <span class="string">'pop'</span>;</span><br><span class="line">                $port = <span class="string">'110'</span>;</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">                $way = <span class="string">'imap'</span>;</span><br><span class="line">                $port = <span class="string">'143'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'safe'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">            $safe = <span class="string">'/ssl'</span>;</span><br><span class="line">            <span class="keyword">if</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">                $way = <span class="string">'pop'</span>;</span><br><span class="line">                $port = <span class="string">'995'</span>;</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">                $way = <span class="string">'imap'</span>;</span><br><span class="line">                $port = <span class="string">'993'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        dd('&#123;'.$way.'.'.$choose_email.'.com:'.$port.'/'.$way.$safe.'&#125;INBOX');</span></span><br><span class="line">        <span class="comment">//连接</span></span><br><span class="line">        $mailbox = <span class="keyword">new</span> PhpImap\Mailbox(</span><br><span class="line">            <span class="string">'&#123;'</span> . $way . <span class="string">'.'</span> . $choose_email . <span class="string">'.com:'</span> . $port . <span class="string">'/'</span> . $way . $safe . <span class="string">'&#125;INBOX'</span>, <span class="comment">// IMAP服务器和邮箱文件夹</span></span><br><span class="line">            <span class="string">"&#123;$userInfo['name']&#125;"</span>, <span class="comment">// 以前配置的邮箱的用户名</span></span><br><span class="line">            <span class="string">"&#123;$userInfo['password']&#125;"</span>, <span class="comment">// 以前配置的用户名的密码</span></span><br><span class="line">            public_path() . <span class="string">'\email\attachment'</span>, <span class="comment">// 保存附件的目录（可选）</span></span><br><span class="line">            <span class="string">'UTF-8'</span> <span class="comment">// 服务器编码（可选）</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取邮件，imap只获取未读的，pop3需要用填入数据库方式进行判断读取</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            $mail_ids = $mailbox-&gt;searchMailbox(<span class="string">'UNSEEN'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ConnectionException $ex) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"连接失败: "</span> . $ex-&gt;getMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!$mail_ids) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'暂无未读文件'</span>;</span><br><span class="line">            <span class="keyword">die</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> ($mail_ids <span class="keyword">as</span> $mail_id) &#123;</span><br><span class="line">            $email = $mailbox-&gt;getMail(</span><br><span class="line">                $mail_id, <span class="comment">// ID of the email, you want to get</span></span><br><span class="line">                <span class="keyword">false</span> <span class="comment">// Do NOT mark emails as seen (optional)</span></span><br><span class="line">            <span class="comment">//不要将电子邮件标记为可见（可选）</span></span><br><span class="line">            );</span><br><span class="line"></span><br><span class="line">            <span class="comment">//pop3判断读取</span></span><br><span class="line"><span class="comment">//            if($way == 'pop')&#123;</span></span><br><span class="line"></span><br><span class="line">            $email_data[<span class="string">'message_id'</span>] = $email-&gt;messageId;</span><br><span class="line">            dump($email_data[<span class="string">'message_id'</span>]);</span><br><span class="line"></span><br><span class="line">            $message_id = Email::where(<span class="string">'message_id'</span>, $email_data[<span class="string">'message_id'</span>])-&gt;get()-&gt;toArray();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ($message_id) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'该文件已经阅读过'</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//数据处理</span></span><br><span class="line">            $email_data[<span class="string">'email_time'</span>] = $email-&gt;date;</span><br><span class="line">            $email_data[<span class="string">'send_name'</span>] = $email-&gt;fromName;</span><br><span class="line">            $email_data[<span class="string">'send_address'</span>] = $email-&gt;fromAddress;</span><br><span class="line">            <span class="keyword">foreach</span> ($email-&gt;to <span class="keyword">as</span> $k =&gt; $v) &#123;</span><br><span class="line">                $email_data[<span class="string">'receive_name'</span>] = $v;</span><br><span class="line">                $email_data[<span class="string">'receive_address'</span>] = $k;</span><br><span class="line">            &#125;</span><br><span class="line">            $email_data[<span class="string">'title'</span>] = $email-&gt;subject;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//附件处理</span></span><br><span class="line">            <span class="keyword">if</span> ($email-&gt;hasAttachments()) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">"有附件\n"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">"无附件\n"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">//            $fileName = $file-&gt;getClientOriginalExtension();</span></span><br><span class="line"><span class="comment">//            $tempName = str_random(20);</span></span><br><span class="line"><span class="comment">//            $newName = $tempName;</span></span><br><span class="line"><span class="comment">//            $dirName = date('Ymd', time());</span></span><br><span class="line"><span class="comment">//            $file-&gt;move('./email/' . $dirName, $newName);</span></span><br><span class="line">            <span class="comment">//统计附件数</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">empty</span>($email-&gt;getAttachments())) &#123;</span><br><span class="line">                $attach_number = count($email-&gt;getAttachments()) . <span class="string">" 附件\n"</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//是否有html消息</span></span><br><span class="line">            <span class="keyword">if</span> ($email-&gt;textHtml) &#123;</span><br><span class="line"><span class="comment">//                $a = $email-&gt;textHtml;</span></span><br><span class="line"><span class="comment">//                $body = nl2br(strip_tags($a));</span></span><br><span class="line"><span class="comment">//                dd($body);</span></span><br><span class="line"></span><br><span class="line">                $path = public_path() . <span class="string">'\email\content\\'</span> . $email_data[<span class="string">'title'</span>] . <span class="string">'.html'</span>;</span><br><span class="line">                $content = fopen($path, <span class="string">'w+'</span>);</span><br><span class="line">                file_put_contents($path, $email-&gt;textHtml);</span><br><span class="line">                fclose($content);</span><br><span class="line">                $email_data[<span class="string">'content'</span>] = $path;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $path = public_path() . <span class="string">'\email\content\\'</span> . $email_data[<span class="string">'title'</span>] . <span class="string">'.html'</span>;</span><br><span class="line">                $content = fopen($path, <span class="string">'w+'</span>);</span><br><span class="line">                file_put_contents($path, $email-&gt;textPlain);</span><br><span class="line">                fclose($content);</span><br><span class="line">                $email_data[<span class="string">'content'</span>] = $path;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//email数据库增加数据</span></span><br><span class="line">            $res = Email::create($email_data);</span><br><span class="line">            $id = $res-&gt;id;</span><br><span class="line">            <span class="keyword">if</span> ($res) &#123;</span><br><span class="line">                $mailbox-&gt;markMailAsRead($mail_id);</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'成功'</span>;</span><br><span class="line">                $file = $email-&gt;getAttachments();</span><br><span class="line">                <span class="keyword">foreach</span> ($file <span class="keyword">as</span> $k =&gt; $v) &#123;</span><br><span class="line">                    <span class="comment">//附件名增加数据</span></span><br><span class="line">                    $attachment[<span class="string">'name'</span>] = $email-&gt;id . <span class="string">'_'</span> . $v-&gt;id . <span class="string">'_'</span> . $v-&gt;name;</span><br><span class="line">                    $attachment[<span class="string">'email_id'</span>] = $id;</span><br><span class="line">                    $result = Attachment::create($attachment);</span><br><span class="line">                    <span class="keyword">if</span> ($result) &#123;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">'添加成功'</span>;</span><br><span class="line">                        $mailbox-&gt;markMailAsRead($mail_id);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'失败'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $mailbox-&gt;disconnect();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//测试连通</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"><span class="comment">//        set_time_limit(100);</span></span><br><span class="line">        $userInfo = $request-&gt;input();</span><br><span class="line"><span class="comment">//        dd($userInfo);</span></span><br><span class="line">        <span class="keyword">if</span> ($userInfo[<span class="string">'choose_email'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">            $choose_email = <span class="string">'163'</span>;</span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'choose_email'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">            $choose_email = <span class="string">'qq'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($userInfo[<span class="string">'safe'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">            $safe = <span class="string">''</span>;</span><br><span class="line">            <span class="keyword">if</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">                $way = <span class="string">'pop'</span>;</span><br><span class="line">                $port = <span class="string">'110'</span>;</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">                $way = <span class="string">'imap'</span>;</span><br><span class="line">                $port = <span class="string">'143'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'safe'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">            $safe = <span class="string">'/ssl'</span>;</span><br><span class="line">            <span class="keyword">if</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">                $way = <span class="string">'pop'</span>;</span><br><span class="line">                $port = <span class="string">'995'</span>;</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($userInfo[<span class="string">'way'</span>] == <span class="number">2</span>) &#123;</span><br><span class="line">                $way = <span class="string">'imap'</span>;</span><br><span class="line">                $port = <span class="string">'993'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        dd('&#123;'.$way.'.'.$choose_email.'.com:'.$port.'/'.$way.$safe.'&#125;INBOX');</span></span><br><span class="line">        <span class="comment">//连接</span></span><br><span class="line">        $mailbox = <span class="keyword">new</span> PhpImap\Mailbox(</span><br><span class="line">            <span class="string">'&#123;'</span> . $way . <span class="string">'.'</span> . $choose_email . <span class="string">'.com:'</span> . $port . <span class="string">'/'</span> . $way . $safe . <span class="string">'&#125;INBOX'</span>, <span class="comment">// IMAP服务器和邮箱文件夹</span></span><br><span class="line">            <span class="string">"&#123;$userInfo['name']&#125;"</span>, <span class="comment">// 以前配置的邮箱的用户名</span></span><br><span class="line">            <span class="string">"&#123;$userInfo['password']&#125;"</span>, <span class="comment">// 以前配置的用户名的密码</span></span><br><span class="line">            public_path() . <span class="string">'\email\attachment'</span>, <span class="comment">// 保存附件的目录（可选）</span></span><br><span class="line">            <span class="string">'UTF-8'</span> <span class="comment">// 服务器编码（可选）</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            $mail_ids = $mailbox-&gt;searchMailbox(<span class="string">'UNSEEN'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ConnectionException $ex) &#123;</span><br><span class="line"><span class="comment">//            die("连接失败: " . $ex-&gt;getMessage());</span></span><br><span class="line">            <span class="keyword">return</span> $data = [<span class="string">'code'</span> =&gt; <span class="number">404</span>, <span class="string">'message'</span> =&gt; <span class="string">'连接失败'</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($mail_ids) &#123;</span><br><span class="line">            <span class="keyword">return</span> $data = [<span class="string">'code'</span> =&gt; <span class="number">200</span>, <span class="string">'message'</span> =&gt; <span class="string">'连接成功'</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> $data = [<span class="string">'code'</span> =&gt; <span class="number">404</span>, <span class="string">'message'</span> =&gt; <span class="string">'连接失败'</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>发送邮件<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"form-horizontal col-md-5"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    &#123;&#123;csrf_field()&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>收件人<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>邮箱标题:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">id</span>=<span class="string">"title"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>邮箱内容:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">rows</span>=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>加密方式:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"safe"</span> <span class="attr">id</span>=<span class="string">"safe"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span> 不加密</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"radio-inline"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"safe"</span> <span class="attr">id</span>=<span class="string">"safe"</span> <span class="attr">checked</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span> SSL</span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span>附件<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"attachment"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"control-label col-md-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span> <span class="attr">style</span>=<span class="string">"background-color: #2a88bd"</span>&gt;</span>发&amp;nbsp;送<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>连接测试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//发送邮件</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">send</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($request-&gt;isMethod(<span class="string">'get'</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> view(<span class="string">'/email/send'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($request-&gt;isMethod(<span class="string">'post'</span>)) &#123;</span><br><span class="line">            set_time_limit(<span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">            $mail_info = request()-&gt;input();</span><br><span class="line"><span class="comment">//            dd($mail_info);</span></span><br><span class="line">            $res = Mail::raw(request()-&gt;input(<span class="string">'content'</span>), <span class="function"><span class="keyword">function</span> <span class="params">($message)</span> </span>&#123;</span><br><span class="line">                $message-&gt;to(request()-&gt;input(<span class="string">'user'</span>));</span><br><span class="line">                $message-&gt;subject(request()-&gt;input(<span class="string">'title'</span>));</span><br><span class="line">                <span class="keyword">if</span> (request()-&gt;hasFile(<span class="string">'attachment'</span>)) &#123;</span><br><span class="line">                    $filePath = <span class="keyword">$this</span>-&gt;act_send_attachment()[<span class="string">'filePath'</span>];</span><br><span class="line">                    $fileName = <span class="keyword">$this</span>-&gt;act_send_attachment()[<span class="string">'fileName'</span>];</span><br><span class="line">                    $message-&gt;attach($filePath, [<span class="string">'as'</span> =&gt; $fileName]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!$res) &#123;</span><br><span class="line">                <span class="keyword">return</span> back();</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'失败'</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 在函数内，例如post获得email地址之后   调用：</span></span><br><span class="line"><span class="comment">//            $message = 'test';</span></span><br><span class="line"><span class="comment">//            $to = '1505190683@qq.com';</span></span><br><span class="line"><span class="comment">//            $subject = '邮件名称';</span></span><br><span class="line"><span class="comment">//            Mail::send('email.send', ['content' =&gt; $message], function ($message) use ($to, $subject) &#123;</span></span><br><span class="line"><span class="comment">//                $message-&gt;to($to)-&gt;subject($subject);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//            );</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//            $content = request()-&gt;get('content');</span></span><br><span class="line"><span class="comment">//            $res = Mail::send('email.template', ['content' =&gt; $content], function ($msg) &#123;</span></span><br><span class="line"><span class="comment">//                $user = request()-&gt;get('user');</span></span><br><span class="line"><span class="comment">//                $title = request()-&gt;get('title');</span></span><br><span class="line"><span class="comment">//                $msg-&gt;to($user)-&gt;subject($title);</span></span><br><span class="line"><span class="comment">//                if (request()-&gt;hasFile('attachment')) &#123;</span></span><br><span class="line"><span class="comment">//                    $filePath = $this-&gt;act_send_attachment()['filePath'];</span></span><br><span class="line"><span class="comment">//                    $fileName = $this-&gt;act_send_attachment()['fileName'];</span></span><br><span class="line"><span class="comment">//                    $msg-&gt;attach($filePath, ['as' =&gt; $fileName]);</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line"><span class="comment">//            &#125;);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发送附件处理</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">act_send_attachment</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $file = request()-&gt;file(<span class="string">'attachment'</span>);</span><br><span class="line"><span class="comment">//        dd($file);</span></span><br><span class="line">        $fileName = $file-&gt;getClientOriginalName(); <span class="comment">//文件原名</span></span><br><span class="line">        $realPath = $file-&gt;getRealPath();   <span class="comment">//临时绝对路径</span></span><br><span class="line">        <span class="comment">//移动临时文件到上传文件目录</span></span><br><span class="line">        $bool = Storage::disk(<span class="string">'email/test'</span>)-&gt;put($fileName, file_get_contents($realPath));</span><br><span class="line">        dd($bool);</span><br><span class="line"><span class="comment">//        if ($bool) &#123;</span></span><br><span class="line"><span class="comment">//            return [</span></span><br><span class="line"><span class="comment">//                'filePath' =&gt; $filePath = public_path('email') . '/' . $fileName,</span></span><br><span class="line"><span class="comment">//                'fileName' =&gt; $fileName</span></span><br><span class="line"><span class="comment">//            ];</span></span><br><span class="line"><span class="comment">//        &#125; else &#123;</span></span><br><span class="line"><span class="comment">//            return FALSE;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>可以打赏,但没必要</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/dashang.jpg" alt="lh-ayong WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/16/框架/laravel5.5/基于Laravel-backup-做数据库备份与恢复2-0/" rel="next" title="基于Laravel-backup,做数据库备份与恢复2.0">
+                <i class="fa fa-chevron-left"></i> 基于Laravel-backup,做数据库备份与恢复2.0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTE0MC8yMTY1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/weixin.jpg" alt="lh-ayong">
+          <p class="site-author-name" itemprop="name">lh-ayong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://guides.github.com/activities/hello-world/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gotokeep.com/" title="Keep" target="_blank">Keep</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/bangumi/play/ep264225?from=search&seid=13129934481233558844" title="白蛇:缘起" target="_blank">白蛇:缘起</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.bilibili.com/video/av20774851/?p=1" title="我的三体" target="_blank">我的三体</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#收取邮件"><span class="nav-number">1.</span> <span class="nav-text">收取邮件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送邮件"><span class="nav-number">2.</span> <span class="nav-text">发送邮件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lh-ayong</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访问数<i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量<i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
