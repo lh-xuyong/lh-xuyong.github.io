@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="/"/>
-  <updated>2023-04-15T16:47:19.171Z</updated>
-  <id>/</id>
+  <link href="https://lh-xuyong.github.io/"/>
+  <updated>2023-04-15T17:06:20.577Z</updated>
+  <id>https://lh-xuyong.github.io/</id>
   
   <author>
     <name>红狼</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>大灰狼致小白兔</title>
-    <link href="/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%87%B4%E5%B0%8F%E7%99%BD%E5%85%94/"/>
-    <id>/大灰狼致小白兔/</id>
+    <link href="https://lh-xuyong.github.io/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%87%B4%E5%B0%8F%E7%99%BD%E5%85%94/"/>
+    <id>https://lh-xuyong.github.io/大灰狼致小白兔/</id>
     <published>2023-04-15T13:31:43.966Z</published>
-    <updated>2023-04-15T16:47:19.171Z</updated>
+    <updated>2023-04-15T17:06:20.577Z</updated>
     
     <summary type="html">
     
@@ -38,15 +38,15 @@
     
     </summary>
     
-      <category term="情感" scheme="/categories/%E6%83%85%E6%84%9F/"/>
+      <category term="情感" scheme="https://lh-xuyong.github.io/categories/%E6%83%85%E6%84%9F/"/>
     
     
   </entry>
   
   <entry>
     <title>TP5.0的重新学习</title>
-    <link href="/TP5.0%E7%9A%84%E9%87%8D%E6%96%B0%E5%AD%A6%E4%B9%A0/"/>
-    <id>/TP5.0的重新学习/</id>
+    <link href="https://lh-xuyong.github.io/TP5.0%E7%9A%84%E9%87%8D%E6%96%B0%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://lh-xuyong.github.io/TP5.0的重新学习/</id>
     <published>2023-04-15T13:22:46.644Z</published>
     <updated>2020-08-12T07:20:46.000Z</updated>
     
@@ -66,15 +66,15 @@
     
     </summary>
     
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://lh-xuyong.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
   </entry>
   
   <entry>
     <title>php基础(初学时的笔记)</title>
-    <link href="/php/"/>
-    <id>/php/</id>
+    <link href="https://lh-xuyong.github.io/php/"/>
+    <id>https://lh-xuyong.github.io/php/</id>
     <published>2023-04-15T13:22:46.636Z</published>
     <updated>2020-08-12T07:31:30.000Z</updated>
     
@@ -91,15 +91,15 @@
     
     </summary>
     
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://lh-xuyong.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="/cicken_breast/"/>
-    <id>/cicken_breast/</id>
+    <link href="https://lh-xuyong.github.io/cicken_breast/"/>
+    <id>https://lh-xuyong.github.io/cicken_breast/</id>
     <published>2023-04-15T13:22:46.633Z</published>
     <updated>2021-02-07T06:48:40.000Z</updated>
     
